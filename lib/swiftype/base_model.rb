@@ -29,13 +29,23 @@ module Swiftype
     end
 
     def update!
-      u = put("/api/v1/#{self.class.collection_name}/#{identifier}.json", {self.class.model_name => to_hash})
-      p u
-      merge! u
+      update_with! put("/api/v1/#{self.class.collection_name}/#{identifier}.json", {self.class.model_name => to_hash})
     end
 
     def destroy!
       delete("/api/v1/#{self.class.collection_name}/#{identifier}.json")
+    end
+
+    def update_with!(hash)
+      self.class.properties.each do |p|
+        change = hash[p.to_s]
+        self.send("#{p}=", change) if change
+      end
+      self
+    end
+
+    def reload
+      update_with! get("/api/v1/#{self.class.collection_name}/#{identifier}.json")
     end
 
     def identifier
