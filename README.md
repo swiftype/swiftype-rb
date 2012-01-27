@@ -29,13 +29,13 @@ The client has a few basic methods on `Swiftype` for dealing with `Engines`.  Be
 
 `Engines` are the top-level objects in Swiftype.  They have a free-form `name` field that is translated into a `slug` identifier.
 
-#### DocumentType
+#### Document Type
 
 `DocumentTypes` specify the structure of a set of documents in the `Engine` and are the entry point for searches.  There are three types of fields on a `DocumentType`: `text_fields`, `body_fields`, and `feature_fields`.
 
 `text_fields` are short strings that can be matched in both prefix and full-text searches.  _Example: Chapter titles in a book._
 
-`body_fields` can be long strings.  The are meant for full-text searches only and will not be used for prefix queries.  _Example: Entire text of an essay._
+`body_fields` can be long strings.  They are meant for full-text searches only and will not be used for prefix queries.  _Example: Entire text of an essay._
 
 `feature_fields` are the traits of a document.  They are not analyzed in any way, and thus can be used to filter and sort queries.  _Example: Price of a book._
 
