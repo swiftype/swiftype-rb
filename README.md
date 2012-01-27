@@ -47,6 +47,13 @@ The client has a few basic methods on `Swiftype` for dealing with `Engines`.  Be
 Basic Usage
 -------------
 
+#### Configuration
+
+    Swiftype.configure do |config|
+      config.username = "you@company.com"
+      config.password = "secret"
+    end
+
 #### Creating an engine
 
     engine = Engine.new(:name => "Bookstore")
