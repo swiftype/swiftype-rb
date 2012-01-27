@@ -13,7 +13,7 @@ module Swiftype
     end
 
     def create_document_type(params={})
-      doc = build_document_type(params)
+      doc = build_document_type(params.merge(:engine_id => id))
       doc.create!
       doc
     end

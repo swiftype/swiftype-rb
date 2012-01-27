@@ -21,6 +21,18 @@ module Swiftype
       end
     end
 
+    def id
+      self._id
+    end
+
+    def to_hash
+      table
+    end
+
+    def to_json
+      to_hash.to_json
+    end
+
     def create!
       update_with! post(path_to_collection, {self.class.model_name => to_hash})
     end
@@ -52,10 +64,7 @@ module Swiftype
     end
 
     def update_with!(hash)
-      self.class.properties.each do |p|
-        change = hash[p.to_s]
-        self.send("#{p}=", change) if change
-      end
+      table.merge!(hash)
       self
     end
 

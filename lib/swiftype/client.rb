@@ -1,6 +1,3 @@
-require 'faraday'
-require 'faraday_middleware'
-
 module Swiftype
   class Client
     include Swiftype::Connection

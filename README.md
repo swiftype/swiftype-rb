@@ -56,26 +56,26 @@ Basic Usage
 
 #### Creating an engine
 
-    engine = Engine.new(:name => "Bookstore")
+    engine = Swiftype::Engine.new(:name => "Bookstore")
     engine.create!
 
 #### Finding an engine
 
-    engine = Engine.find("bookstore")
+    engine = Swiftype::Engine.find("bookstore")
 
 #### Creating a document type
 
-    engine = Engine.find("bookstore")
+    engine = Swiftype::Engine.find("bookstore")
     type = engine.create_document_type(:name => "Book")
 
 #### Inspecting document types
 
-    engine = Engine.find("bookstore")
+    engine = Swiftype::Engine.find("bookstore")
     types = engine.document_types
 
 #### Adding a document
 
-    engine = Engine.find("bookstore")
+    engine = Swiftype::Engine.find("bookstore")
     type = engine.document_types.last
     type.create_document(
       :external_id => '1234',
@@ -93,13 +93,13 @@ Basic Usage
 
 #### Full-text search
 
-    engine = Engine.find("bookstore")
+    engine = Swiftype::Engine.find("bookstore")
     type = engine.document_types.last
     type.search("inverted index")
 
 #### Search suggestions (prefix query)
 
-    engine = Engine.find("bookstore")
+    engine = Swiftype::Engine.find("bookstore")
     type = engine.document_types.last
     type.suggest("Chris")
 

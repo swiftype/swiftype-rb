@@ -10,7 +10,7 @@ module Swiftype
     end
 
     def create_document(params={})
-      doc = build_document(params)
+      doc = build_document(params.merge(:document_type_id => id, :engine_id => engine_id))
       doc.create!
       doc
     end
