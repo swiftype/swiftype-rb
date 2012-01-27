@@ -1,4 +1,4 @@
-require 'hashie/dash'
+require 'ostruct'
 
 module Swiftype
   autoload :Configuration, 'swiftype/configuration'
@@ -7,6 +7,8 @@ module Swiftype
   autoload :BaseModel, 'swiftype/base_model'
   autoload :Request, 'swiftype/request'
   autoload :Engine, 'swiftype/engine'
+  autoload :DocumentType, 'swiftype/document_type'
+  autoload :Document, 'swiftype/document'
 
   extend Configuration
 

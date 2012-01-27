@@ -1,11 +1,13 @@
 require 'active_support/inflector'
 
 module Swiftype
-  class BaseModel < Hashie::Dash
+  class BaseModel < OpenStruct
     include Swiftype::Connection
     include Swiftype::Request
 
     class << self
+      attr_reader :parent_classes
+
       def model_name
         name.split('::').last.underscore
       end
@@ -14,26 +16,39 @@ module Swiftype
         model_name.pluralize
       end
 
-      def find(id)
-        new Swiftype::Client.new.get("/api/v1/#{collection_name}/#{id}.json")
+      def parents(*parent_classes)
+        @parent_classes = parent_classes
       end
     end
 
-    def initialize(hash)
-      hash['slug'] ||= hash.delete('id') if slugged?
-      super(hash)
-    end
-
     def create!
-      merge! post("/api/v1/#{self.class.collection_name}.json", {self.class.model_name => to_hash})
+      update_with! post(path_to_collection, {self.class.model_name => to_hash})
     end
 
     def update!
-      update_with! put("/api/v1/#{self.class.collection_name}/#{identifier}.json", {self.class.model_name => to_hash})
+      update_with! put(path_to_model, {self.class.model_name => to_hash})
     end
 
     def destroy!
-      delete("/api/v1/#{self.class.collection_name}/#{identifier}.json")
+      delete(path_to_model)
+    end
+
+    def path_to_model
+      path = (self.class.parent_classes || []).inject("") do |_, parent|
+        parent_id = send("#{parent.model_name}_id")
+        _ += "#{parent.collection_name}/#{parent_id}/"
+        _
+      end
+      "#{path}#{self.class.collection_name}/#{identifier}.json"
+    end
+
+    def path_to_collection
+      path = (self.class.parent_classes || []).inject("") do |_, parent|
+        parent_id = send("#{parent.model_name}_id")
+        _ += "#{parent.collection_name}/#{parent_id}/"
+        _
+      end
+      "#{path}#{self.class.collection_name}.json"
     end
 
     def update_with!(hash)
@@ -45,7 +60,7 @@ module Swiftype
     end
 
     def reload
-      update_with! get("/api/v1/#{self.class.collection_name}/#{identifier}.json")
+      update_with! get(path_to_model)
     end
 
     def identifier
@@ -54,12 +69,6 @@ module Swiftype
 
     def slugged?
       respond_to?(:slug)
-    end
-
-    def []=(property, value)
-      assert_property_required! property, value
-      assert_property_exists!(property) rescue return
-      super(property.to_s, value)
     end
   end
 end
