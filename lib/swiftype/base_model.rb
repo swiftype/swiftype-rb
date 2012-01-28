@@ -64,7 +64,9 @@ module Swiftype
     end
 
     def update_with!(hash)
-      table.merge!(hash)
+      hash.each do |k, v|
+        send "#{k}=", v
+      end
       self
     end
 
