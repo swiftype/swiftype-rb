@@ -31,13 +31,17 @@ The client has a few basic methods on `Swiftype` for dealing with `Engines`.  Be
 
 #### Document Type
 
-`DocumentTypes` specify the structure of a set of documents in the `Engine` and are the entry point for searches.  There are three types of fields on a `DocumentType`: `text_fields`, `body_fields`, and `feature_fields`.
+`DocumentTypes` specify the structure of a set of documents in the `Engine` and are the entry point for searches.  There are three types of fields on a `DocumentType`: `:string`, `:text`, `:enum`, `:integer`, `:float`, and `:date`.
 
-`text_fields` are short strings that can be matched in both prefix and full-text searches.  _Example: Chapter titles in a book._
+`:string` is for short strings that can be matched in both prefix and full-text searches.  _Example: Chapter titles in a book._
 
-`body_fields` can be long strings.  They are meant for full-text searches only and will not be used for prefix queries.  _Example: Entire text of an essay._
+`:text` can be long strings.  They are meant for full-text searches only and will not be used for prefix queries.  _Example: Entire text of an essay._
 
-`feature_fields` are the traits of a document.  They are not analyzed in any way, and thus can be used to filter and sort queries.  _Example: Price of a book._
+`:enum` are string traits of a document.  They are not analyzed in any way, and thus can be used to filter and sort queries.  _Example: Hardcover or paperback._
+
+`:date` are ISO 8601 compatible time strings.  They can also be used to filter and sort queries.
+
+
 
 #### Document
 
@@ -79,16 +83,28 @@ Basic Usage
     type = engine.document_types.last
     type.create_document(
       :external_id => '1234',
-      :text_fields => {
-        :title => 'Introduction to Information Retrieval',
-        :author => 'Christopher Manning'
-      },
-      :body_fields => {
-        :text => "Lorem ipsum dolor sit amet..."
-      },
-      :feature_fields => {
-        :price => '29.99'
-      }
+      :fields => [
+        {
+          :name => :title,
+          :value => "Introduction to Information Retrieval",
+          :type => :string
+        },
+        {
+          :name => :body,
+          :value => "Lorem ipsum dolor sit amet...",
+          :type => :text
+        },
+        {
+          :name => :genre,
+          :value => "non-fiction",
+          :type => :enum
+        },
+        {
+          :name => :published_on,
+          :value => "98/02/17",
+          :type => :date
+        }
+      ]
     )
 
 #### Full-text search
