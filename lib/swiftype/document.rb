@@ -11,7 +11,7 @@ module Swiftype
     end
 
     def update_fields!(hash)
-      update_with! put("#{raw_path_to_model}/update_fields", {:fields => hash})
+      update_with! put("#{raw_path_to_model}/update_fields.json", {:fields => hash})
     end
   end
 end
