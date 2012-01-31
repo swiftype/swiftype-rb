@@ -46,21 +46,29 @@ module Swiftype
     end
 
     def path_to_model
+      "#{raw_path_to_model}.json"
+    end
+
+    def raw_path_to_model
       path = (self.class.parent_classes || []).inject("") do |_, parent|
         parent_id = send("#{parent.model_name}_id")
         _ += "#{parent.collection_name}/#{parent_id}/"
         _
       end
-      "#{path}#{self.class.collection_name}/#{identifier}.json"
+      "#{path}#{self.class.collection_name}/#{identifier}"
     end
 
     def path_to_collection
+      "#{raw_path_to_collection}.json"
+    end
+
+    def raw_path_to_collection
       path = (self.class.parent_classes || []).inject("") do |_, parent|
         parent_id = send("#{parent.model_name}_id")
         _ += "#{parent.collection_name}/#{parent_id}/"
         _
       end
-      "#{path}#{self.class.collection_name}.json"
+      "#{path}#{self.class.collection_name}"
     end
 
     def update_with!(hash)
