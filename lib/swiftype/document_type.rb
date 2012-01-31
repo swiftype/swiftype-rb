@@ -15,6 +15,10 @@ module Swiftype
       doc
     end
 
+    def document(id)
+      Document.new get("engines/#{engine_id}/document_types/#{slug}/documents/#{id}.json")
+    end
+
     def engine
       Engine.find(engine_id)
     end

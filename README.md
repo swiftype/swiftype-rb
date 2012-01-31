@@ -77,6 +77,24 @@ Basic Usage
     engine = Swiftype::Engine.find("bookstore")
     types = engine.document_types
 
+#### Finding a document type
+
+    engine = Swiftype::Engine.find("bookstore")
+    type = engine.document_type('book')
+
+#### Finding a document
+
+    engine = Swiftype::Engine.find("bookstore")
+    type = engine.document_type('book')
+    document = type.document('1234')  # where '1234' is the external_id
+
+#### Deleting a document
+
+    engine = Swiftype::Engine.find("bookstore")
+    type = engine.document_type('book')
+    document = type.document('1234')
+    document.destroy!
+
 #### Adding a document
 
     engine = Swiftype::Engine.find("bookstore")

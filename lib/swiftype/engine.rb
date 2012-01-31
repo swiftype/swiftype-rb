@@ -18,6 +18,10 @@ module Swiftype
       doc
     end
 
+    def document_type(id)
+      DocumentType.new get("engines/#{slug}/document_types/#{id}.json")
+    end
+
     def document_types
       get("engines/#{slug}/document_types.json").map { |dt| DocumentType.new(dt) }
     end
