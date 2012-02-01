@@ -32,5 +32,6 @@ module Swiftype
     end
 
     include Swiftype::Client::Engine
+    include Swiftype::Client::Document
   end
 end
