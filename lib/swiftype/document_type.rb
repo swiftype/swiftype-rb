@@ -15,6 +15,18 @@ module Swiftype
       doc
     end
 
+    def create_documents(documents=[])
+      post("engines/#{engine_id}/document_types/#{slug}/documents/bulk_create.json", {:documents => documents})
+    end
+
+    def update_documents(documents=[])
+      put("engines/#{engine_id}/document_types/#{slug}/documents/bulk_update.json", {:documents => documents})
+    end
+
+    def delete_documents(ids=[])
+      post("engines/#{engine_id}/document_types/#{slug}/documents/bulk_destroy.json", {:documents => ids})
+    end
+
     def document(id)
       Document.new get("engines/#{engine_id}/document_types/#{slug}/documents/#{id}.json")
     end
