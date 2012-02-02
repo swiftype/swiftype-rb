@@ -2,7 +2,7 @@ require 'swiftype/version'
 
 module Swiftype
   module Configuration
-    DEFAULT_ENDPOINT = "http://swiftype.com/api/v1/"
+    DEFAULT_ENDPOINT = "http://api.swiftype.com/api/v1/"
     DEFAULT_USER_AGENT = "Swiftype-Ruby/#{Swiftype::VERSION}"
 
     VALID_OPTIONS_KEYS = [
