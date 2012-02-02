@@ -11,6 +11,7 @@ module Swiftype
   autoload :Engine, 'swiftype/engine'
   autoload :DocumentType, 'swiftype/document_type'
   autoload :Document, 'swiftype/document'
+  autoload :Easy, 'swiftype/easy'
 
   extend Configuration
 

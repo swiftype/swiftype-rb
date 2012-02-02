@@ -23,8 +23,13 @@ module Swiftype
       put("engines/#{engine_id}/document_types/#{slug}/documents/bulk_update.json", {:documents => documents})
     end
 
-    def delete_documents(ids=[])
-      post("engines/#{engine_id}/document_types/#{slug}/documents/bulk_destroy.json", {:documents => ids})
+    def update_document(document={})
+      document_id = document[:external_id]
+      put("engines/#{engine_id}/document_types/#{slug}/documents/#{document_id}/update_fields", {:fields => document[:fields]})
+    end
+    
+    def destroy_documents(document_ids=[])
+      post("engines/#{engine_id}/document_types/#{slug}/documents/bulk_destroy.json", {:documents => document_ids})
     end
 
     def document(id)

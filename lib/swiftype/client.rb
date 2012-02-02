@@ -25,13 +25,6 @@ module Swiftype
       end
     end
 
-    module Document
-      def quick_update(engine_id, document_type_id, document_id, fields)
-        put("engines/#{engine_id}/document_types/#{document_type_id}/documents/#{document_id}/update_fields.json", { :fields => fields })
-      end
-    end
-
     include Swiftype::Client::Engine
-    include Swiftype::Client::Document
   end
 end

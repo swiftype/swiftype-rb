@@ -17,6 +17,10 @@ module Swiftype
       doc.create!
       doc
     end
+    
+    def destroy_document_type(document_type_name)
+      delete("engines/#{slug}/document_types/#{document_type_name}")
+    end
 
     def document_type(id)
       DocumentType.new get("engines/#{slug}/document_types/#{id}.json")
