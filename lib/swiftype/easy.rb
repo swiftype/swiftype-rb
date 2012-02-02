@@ -1,3 +1,5 @@
+require 'swiftype/document'
+
 module Swiftype
   class Easy
     include Swiftype::Connection
@@ -14,6 +16,12 @@ module Swiftype
       end
       def destroy_engine(engine_id)
         delete("engines/#{engine_id}")
+      end
+      def suggest(engine_id, document_type_id, query)
+        get("engines/#{engine_id}/document_types/#{document_type_id}/suggest.json", :q => query).map { |d| Swiftype::Document.new(d) }
+      end
+      def search(engine_id, document_type_id, query)
+        get("engines/#{engine_id}/document_types/#{document_type_id}/search.json", :q => query).map { |d| Swiftype::Document.new(d) }
       end
     end
 
