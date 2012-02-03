@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
 require "swiftype/version"
-require "swiftype"
 
 Gem::Specification.new do |s|
   s.name        = "swiftype-rb"
@@ -9,8 +8,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Quin Hoxie"]
   s.email       = ["qhoxie@gmail.com"]
   s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.summary     = %q{Swiftype API Gem}
+  s.description = %q{Official Gem for accessing the Swiftype Search API}
 
   s.rubyforge_project = "swiftype-rb"
 
