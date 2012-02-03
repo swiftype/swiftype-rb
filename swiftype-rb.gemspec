@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.version     = Swiftype::VERSION
   s.authors     = ["Quin Hoxie", "Matt Riley"]
   s.email       = ["founders@swiftype.com"]
-  s.homepage    = "swiftype.com"
+  s.homepage    = "http://swiftype.com"
   s.summary     = %q{Swiftype API Gem}
   s.description = %q{Official Gem for accessing the Swiftype Search API}
 
