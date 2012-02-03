@@ -3,10 +3,10 @@ PATH
   specs:
     swiftype-rb (0.0.1)
       activesupport (>= 2.3.9, < 4)
-      faraday
-      faraday_middleware
-      hashie
-      json
+      faraday (~> 0.7.6)
+      faraday_middleware (~> 0.8.4)
+      hashie (~> 1.2.0)
+      json (~> 1.6.5)
 
 GEM
   remote: http://rubygems.org/
