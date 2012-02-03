@@ -5,9 +5,9 @@ require "swiftype/version"
 Gem::Specification.new do |s|
   s.name        = "swiftype-rb"
   s.version     = Swiftype::VERSION
-  s.authors     = ["Quin Hoxie"]
-  s.email       = ["qhoxie@gmail.com"]
-  s.homepage    = ""
+  s.authors     = ["Quin Hoxie", "Matt Riley"]
+  s.email       = ["founders@swiftype.com"]
+  s.homepage    = "swiftype.com"
   s.summary     = %q{Swiftype API Gem}
   s.description = %q{Official Gem for accessing the Swiftype Search API}
 
@@ -20,6 +20,7 @@ Gem::Specification.new do |s|
 
   # specify any dependencies here; for example:
   # s.add_development_dependency "rspec"
+  s.add_runtime_dependency "json"
   s.add_runtime_dependency "faraday"
   s.add_runtime_dependency "faraday_middleware"
   s.add_runtime_dependency "hashie"

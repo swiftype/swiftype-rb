@@ -15,8 +15,16 @@ Installation
 
 For now, just clone this repository and then pull in the library:
 
+#### Bundler
+
+	gem 'swiftype-rb', :git => "https://github.com/swiftype/swiftype-rb.git", :require => 'swiftype'
+
+#### Non-Bundler
+
+	git clone https://github.com/swiftype/swiftype-rb.git
+
 	rake build && rake install
-	
+
 	require 'swiftype'
 
 
@@ -77,15 +85,15 @@ Create a search engine:
 	engine.create!
 
 Get a search engine:
-  
+
 	Swiftype::Engine.find('bookstore')
 
 Delete a search engine:
 
 	engine = Swiftype::Engine.find('bookstore')
 	engine.destroy!
-  
-  
+
+
 #### Document Types
 
 Create a `document_type`:
@@ -97,7 +105,7 @@ Get a `document_type`:
 
 	engine = Swiftype::Engine.find('bookstore')
 	type = engine.document_type('books')
-  
+
 Delete a `document_type`. Deleting a `document_type` will also delete every `document` contained within it:
 
 	engine = Swiftype::Engine.find('bookstore')
@@ -108,7 +116,7 @@ or, alternatively, call destroy on the `document_type` itself:
 	engine = Swiftype::Engine.find('bookstore')
 	type = engine.document_type('books')
 	type.destroy!
-  
+
 
 #### Documents
 
@@ -117,11 +125,11 @@ Create a `document`:
 	engine = Swiftype::Engine.find('bookstore')
 	type = engine.document_type('books')
 	type.create_document({
-		:external_id => '1', 
+		:external_id => '1',
 		:fields => [
-			{:name => 'title', :value => 'Information Retrieval', :type => 'string'}, 
-			{:name => 'genre', :value => 'non-fiction', :type => 'enum'}, 
-			{:name => 'author', :value => 'Stefan Buttcher', :type => 'string'}, 
+			{:name => 'title', :value => 'Information Retrieval', :type => 'string'},
+			{:name => 'genre', :value => 'non-fiction', :type => 'enum'},
+			{:name => 'author', :value => 'Stefan Buttcher', :type => 'string'},
 			{:name => 'in_stock', :value => true, :type => 'enum'},
 			{:name => 'on_sale', :value => false, :type => 'enum'}
 		]});
@@ -137,7 +145,7 @@ Get every `document` within a `document_type`:
 	engine = Swiftype::Engine.find('bookstore')
 	type = engine.document_type('books')
 	type.documents
-  
+
 Update field(s) of a `document`:
 
 	engine = Swiftype::Engine.find('bookstore')
@@ -154,7 +162,7 @@ or, alternatively, update a `document` without retrieving it first:
 you can also update multiple fields in the same call:
 
 	doc.update_fields({:in_stock => false, :on_sale => true })
-  
+
 Delete a `document`:
 
 	engine = Swiftype::Engine.find('bookstore')
@@ -178,27 +186,27 @@ Create `document`s in bulk:
 	engine = Swiftype::Engine.find('bookstore')
 	type = engine.document_type('books')
 	type.create_documents([{
-		:external_id => '2', 
+		:external_id => '2',
 		:fields => [
-			{:name => 'title', :value => 'Lucene in Action', :type => 'string'}, 
-			{:name => 'genre', :value => 'non-fiction', :type => 'enum'}, 
-			{:name => 'author', :value => 'Michael McCandless', :type => 'string'}, 
+			{:name => 'title', :value => 'Lucene in Action', :type => 'string'},
+			{:name => 'genre', :value => 'non-fiction', :type => 'enum'},
+			{:name => 'author', :value => 'Michael McCandless', :type => 'string'},
 			{:name => 'in_stock', :value => true, :type => 'enum'},
 			{:name => 'on_sale', :value => false, :type => 'enum'}
 		]},{
-		:external_id => '3', 
+		:external_id => '3',
 		:fields => [
-			{:name => 'title', :value => 'MongoDB in Action', :type => 'string'}, 
-			{:name => 'genre', :value => 'non-fiction', :type => 'enum'}, 
-			{:name => 'author', :value => 'Kyle Banker', :type => 'string'}, 
+			{:name => 'title', :value => 'MongoDB in Action', :type => 'string'},
+			{:name => 'genre', :value => 'non-fiction', :type => 'enum'},
+			{:name => 'author', :value => 'Kyle Banker', :type => 'string'},
 			{:name => 'in_stock', :value => true, :type => 'enum'},
 			{:name => 'on_sale', :value => false, :type => 'enum'}
 		]},{
-		:external_id => '4', 
+		:external_id => '4',
 		:fields => [
-			{:name => 'title', :value => 'The Great Gatsby', :type => 'string'}, 
-			{:name => 'genre', :value => 'fiction', :type => 'enum'}, 
-			{:name => 'author', :value => 'F. Scott Fitzgerald', :type => 'string'}, 
+			{:name => 'title', :value => 'The Great Gatsby', :type => 'string'},
+			{:name => 'genre', :value => 'fiction', :type => 'enum'},
+			{:name => 'author', :value => 'F. Scott Fitzgerald', :type => 'string'},
 			{:name => 'in_stock', :value => true, :type => 'enum'},
 			{:name => 'on_sale', :value => false, :type => 'enum'}
 		]}
@@ -270,36 +278,36 @@ The Simple Client is a convenience class that gives you basic, direct access to 
 	client.destroy_document_type('bookstore', 'books')
 
 #### Documents
-	
+
 	# retrieve all documents
 	client.documents('bookstore', 'books')
 
 	# create a document
 	client.create_document('bookstore', 'books', {
-		:external_id => '1', 
+		:external_id => '1',
 		:fields => [
-			{:name => 'title', :value => 'Information Retrieval', :type => 'string'}, 
-			{:name => 'genre', :value => 'non-fiction', :type => 'enum'}, 
-			{:name => 'author', :value => 'Stefan Buttcher', :type => 'string'}, 
+			{:name => 'title', :value => 'Information Retrieval', :type => 'string'},
+			{:name => 'genre', :value => 'non-fiction', :type => 'enum'},
+			{:name => 'author', :value => 'Stefan Buttcher', :type => 'string'},
 			{:name => 'in_stock', :value => true, :type => 'enum'},
 			{:name => 'on_sale', :value => false, :type => 'enum'}
 		]})
 
 	# create documents in bulk
 	client.create_documents('bookstore', 'books', [{
-		:external_id => '2', 
+		:external_id => '2',
 		:fields => [
-			{:name => 'title', :value => 'Lucene in Action', :type => 'string'}, 
-			{:name => 'genre', :value => 'non-fiction', :type => 'enum'}, 
-			{:name => 'author', :value => 'Michael McCandless', :type => 'string'}, 
+			{:name => 'title', :value => 'Lucene in Action', :type => 'string'},
+			{:name => 'genre', :value => 'non-fiction', :type => 'enum'},
+			{:name => 'author', :value => 'Michael McCandless', :type => 'string'},
 			{:name => 'in_stock', :value => true, :type => 'enum'},
 			{:name => 'on_sale', :value => false, :type => 'enum'}
 		]},{
-		:external_id => '3', 
+		:external_id => '3',
 		:fields => [
-			{:name => 'title', :value => 'MongoDB in Action', :type => 'string'}, 
-			{:name => 'genre', :value => 'non-fiction', :type => 'enum'}, 
-			{:name => 'author', :value => 'Kyle Banker', :type => 'string'}, 
+			{:name => 'title', :value => 'MongoDB in Action', :type => 'string'},
+			{:name => 'genre', :value => 'non-fiction', :type => 'enum'},
+			{:name => 'author', :value => 'Kyle Banker', :type => 'string'},
 			{:name => 'in_stock', :value => true, :type => 'enum'},
 			{:name => 'on_sale', :value => false, :type => 'enum'}
 		]}])
