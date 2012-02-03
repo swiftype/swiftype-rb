@@ -6,11 +6,12 @@ PATH
       faraday
       faraday_middleware
       hashie
+      json
 
 GEM
   remote: http://rubygems.org/
   specs:
-    activesupport (3.2.0)
+    activesupport (3.2.1)
       i18n (~> 0.6)
       multi_json (~> 1.0)
     addressable (2.2.6)
@@ -18,10 +19,11 @@ GEM
       addressable (~> 2.2)
       multipart-post (~> 1.1)
       rack (~> 1.1)
-    faraday_middleware (0.8.1)
+    faraday_middleware (0.8.4)
       faraday (>= 0.7.4, < 0.9)
     hashie (1.2.0)
     i18n (0.6.0)
+    json (1.6.5)
     multi_json (1.0.4)
     multipart-post (1.1.4)
     rack (1.4.1)
