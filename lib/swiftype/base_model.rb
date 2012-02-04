@@ -42,7 +42,7 @@ module Swiftype
     end
 
     def destroy!
-      delete(path_to_model)
+      !!delete(path_to_model)
     end
 
     def path_to_model

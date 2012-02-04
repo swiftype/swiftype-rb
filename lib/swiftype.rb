@@ -1,6 +1,7 @@
 require 'ostruct'
 require 'faraday'
 require 'faraday_middleware'
+require 'swiftype/exceptions'
 
 module Swiftype
   autoload :Configuration, 'swiftype/configuration'

@@ -30,13 +30,17 @@ module Swiftype
       document_id = document[:external_id]
       put("engines/#{engine_id}/document_types/#{slug}/documents/#{document_id}/update_fields", {:fields => document[:fields]})
     end
-    
+
     def destroy_document(document_id)
-      delete("engines/#{engine_id}/document_types/#{slug}/documents/#{document_id}")
+      !!delete("engines/#{engine_id}/document_types/#{slug}/documents/#{document_id}")
+    rescue NonExistentRecord
+      false
     end
-    
+
     def destroy_documents(document_ids=[])
       post("engines/#{engine_id}/document_types/#{slug}/documents/bulk_destroy.json", {:documents => document_ids})
+    rescue NonExistentRecord
+      false
     end
 
     def document(id)
