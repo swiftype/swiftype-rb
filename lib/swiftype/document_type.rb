@@ -2,6 +2,9 @@ module Swiftype
   class DocumentType < BaseModel
     parents Engine
 
+    VALID_SUGGEST_OPTIONS = [:fetch_fields, :search_fields, :filters]
+    VALID_SEARCH_OPTIONS = [:fetch_fields, :search_fields, :filters, :per_page, :page]
+
     def build_document(params={})
       Document.new({
         :document_type_id => id || slug,
@@ -48,12 +51,16 @@ module Swiftype
       get("engines/#{engine_id}/document_types/#{slug}/documents.json").map { |d| Document.new(d) }
     end
 
-    def suggest(query)
-      get("engines/#{engine_id}/document_types/#{slug}/suggest.json", :q => query).map { |d| Document.new(d) }
+    def suggest(query, options={})
+      search_params = { :q => query }
+      VALID_SUGGEST_OPTIONS.each { |opt| search_params[opt] = options[opt] if options[opt] }
+      get("engines/#{engine_id}/document_types/#{slug}/suggest.json", search_params).map { |d| Document.new(d) }
     end
 
-    def search(query)
-      get("engines/#{engine_id}/document_types/#{slug}/search.json", :q => query).map { |d| Document.new(d) }
+    def search(query, options={})
+      search_params = { :q => query }
+      VALID_SEARCH_OPTIONS.each { |opt| search_params[opt] = options[opt] if options[opt] }
+      get("engines/#{engine_id}/document_types/#{slug}/search.json", search_params).map { |d| Document.new(d) }
     end
   end
 end
