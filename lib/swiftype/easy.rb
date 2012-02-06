@@ -53,6 +53,9 @@ module Swiftype
       def destroy_documents(engine_id, document_type_id, document_ids=[])
         post("engines/#{engine_id}/document_types/#{document_type_id}/documents/bulk_destroy.json", :documents => document_ids)
       end
+      def create_or_update_document(engine_id, document_type_id, document={})
+        post("engines/#{engine_id}/document_types/#{document_type_id}/documents/create_or_update.json", :document => document)
+      end
       def update_document(engine_id, document_type_id, document_id, fields)
         put("engines/#{engine_id}/document_types/#{document_type_id}/documents/#{document_id}/update_fields.json", { :fields => fields })
       end
