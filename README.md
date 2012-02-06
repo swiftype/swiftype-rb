@@ -321,6 +321,17 @@ The Simple Client is a convenience class that gives you basic, direct access to 
 		{:external_id => '3', :fields => {:in_stock => true}}
 	])
 
+	# create or update a document
+	client.create_or_update_document('bookstore', 'books', {
+		:external_id => '1',
+		:fields => [
+			{:name => 'title', :value => 'Information Retrieval', :type => 'string'},
+			{:name => 'genre', :value => 'non-fiction', :type => 'enum'},
+			{:name => 'author', :value => 'Stefan Buttcher', :type => 'string'},
+			{:name => 'in_stock', :value => false, :type => 'enum'},
+			{:name => 'on_sale', :value => true, :type => 'enum'}
+		]})
+
 	# destroy a document
 	client.destroy_document('bookstore','books','1')
 
