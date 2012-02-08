@@ -274,7 +274,7 @@ The Simple Client is a convenience class that gives you basic, direct access to 
 #### Document Types
 
 	client.document_types('bookstore')
-	client.create_document_type('bookstore', 'books')
+	client.create_document_type('bookstore', :name => 'books')
 	client.destroy_document_type('bookstore', 'books')
 
 #### Documents
