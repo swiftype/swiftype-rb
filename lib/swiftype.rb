@@ -9,10 +9,12 @@ module Swiftype
   autoload :Client, 'swiftype/client'
   autoload :BaseModel, 'swiftype/base_model'
   autoload :Request, 'swiftype/request'
+  autoload :Search, 'swiftype/search'
   autoload :Engine, 'swiftype/engine'
   autoload :DocumentType, 'swiftype/document_type'
   autoload :Document, 'swiftype/document'
   autoload :Easy, 'swiftype/easy'
+  
 
   extend Configuration
 

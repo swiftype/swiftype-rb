@@ -3,12 +3,14 @@ require 'swiftype/document'
 module Swiftype
   class Easy
     include Swiftype::Connection
+    include Swiftype::Search
 
     def initialize(options={})
     end
 
     module Engine
       def engines
+        test_search_module
         get("engines.json")
       end
       def create_engine(engine={})
@@ -17,11 +19,19 @@ module Swiftype
       def destroy_engine(engine_id)
         delete("engines/#{engine_id}")
       end
-      def suggest(engine_id, document_type_id, query)
-        get("engines/#{engine_id}/document_types/#{document_type_id}/suggest.json", :q => query).map { |d| Swiftype::Document.new(d) }
+      def suggest(engine_id, query, options={})
+        search_params = { :q => query }.merge(parse_suggest_options(options))
+        response = get("engines/#{engine_id}/suggest.json", search_params)
+        results = {}
+        response['records'].each { |document_type, records| results[document_type] = records.map { |d| Swiftype::Document.new(d) }}
+        results
       end
-      def search(engine_id, document_type_id, query)
-        get("engines/#{engine_id}/document_types/#{document_type_id}/search.json", :q => query).map { |d| Swiftype::Document.new(d) }
+      def search(engine_id, query, options={})
+        search_params = { :q => query }.merge(parse_search_options(options))
+        response = get("engines/#{engine_id}/search.json", search_params)
+        results = {}
+        response['records'].each { |document_type, records| results[document_type] = records.map { |d| Swiftype::Document.new(d) }}
+        results
       end
     end
 

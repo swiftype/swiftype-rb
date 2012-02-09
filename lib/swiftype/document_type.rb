@@ -1,10 +1,8 @@
 module Swiftype
   class DocumentType < BaseModel
     parents Engine
-
-    VALID_SUGGEST_OPTIONS = [:fetch_fields, :search_fields, :filters]
-    VALID_SEARCH_OPTIONS = [:fetch_fields, :search_fields, :filters, :per_page, :page]
-
+    include Swiftype::Search
+    
     def build_document(params={})
       Document.new({
         :document_type_id => id || slug,
@@ -56,15 +54,19 @@ module Swiftype
     end
 
     def suggest(query, options={})
-      search_params = { :q => query }
-      VALID_SUGGEST_OPTIONS.each { |opt| search_params[opt] = options[opt] if options[opt] }
-      get("engines/#{engine_id}/document_types/#{slug}/suggest.json", search_params).map { |d| Document.new(d) }
+      search_params = { :q => query }.merge(parse_suggest_options(options))
+      response = get("engines/#{engine_id}/document_types/#{slug}/suggest.json", search_params)
+      results = {}
+      response['records'].each { |document_type, records| results[document_type] = records.map { |d| Swiftype::Document.new(d) }}
+      results
     end
 
     def search(query, options={})
-      search_params = { :q => query }
-      VALID_SEARCH_OPTIONS.each { |opt| search_params[opt] = options[opt] if options[opt] }
-      get("engines/#{engine_id}/document_types/#{slug}/search.json", search_params).map { |d| Document.new(d) }
+      search_params = { :q => query }.merge(parse_search_options(options))
+      response = get("engines/#{engine_id}/document_types/#{slug}/search.json", search_params)
+      results = {}
+      response['records'].each { |document_type, records| results[document_type] = records.map { |d| Swiftype::Document.new(d) }}
+      results
     end
   end
 end
