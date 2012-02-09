@@ -217,8 +217,8 @@ Update `document`s in bulk:
 	engine = Swiftype::Engine.find('bookstore')
 	type = engine.document_type('books')
 	type.update_documents([
-		{:external_id => '2', :fields => {:in_stock => 'false'}},
-	 	{:external_id => '3', :fields => {:in_stock => 'false'}}
+		{:external_id => '2', :fields => {:in_stock => false}},
+	 	{:external_id => '3', :fields => {:in_stock => false}}
 	])
 
 Delete `document`s in bulk:
@@ -233,12 +233,23 @@ Searching:
 
 #### Full text search
 
-Search a `document_type` from the query "action":
+Search a `document_type` for the query "lucene":
 
 	engine = Swiftype::Engine.find('bookstore')
 	type = engine.document_type('books')
-	results = type.search("action")
+	results = type.search("lucene")
 
+You can pass the following options to the search method: `page`, `per_page`, `fetch_fields`, `search_fields`, and `filters`.
+
+* `page` should be an integer of the page of results you want
+* `per_page` should be an integer of the number of results you want from each page
+* `fetch_fields` is an array of the fields you want to have returned for each object
+* `search_fields` is an array of the fields you want to match your query against
+* `filters` is a hash specifying additional conditions that should be applied to your query
+
+An example of using search options is as follows:	
+	results = type.search('lucene', :filters => { :in_stock => false, :genre => 'fiction' }, :per_page => 10, :page => 2, :fetch_fields => ['title','genre'], :search_fields => ['title'])
+	
 
 #### Autocomplete
 
@@ -247,6 +258,8 @@ Get autocomplete suggestions from a `document_type` for the prefix "act"
 	engine = Swiftype::Engine.find('bookstore')
 	type = engine.document_type('books')
 	results = type.suggest("act")
+
+The suggest method also accepts the same options specified for the search method above.
 
 
 Simple Client:
@@ -337,8 +350,6 @@ The Simple Client is a convenience class that gives you basic, direct access to 
 
 	# destroy documents in bulk
 	client.destroy_documents('bookstore','books',['1','2','3'])
-
-
 
 
 Todo
