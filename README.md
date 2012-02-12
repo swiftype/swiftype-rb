@@ -247,9 +247,10 @@ You can pass the following options to the search method: `page`, `per_page`, `fe
 * `search_fields` is an array of the fields you want to match your query against
 * `filters` is a hash specifying additional conditions that should be applied to your query
 
-An example of using search options is as follows:	
+An example of using search options is as follows:
+
 	results = type.search('lucene', :filters => { :in_stock => false, :genre => 'fiction' }, :per_page => 10, :page => 2, :fetch_fields => ['title','genre'], :search_fields => ['title'])
-	
+
 
 #### Autocomplete
 
