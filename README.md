@@ -243,13 +243,13 @@ You can pass the following options to the search method: `page`, `per_page`, `fe
 
 * `page` should be an integer of the page of results you want
 * `per_page` should be an integer of the number of results you want from each page
-* `fetch_fields` is an array of the fields you want to have returned for each object
-* `search_fields` is an array of the fields you want to match your query against
+* `fetch_fields` is a hash containing arrays of the fields you want to have returned for each object of each  document_type
+* `search_fields` is a hash containing arrays of the fields you want to match your query against for each object of each document_type
 * `filters` is a hash specifying additional conditions that should be applied to your query
 
 An example of using search options is as follows:
 
-	results = type.search('lucene', :filters => { :in_stock => false, :genre => 'fiction' }, :per_page => 10, :page => 2, :fetch_fields => ['title','genre'], :search_fields => ['title'])
+	results = type.search('lucene', :filters => { :in_stock => false, :genre => 'fiction' }, :per_page => 10, :page => 2, :fetch_fields => {:books => ['title','genre']}, :search_fields => {:books => ['title']})
 
 
 #### Autocomplete
@@ -273,11 +273,11 @@ The Simple Client is a convenience class that gives you basic, direct access to 
 
 #### Search
 
-	results = client.search('bookstore','books',{SEARCH QUERY})
+	results = client.search('bookstore',{SEARCH QUERY} [, OPTIONAL SEARCH OPTIONS])
 
 #### Autocomplete
 
-	results = client.suggest('bookstore','books',{AUTOCOMPLETE PREFIX QUERY})
+	results = client.suggest('bookstore',{AUTOCOMPLETE PREFIX QUERY} [, OPTIONAL SEARCH OPTIONS])
 
 #### Engines
 
