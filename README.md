@@ -245,11 +245,11 @@ You can pass the following options to the search method: `page`, `per_page`, `fe
 * `per_page` should be an integer of the number of results you want from each page
 * `fetch_fields` is a hash containing arrays of the fields you want to have returned for each object of each  document_type
 * `search_fields` is a hash containing arrays of the fields you want to match your query against for each object of each document_type
-* `filters` is a hash specifying additional conditions that should be applied to your query
+* `filters` is a hash specifying additional conditions that should be applied to your query for each document_type
 
 An example of using search options is as follows:
 
-	results = type.search('lucene', :filters => { :in_stock => false, :genre => 'fiction' }, :per_page => 10, :page => 2, :fetch_fields => {:books => ['title','genre']}, :search_fields => {:books => ['title']})
+	results = type.search('lucene', :filters => { :books => { :in_stock => false, :genre => 'fiction' }}, :per_page => 10, :page => 2, :fetch_fields => {:books => ['title','genre']}, :search_fields => {:books => ['title']})
 
 
 #### Autocomplete
