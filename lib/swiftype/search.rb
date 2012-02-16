@@ -19,7 +19,13 @@ module Swiftype
         if options[option].instance_of?(Array)
           parsed_options["#{option}[]"] = options[option] 
         elsif options[option].instance_of?(Hash)
-          options[option].each { |k,v| parsed_options["#{option}[#{k}]"] = v }
+          options[option].each do |k,v| 
+            if v.instance_of?(Array)
+              parsed_options["#{option}[#{k}][]"] = v 
+            else
+              parsed_options["#{option}[#{k}]"] = v 
+            end
+          end
         else
           parsed_options[option] = options[option]
         end
