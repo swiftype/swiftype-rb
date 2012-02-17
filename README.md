@@ -245,12 +245,31 @@ You can pass the following options to the search method: `page`, `per_page`, `fe
 * `per_page` should be an integer of the number of results you want from each page
 * `fetch_fields` is a hash containing arrays of the fields you want to have returned for each object of each  document_type
 * `search_fields` is a hash containing arrays of the fields you want to match your query against for each object of each document_type
+* `functional_boosts` is a hash containing boosts that are to be applied to numerically valued fields
 * `filters` is a hash specifying additional conditions that should be applied to your query for each document_type
 
 An example of using search options is as follows:
 
 	results = type.search('lucene', :filters => { :books => { :in_stock => false, :genre => 'fiction' }}, :per_page => 10, :page => 2, :fetch_fields => {:books => ['title','genre']}, :search_fields => {:books => ['title']})
 
+Filters also support datetime range queries. For example, to return only those books with an `updated_at` field between `2012-02-16` and now, use the following filter:
+
+	results = type.search('lucene', :filters => { :books => { :updated_at => '[2012-02-16 TO *]' }})
+
+
+##### Functional Boosts
+
+Functional boosts allow you to boost result scores based on some numerically valued field. For example, you might want your search engine to return the most popular books first, so you would boost results on the `total_purchases` field, which contains the total number of purchases of that book:
+
+	results = type.search('lucene', :functional_boosts => { :books => { :total_purchases => 'logarithmic' }})
+
+There are 3 types of functional boosts:
+
+* 'logarithmic' - multiplies the original score by log(numeric_value)
+* 'exponential' - multiplies the original score by exp(numeric_value)
+* 'linear' - multiplies the original score numeric_value
+
+Functional boosts may be applied to `integer` and `float` valued fields.
 
 #### Autocomplete
 
