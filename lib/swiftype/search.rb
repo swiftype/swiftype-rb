@@ -2,7 +2,7 @@ module Swiftype
   module Search
     
     VALID_SEARCH_OPTIONS = [:fetch_fields, :search_fields, :filters, :per_page, :page, :document_types, :functional_boosts]
-    VALID_SUGGEST_OPTIONS = [:fetch_fields, :search_fields, :filters, :document_types]
+    VALID_SUGGEST_OPTIONS = [:fetch_fields, :search_fields, :filters, :document_types, :functional_boosts]
 
     def parse_search_options(options)
       parse_options(options,VALID_SEARCH_OPTIONS)
