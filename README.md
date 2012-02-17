@@ -259,15 +259,15 @@ Filters also support datetime range queries. For example, to return only those b
 
 ##### Functional Boosts
 
-Functional boosts allow you to boost result scores based on some numerically valued field. For example, you might want your search engine to return the most popular books first, so you would boost results on the `total_purchases` field, which contains the total number of purchases of that book:
+Functional boosts allow you to boost result scores based on some numerically valued field. For example, you might want your search engine to return the most popular books first, so you would boost results on the `total_purchases` field, which contains an `integer` of the total number of purchases of that book:
 
 	results = type.search('lucene', :functional_boosts => { :books => { :total_purchases => 'logarithmic' }})
 
 There are 3 types of functional boosts:
 
-* 'logarithmic' - multiplies the original score by log(numeric_value)
-* 'exponential' - multiplies the original score by exp(numeric_value)
-* 'linear' - multiplies the original score numeric_value
+* `logarithmic` - multiplies the original score by log(numeric_value)
+* `exponential` - multiplies the original score by exp(numeric_value)
+* `linear` - multiplies the original score numeric_value
 
 Functional boosts may be applied to `integer` and `float` valued fields.
 
