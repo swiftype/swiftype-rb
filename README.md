@@ -151,7 +151,7 @@ Update field(s) of a `document`:
 	engine = Swiftype::Engine.find('bookstore')
 	type = engine.document_type('books')
 	doc = type.document('1')
-	doc.update_fields({:in_stock => false })
+	doc.update_fields!({:in_stock => false })
 
 or, alternatively, update a `document` without retrieving it first:
 
