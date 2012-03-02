@@ -301,7 +301,7 @@ The Simple Client is a convenience class that gives you basic, direct access to 
 #### Engines
 
 	client.engines # retrieves every engine
-	client.create_engine('bookstore')
+	client.create_engine(:name => 'bookstore')
 	client.destroy_engine('bookstore')
 
 #### Document Types
