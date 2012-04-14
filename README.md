@@ -217,8 +217,8 @@ Update `document`s in bulk:
 	engine = Swiftype::Engine.find('bookstore')
 	type = engine.document_type('books')
 	type.update_documents([
-		{:external_id => '2', :fields => {:in_stock => false}},
-	 	{:external_id => '3', :fields => {:in_stock => false}}
+		{:external_id => '2', :fields => {:in_stock => false, :on_sale => 'false'}},
+	 	{:external_id => '3', :fields => {:in_stock => false, :on_sale => 'false'}}
 	])
 
 Delete `document`s in bulk:
