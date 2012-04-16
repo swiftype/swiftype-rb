@@ -18,6 +18,7 @@ module Swiftype
 
     private
     def request(method, path, params, options)
+      params.merge!({:auth_token => Swiftype.api_key}) if Swiftype.api_key
       response = connection.send(method) do |request|
         case method.to_sym
         when :delete, :get

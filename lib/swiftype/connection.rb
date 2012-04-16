@@ -3,7 +3,7 @@ module Swiftype
     include Swiftype::Request
 
     def connection
-      raise(InvalidCredentials, "You must supply credentials to Swiftype.configure") unless Swiftype.username
+      raise(InvalidCredentials, "You must supply credentials to Swiftype.configure") unless (Swiftype.username && Swiftype.password ) || Swiftype.api_key
 
       @connection ||= begin
         conn = Faraday.new(Swiftype.endpoint) do |b|
@@ -15,7 +15,7 @@ module Swiftype
           b.adapter Faraday.default_adapter
         end
 
-        conn.basic_auth Swiftype.username, Swiftype.password
+        conn.basic_auth Swiftype.username, Swiftype.password if Swiftype.username && Swiftype.password
         conn.headers['User-Agent'] = Swiftype.user_agent
 
         conn

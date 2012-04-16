@@ -8,6 +8,7 @@ module Swiftype
     VALID_OPTIONS_KEYS = [
       :username,
       :password,
+      :api_key,
       :user_agent,
       :endpoint
     ]
@@ -21,6 +22,7 @@ module Swiftype
     def reset
       self.username = nil
       self.password = nil
+      self.api_key = nil
       self.endpoint = DEFAULT_ENDPOINT
       self.user_agent = DEFAULT_USER_AGENT
       self
