@@ -2,7 +2,7 @@ module Swiftype
   class DocumentType < BaseModel
     parents Engine
     include Swiftype::Search
-    
+
     def build_document(params={})
       Document.new({
         :document_type_id => id || slug,
@@ -55,7 +55,7 @@ module Swiftype
 
     def suggest(query, options={})
       search_params = { :q => query }.merge(parse_suggest_options(options))
-      response = get("engines/#{engine_id}/document_types/#{slug}/suggest.json", search_params)
+      response = post("engines/#{engine_id}/document_types/#{slug}/suggest.json", search_params)
       results = {}
       response['records'].each { |document_type, records| results[document_type] = records.map { |d| Swiftype::Document.new(d) }}
       results
@@ -63,7 +63,7 @@ module Swiftype
 
     def search(query, options={})
       search_params = { :q => query }.merge(parse_search_options(options))
-      response = get("engines/#{engine_id}/document_types/#{slug}/search.json", search_params)
+      response = post("engines/#{engine_id}/document_types/#{slug}/search.json", search_params)
       results = {}
       response['records'].each { |document_type, records| results[document_type] = records.map { |d| Swiftype::Document.new(d) }}
       results

@@ -21,14 +21,14 @@ module Swiftype
       end
       def suggest(engine_id, query, options={})
         search_params = { :q => query }.merge(parse_suggest_options(options))
-        response = get("engines/#{engine_id}/suggest.json", search_params)
+        response = post("engines/#{engine_id}/suggest.json", search_params)
         results = {}
         response['records'].each { |document_type, records| results[document_type] = records.map { |d| Swiftype::Document.new(d) }}
         results
       end
       def search(engine_id, query, options={})
         search_params = { :q => query }.merge(parse_search_options(options))
-        response = get("engines/#{engine_id}/search.json", search_params)
+        response = post("engines/#{engine_id}/search.json", search_params)
         results = {}
         response['records'].each { |document_type, records| results[document_type] = records.map { |d| Swiftype::Document.new(d) }}
         results
