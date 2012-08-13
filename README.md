@@ -375,8 +375,6 @@ The Simple Client is a convenience class that gives you basic, direct access to 
 Todo
 ===
 
-+ Proper response code handling for non-successful requests.
-+ Publish gem to rubygems.org
 + Tests!
 
 
