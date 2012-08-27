@@ -3,15 +3,13 @@ $:.push File.expand_path("../lib", __FILE__)
 require "swiftype/version"
 
 Gem::Specification.new do |s|
-  s.name        = "swiftype-rb"
+  s.name        = "swiftype"
   s.version     = Swiftype::VERSION
   s.authors     = ["Quin Hoxie", "Matt Riley"]
   s.email       = ["team@swiftype.com"]
   s.homepage    = "http://swiftype.com"
   s.summary     = %q{Swiftype API Gem}
-  s.description = %q{Official Gem for accessing the Swiftype Search API}
-
-  s.rubyforge_project = "swiftype-rb"
+  s.description = %q{Official gem for accessing the Swiftype Search API}
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
