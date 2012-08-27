@@ -13,20 +13,15 @@ Prerequisites
 Installation
 ---
 
-For now, just clone this repository and then pull in the library:
+To install the gem, execute:
 
-#### Bundler
+        gem install swiftype       
 
-	gem 'swiftype-rb', :git => "https://github.com/swiftype/swiftype-rb.git", :require => 'swiftype'
+Or place `gem 'swiftype'` in your `Gemfile` and run `bundle install`.
 
-#### Non-Bundler
+To use the GitHub version, you may add this to your Gemfile:
 
-	git clone https://github.com/swiftype/swiftype-rb.git
-
-	rake build && rake install
-
-	require 'swiftype'
-
+	gem 'swiftype', :git => "https://github.com/swiftype/swiftype-rb.git"
 
 Overview
 ---
@@ -65,11 +60,10 @@ Basic Usage
 Configuration:
 ---
 
-Before issuing commands to the API, configure the client with your authentication credentials:
+Before issuing commands to the API, configure the client with your API key:
 
 	Swiftype.configure do |config|
-	  config.username = "{YOUR_SWIFTYPE_LOGIN}"
-	  config.password = "{YOUR_SWIFTYPE_PASSWORD}"
+          config.api_key = 'YOUR_API_KEY'
 	end
 
 Indexing:
