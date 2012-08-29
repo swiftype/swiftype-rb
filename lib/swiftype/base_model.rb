@@ -21,10 +21,6 @@ module Swiftype
       end
     end
 
-    def id
-      self._id
-    end
-
     def to_hash
       table
     end
