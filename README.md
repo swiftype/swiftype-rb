@@ -113,3 +113,4 @@ Before issuing commands to the API, configure the client with your API key:
 
 * Add specs with webmock 
 * Pull `Swiftype::Easy` from the swiftype gem so they are compatable
+* Use SSL for searches
