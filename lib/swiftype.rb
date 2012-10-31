@@ -9,6 +9,7 @@ module Swiftype
   autoload :Client, 'swiftype/client'
   autoload :BaseModel, 'swiftype/base_model'
   autoload :Request, 'swiftype/request'
+  autoload :ResultSet, 'swiftype/result_set'
   autoload :Search, 'swiftype/search'
   autoload :Engine, 'swiftype/engine'
   autoload :DocumentType, 'swiftype/document_type'
