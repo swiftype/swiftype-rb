@@ -15,7 +15,7 @@ Installation
 
 To install the gem, execute:
 
-        gem install swiftype       
+        gem install swiftype
 
 Or place `gem 'swiftype'` in your `Gemfile` and run `bundle install`.
 
@@ -233,6 +233,29 @@ Search a `document_type` for the query "lucene":
 	type = engine.document_type('books')
 	results = type.search("lucene")
 
+Searches return a `ResultSet` object from which you retrieve the results. Results are grouped by their `DocumentType`, so you retrieve the results for a specific `DocumentType` as follows:
+
+	resultset = type.search('lucene')
+	book_results = resultset['books']
+	book_results.each do |book|
+		puts book.title
+		puts book.author
+		puts book.genre
+	end
+
+The `ResultSet` object also contains meta data for the search, such as pagination and facets if the user has specified them.
+
+#### Pagination
+
+To get pagination information from a `ResultSet`, you call the `num_pages`, `current_page`, and `per_page` methods. For example:
+
+	resultset = type.search('lucene')
+	puts "Current page of results: #{resultset.current_page}"
+	puts "Total pages in this result set: #{resultset.num_pages}"
+	puts "Number of results per page: #{resultset.per_page}"
+
+#### Search Options
+
 You can pass the following options to the search method: `page`, `per_page`, `fetch_fields`, `search_fields`, and `filters`.
 
 * `page` should be an integer of the page of results you want
@@ -244,18 +267,20 @@ You can pass the following options to the search method: `page`, `per_page`, `fe
 
 An example of using search options is as follows:
 
-	results = type.search('lucene', :filters => { :books => { :in_stock => false, :genre => 'fiction' }}, :per_page => 10, :page => 2, :fetch_fields => {:books => ['title','genre']}, :search_fields => {:books => ['title']})
+	resultset = type.search('lucene', :filters => { :books => { :in_stock => false, :genre => 'fiction' }}, :per_page => 10, :page => 2, :fetch_fields => {:books => ['title','genre']}, :search_fields => {:books => ['title']})
 
 Filters also support datetime range queries. For example, to return only those books with an `updated_at` field between `2012-02-16` and now, use the following filter:
 
-	results = type.search('lucene', :filters => { :books => { :updated_at => '[2012-02-16 TO *]' }})
+	resultset = type.search('lucene', :filters => { :books => { :updated_at => '[2012-02-16 TO *]' }})
+
+See the (Swiftype Documentation)[http://swiftype.com/documentation/searching] for more details and examples of search options.
 
 
 ##### Functional Boosts
 
 Functional boosts allow you to boost result scores based on some numerically valued field. For example, you might want your search engine to return the most popular books first, so you would boost results on the `total_purchases` field, which contains an `integer` of the total number of purchases of that book:
 
-	results = type.search('lucene', :functional_boosts => { :books => { :total_purchases => 'logarithmic' }})
+	resultset = type.search('lucene', :functional_boosts => { :books => { :total_purchases => 'logarithmic' }})
 
 There are 3 types of functional boosts:
 
@@ -264,6 +289,18 @@ There are 3 types of functional boosts:
 * `linear` - multiplies the original score numeric_value
 
 Functional boosts may be applied to `integer` and `float` valued fields.
+
+##### Facets
+
+You may get facets for your search results by passing the facets option when you search. For example, to get aggregate counts for the number of results in each genre, use the following:
+
+	resultset = type.search('lucene', :facets => { :books => ['genre']})
+
+You can retrieve the facet counts from the `ResultSet` as follows:
+
+	resultset = type.search('lucene', :facets => { :books => ['genre']})
+	resultset.facets('books')
+	=> {"genre"=>{"fiction"=>5, "non-fiction"=>2, "political"=>1, "fantasy"=>1}}
 
 #### Autocomplete
 
