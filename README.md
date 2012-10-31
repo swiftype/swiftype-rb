@@ -256,7 +256,7 @@ To get pagination information from a `ResultSet`, you call the `num_pages`, `cur
 
 #### Search Options
 
-You can pass the following options to the search method: `page`, `per_page`, `fetch_fields`, `search_fields`, and `filters`.
+You can pass the following options to the search method: `page`, `per_page`, `fetch_fields`, `search_fields`, `filters`, and `facets`.
 
 * `page` should be an integer of the page of results you want
 * `per_page` should be an integer of the number of results you want from each page
@@ -264,6 +264,7 @@ You can pass the following options to the search method: `page`, `per_page`, `fe
 * `search_fields` is a hash containing arrays of the fields you want to match your query against for each object of each document_type
 * `functional_boosts` is a hash containing boosts that are to be applied to numerically valued fields
 * `filters` is a hash specifying additional conditions that should be applied to your query for each document_type
+* `facets` is a hash specifying fields for faceted counts for each document type
 
 An example of using search options is as follows:
 
