@@ -62,9 +62,11 @@ Configuration:
 
 Before issuing commands to the API, configure the client with your API key:
 
-	Swiftype.configure do |config|
-          config.api_key = 'YOUR_API_KEY'
-	end
+```ruby
+Swiftype.configure do |config|
+  config.api_key = 'YOUR_API_KEY'
+end
+```
 
 Indexing:
 ---
