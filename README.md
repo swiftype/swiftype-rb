@@ -4,14 +4,14 @@ This is a simple client for the Swiftype API with no dependencies outside core R
 
 This library is a direct pass-through to the Swiftype API. It does not use intermediate objects or return them. All parameters and return values are simple Ruby objects.
 
-We are providing this library for users who may not be able to install our other gem due to dependency conflicts, 
+We are providing this library for users who may not be able to install our other gem due to dependency conflicts,
 but would like an easier way to access the API than constructing requests by hand.
 
 For a more full-featured API library, see [swiftype-rb](https://github.com/swiftype/swiftype-rb).
 
 ## Note: Work In Progress
 
-This is a work in progress. Of particular note, it is not currently possible to have the `swiftype` and `swiftype_easy` gems installed at the same time.
+nThis is a work in progress. Of particular note, it is not currently possible to have the `swiftype` and `swiftype_easy` gems installed at the same time.
 
 ## Usage
 
@@ -38,13 +38,13 @@ Before issuing commands to the API, configure the client with your API key:
 ### Engines
 
 	client.engines # retrieves every engine
-	client.create_engine(:name => 'bookstore')
+	client.create_engine('bookstore')
 	client.destroy_engine('bookstore')
 
 ### Document Types
 
 	client.document_types('bookstore')
-	client.create_document_type('bookstore', :name => 'books')
+	client.create_document_type('bookstore', 'books')
 	client.destroy_document_type('bookstore', 'books')
 
 ### Documents
@@ -111,6 +111,6 @@ Before issuing commands to the API, configure the client with your API key:
 
 ## Todo
 
-* Add specs with webmock 
+* Add specs with webmock
 * Pull `Swiftype::Easy` from the swiftype gem so they are compatable
 * Use SSL for searches

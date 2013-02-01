@@ -14,7 +14,7 @@ module Swiftype
       def post(path, params={})
         request(:post, path, params)
       end
-      
+
       def put(path, params={})
         request(:put, path, params)
       end
@@ -23,7 +23,7 @@ module Swiftype
         request(:delete, path, params)
       end
 
-      def request(method, path, params={})       
+      def request(method, path, params={})
         uri = URI.parse("#{Swiftype::Easy.endpoint}#{path}")
 
         request = build_request(method, uri, params)
@@ -70,7 +70,7 @@ module Swiftype
                 when :delete
                   Net::HTTP::Delete
                 end
-      
+
         case method
         when :get, :delete
           uri.query = URI.encode_www_form(params)
