@@ -97,7 +97,7 @@ Retrieve all `Document`s of `Engine` `bookstore` and `DocumentType` `books`:
 
 	documents = client.documents('bookstore', 'books')
 
-Retrieve a specific `Document` using its `id`:
+Retrieve a specific `Document` using its `id` or `external_id`:
 
 	document = client.document('bookstore', 'books', 'id1')
 
@@ -133,9 +133,9 @@ Create multiple `Document`s at once and return status for each `Document` creati
 			{:name => 'on_sale', :value => false, :type => 'enum'}
 		]}])
 
-Update an existing `Document` in your `Engine`:
+Update fields of an existing `Document` specified by `id` or `external_id`:
 
-	client.update_document('bookstore','books','1', { :in_stock => false })
+	client.update_document('bookstore','books','1', { :in_stock => false, :on_sale => false })
 
 Update multiple `Document`s at once:
 
