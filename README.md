@@ -22,6 +22,8 @@ Before issuing commands to the API, configure the client with your API key:
 	Swiftype::Easy.configure do |config|
           config.api_key = 'YOUR_API_KEY'
 	end
+	
+You can find your API key in your [Account Settings](https://swiftype.com/user/edit).
 
 ### Create a Simple Client
 
