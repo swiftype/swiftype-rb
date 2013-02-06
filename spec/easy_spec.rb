@@ -38,11 +38,21 @@ describe Swiftype::Easy do
       results.size.should == 2
     end
 
+    it 'searches the engine with options' do
+      results = @client.search(engine_id, '*', {:page => 2})
+      results.size.should == 2
+    end
+
     it 'suggests for an engine' do
       results = @client.suggest(engine_id, '*')
       results.size.should == 2
     end
-  end
+
+    it 'suggests for an engine with options' do
+      results = @client.suggest(engine_id, '*', {:page => 2})
+      results.size.should == 2
+    end
+end
 
   context 'DocumentType' do
     it 'gets all document types' do
@@ -71,8 +81,20 @@ describe Swiftype::Easy do
       results.size.should == 1
     end
 
+    it 'searches document types with options' do
+      results = @client.search_document_type(engine_id, document_type_id, '*', {:page => 2})
+      results.should include(document_type_id)
+      results.size.should == 1
+    end
+
     it 'suggests for a document types' do
       results = @client.suggest_document_type(engine_id, document_type_id, '*')
+      results.should include(document_type_id)
+      results.size.should == 1
+    end
+
+    it 'suggests for a document types with options' do
+      results = @client.suggest_document_type(engine_id, document_type_id, '*', {:page => 2})
       results.should include(document_type_id)
       results.size.should == 1
     end
@@ -84,6 +106,11 @@ describe Swiftype::Easy do
 
     it 'gets all documents' do
       documents = @client.documents(engine_id, document_type_id)
+      documents.size.should == 2
+    end
+
+    it 'paginations documents' do
+      documents = @client.documents(engine_id, document_type_id, 2, 10)
       documents.size.should == 2
     end
 
@@ -141,14 +168,29 @@ describe Swiftype::Easy do
       searches.size.should == 1
     end
 
+    it 'has searches in ranges' do
+      searches = @client.analytics_searches(engine_id, Time.now, Time.now)
+      searches.size.should == 0
+    end
+
     it 'has autoselects' do
       autoselects = @client.analytics_autoselects(engine_id)
       autoselects.size.should == 1
     end
 
+    it 'has autoselects in ranges' do
+      autoselects = @client.analytics_autoselects(engine_id, Time.now, Time.now)
+      autoselects.size.should == 0
+    end
+
     it 'has top queries' do
       top_queries = @client.analytics_top_queries(engine_id)
       top_queries.size.should == 2
+    end
+
+    it 'has top queries pagination' do
+      top_queries = @client.analytics_top_queries(engine_id, 2, 10)
+      top_queries.size.should == 0
     end
   end
 

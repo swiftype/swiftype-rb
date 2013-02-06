@@ -164,16 +164,25 @@ module Swiftype
     end
 
     module Analytics
-      def analytics_searches(engine_id)
-        get("engines/#{engine_id}/analytics/searches.json")
+      def analytics_searches(engine_id, from=nil, to=nil)
+        options = {}
+        options[:start_date] = from if from
+        options[:end_date] = to if to
+        get("engines/#{engine_id}/analytics/searches.json", options)
       end
 
-      def analytics_autoselects(engine_id)
-        get("engines/#{engine_id}/analytics/autoselects.json")
+      def analytics_autoselects(engine_id, from=nil, to=nil)
+        options = {}
+        options[:start_date] = from if from
+        options[:end_date] = to if to
+        get("engines/#{engine_id}/analytics/autoselects.json", options)
       end
 
-      def analytics_top_queries(engine_id)
-        get("engines/#{engine_id}/analytics/top_queries.json")
+      def analytics_top_queries(engine_id, page=nil, per_page=nil)
+        options = {}
+        options[:page] = page if page
+        options[:per_page] = per_page if per_page
+        get("engines/#{engine_id}/analytics/top_queries.json", options)
       end
     end
 
