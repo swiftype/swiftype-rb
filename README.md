@@ -22,7 +22,7 @@ Before issuing commands to the API, configure the client with your API key:
 	Swiftype::Easy.configure do |config|
           config.api_key = 'YOUR_API_KEY'
 	end
-	
+
 You can find your API key in your [Account Settings](https://swiftype.com/user/edit).
 
 ### Create a Simple Client
@@ -53,7 +53,7 @@ or just for one DocumentType:
 
 	results = client.suggest_document_type('bookstore', 'books', 'acti')
 
-and add options have more control over the results:
+or add options to have more control over the results:
 
 	results = client.suggest('bookstore', 'acti', {:sort_field => {'books' => 'price'}})
 
@@ -77,9 +77,13 @@ To delete an `Engine` you need the `slug` or the `id` field of an `engine`:
 
 ### Document Types
 
-Retrieve all `DocumentTypes`s of the `Engine` with the `slug` field `bookstore`:
+Retrieve `DocumentTypes`s of the `Engine` with the `slug` field `bookstore`:
 
 	document_types = client.document_types('bookstore')
+
+Show the second batch of documents:
+
+	document_types = client.document_types('bookstore', 2)
 
 Create a new `DocumentType` for an `Engine` with the name `books`:
 
