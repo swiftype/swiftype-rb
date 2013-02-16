@@ -165,17 +165,11 @@ module Swiftype
 
     module Analytics
       def analytics_searches(engine_id, from=nil, to=nil)
-        options = {}
-        options[:start_date] = from if from
-        options[:end_date] = to if to
-        get("engines/#{engine_id}/analytics/searches.json", options)
+        get("engines/#{engine_id}/analytics/searches.json", date_range(from, to))
       end
 
       def analytics_autoselects(engine_id, from=nil, to=nil)
-        options = {}
-        options[:start_date] = from if from
-        options[:end_date] = to if to
-        get("engines/#{engine_id}/analytics/autoselects.json", options)
+        get("engines/#{engine_id}/analytics/autoselects.json", date_range(from, to))
       end
 
       def analytics_top_queries(engine_id, page=nil, per_page=nil)
@@ -183,6 +177,22 @@ module Swiftype
         options[:page] = page if page
         options[:per_page] = per_page if per_page
         get("engines/#{engine_id}/analytics/top_queries.json", options)
+      end
+
+      def analytics_top_queries_in_range(engine_id, from=nil, to=nil)
+        get("engines/#{engine_id}/analytics/top_queries_in_range.json", date_range(from, to))
+      end
+
+      def analytics_top_no_result_queries(engine_id, from=nil, to=nil)
+        get("engines/#{engine_id}/analytics/top_no_result_queries_in_range.json", date_range(from, to))
+      end
+
+      private
+      def date_range(from, to)
+        options = {}
+        options[:start_date] = from if from
+        options[:end_date] = to if to
+        options
       end
     end
 

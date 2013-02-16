@@ -192,6 +192,21 @@ end
       top_queries = @client.analytics_top_queries(engine_id, 2, 10)
       top_queries.size.should == 0
     end
+
+    it 'has top queries in date ranges' do
+      top_queries = @client.analytics_top_queries_in_range(engine_id, Time.now, Time.now)
+      top_queries.size.should == 1
+    end
+
+    it 'has top no result queries' do
+      top_no_result_queries = @client.analytics_top_no_result_queries(engine_id)
+      top_no_result_queries.size.should == 2
+    end
+
+    it 'has top no result queries in date ranges' do
+      top_no_result_queries = @client.analytics_top_no_result_queries(engine_id, Time.now, Time.now)
+      top_no_result_queries.size.should == 0
+    end
   end
 
   context 'Domain' do

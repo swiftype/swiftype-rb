@@ -242,6 +242,18 @@ To see more top queries you can paginate through them using:
 
 	top_queries = client.analytics_top_queries('bookstore', page=2)
 
+Or you can get the top queries in a specific date range:
+
+	top_queries = client.analytics_top_queries_in_range('bookstore', 1.week.ago, Time.now)
+
+If you want to improve you search results, you should always have a look at search queries, that return no results and perhaps add some Documents that match for this query or use our pining feature to add Documents for this query:
+
+	top_no_result_queries = client.analytics_top_no_result_queries('bookstore')
+
+You can also specifiy a date range for queries without results:
+
+	top_no_result_queries = client.analytics_top_no_result_queries('bookstore', 2.weeks.ago, 1.week.ago)
+
 ## todo
 
 * Add specs with webmock
