@@ -10,7 +10,6 @@ module Swiftype
 
     module Engine
       def engines
-        test_search_module
         get("engines.json")
       end
       def create_engine(engine={})
