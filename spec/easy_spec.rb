@@ -7,7 +7,7 @@ describe Swiftype::Easy do
   before :each do
     Swiftype::Easy.configure do |config|
       config.endpoint = ENV['API_HOST'] || config.endpoint
-      config.api_key = 'dummy'
+      config.api_key = 'pakCgsqk13w7dbAdy2sc'
     end
 
     @client = Swiftype::Easy.new
