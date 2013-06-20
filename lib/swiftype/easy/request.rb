@@ -1,5 +1,9 @@
 require 'net/https'
-require 'uri'
+if RUBY_VERSION < "1.9"
+  require 'swiftype/ext/backport-uri'
+else
+  require 'uri'
+end
 require 'json'
 require 'swiftype/exceptions'
 require 'openssl'
