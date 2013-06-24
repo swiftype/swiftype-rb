@@ -222,11 +222,21 @@ module Swiftype
       end
     end
 
+    module Clickthrough
+      def log_clickthrough(engine_id, document_type, q, id)
+        post(
+          "engines/#{engine_id}/document_types/#{document_type}/analytics/log_clickthrough.json",
+          {:q => q, :id => id}
+        )
+      end
+    end
+
     extend Swiftype::Easy::Configuration
     include Swiftype::Easy::Engine
     include Swiftype::Easy::DocumentType
     include Swiftype::Easy::Document
     include Swiftype::Easy::Analytics
     include Swiftype::Easy::Domain
+    include Swiftype::Easy::Clickthrough
   end
 end
