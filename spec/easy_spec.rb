@@ -257,7 +257,7 @@ end
     end
 
     it 'raises an error when missing params' do
-      expect(@client.log_clickthrough(engine_id, document_type_id, nil, id)).to(raise_error(Swiftype::UnexpectedHTTPException))
+      expect{@client.log_clickthrough(engine_id, document_type_id, nil, id)}.to(raise_error(Swiftype::UnexpectedHTTPException))
     end
   end
 end
