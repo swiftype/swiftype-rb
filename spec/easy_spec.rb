@@ -243,4 +243,21 @@ end
       crawled_url.should == url
     end
   end
+
+  context 'Clickthrough' do
+    let(:query) { 'foo' }
+    let(:id) { 1 }
+
+    context "#log_clickthough"
+    # Not thrilled with this test, but since nothing is returned all we
+    # can reasonably check is that an error isn't raised
+    it 'returns nil' do
+      response = @client.log_clickthrough(engine_id, document_type_id, query, id)
+      response.should == nil
+    end
+
+    it 'raises an error when missing params' do
+      expect(@client.log_clickthrough(engine_id, document_type_id, nil, id)).to(raise_error(Swiftype::UnexpectedHTTPException))
+    end
+  end
 end
