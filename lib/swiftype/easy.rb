@@ -1,12 +1,10 @@
 require 'swiftype/easy/version'
 require 'swiftype/easy/request'
-require 'swiftype/easy/search'
 
 module Swiftype
   class Easy
 
     include Swiftype::Easy::Request
-    include Swiftype::Easy::Search
 
     def initialize(options={})
     end
@@ -68,7 +66,7 @@ module Swiftype
       end
 
       def suggest(engine_id, query, options={})
-        search_params = { :q => query }.merge(parse_suggest_options(options))
+        search_params = { :q => query }.merge(options)
         response = post("engines/#{engine_id}/suggest.json", search_params)
         results = {}
         response['records'].each { |document_type, records| results[document_type] = records }
@@ -76,7 +74,7 @@ module Swiftype
       end
 
       def search(engine_id, query, options={})
-        search_params = { :q => query }.merge(parse_search_options(options))
+        search_params = { :q => query }.merge(options)
         response = post("engines/#{engine_id}/search.json", search_params)
         results = {}
         response['records'].each { |document_type, records| results[document_type] = records }
@@ -102,7 +100,7 @@ module Swiftype
       end
 
       def suggest_document_type(engine_id, document_type_id, query, options={})
-        search_params = { :q => query }.merge(parse_suggest_options(options))
+        search_params = { :q => query }.merge(options)
         response = post("engines/#{engine_id}/document_types/#{document_type_id}/suggest.json", search_params)
         results = {}
         response['records'].each { |document_type, records| results[document_type] = records }
@@ -110,7 +108,7 @@ module Swiftype
       end
 
       def search_document_type(engine_id, document_type_id, query, options={})
-        search_params = { :q => query }.merge(parse_search_options(options))
+        search_params = { :q => query }.merge(options)
         response = post("engines/#{engine_id}/document_types/#{document_type_id}/search.json", search_params)
         results = {}
         response['records'].each { |document_type, records| results[document_type] = records }
