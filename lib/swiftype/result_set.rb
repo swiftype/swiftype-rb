@@ -1,13 +1,11 @@
 module Swiftype
   class ResultSet
-    attr_accessor :records, :info
-    
+    attr_accessor :records, :info, :errors
+
     def initialize(results)
-      @records = {}
-      results['records'].each do |document_type, documents|
-        @records[document_type] = documents.map { |d| Swiftype::Document.new(d) }
-      end
+      @records = results['records']
       @info = results['info']
+      @errors = results['errors']
     end
 
     def [](document_type)
