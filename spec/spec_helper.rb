@@ -1,5 +1,6 @@
 require 'bundler/setup'
 require 'rspec'
+require 'vcr'
 require 'swiftype'
 
 RSpec.configure do |config|
@@ -9,10 +10,9 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = "random"
 
-  config.backtrace_clean_patterns = [
-    /\/lib\d*\/ruby\//,
-    /bin\//,
-    /spec\/spec_helper\.rb/,
-    /lib\/rspec\/(core|expectations|matchers|mocks)/
-  ]
+  VCR.configure do |c|
+    c.cassette_library_dir = 'spec/fixtures/vcr'
+    c.hook_into :webmock
+    c.default_cassette_options = {:record => :none}
+  end
 end

@@ -1,0 +1,45 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://hello:@localhost:3000/api/v1/users.json
+    body:
+      encoding: UTF-8
+      string: ! '{"client_id":"0d94f7cf2bd1e65a7e1f9f929d1bcb2b248af69b8112d24484e87014125538f8","client_secret":"f600fb0b16b516cbb9b9f0eeb60f3b35f685b5ec4a94694ae57b5bbb8860f240"}'
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Swiftype-Ruby/1.0.0
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Ua-Compatible:
+      - IE=Edge
+      Etag:
+      - ! '"42c9bfbd88f6b771bbb443007ace8ab5"'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Set-Cookie:
+      - _session_id=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJWJmZmEwYzg1ZmYwNGIxNTE4MDdmMTgzYTQ1ZjJhMTU0BjsAVEkiGXdhcmRlbi51c2VyLnVzZXIua2V5BjsAVFsISSIJVXNlcgY7AEZbBlU6Gk1vcGVkOjpCU09OOjpPYmplY3RJZCIRUDg5%2By7ZYCnHAAABSSIiJDJhJDEwJE1rNmZOdHA1cC9ZNVIuQU5sZFB2UWUGOwBU--aa3521daa865322d0cac3bfe397df0c71578bd2b;
+        path=/; HttpOnly
+      X-Request-Id:
+      - 2d84a05fc5ab40efc4f788db5f6b7c2e
+      X-Runtime:
+      - '0.087011'
+      Connection:
+      - close
+      Server:
+      - thin 1.5.0 codename Knife
+    body:
+      encoding: US-ASCII
+      string: ! '{"id":"5230fc6d2ed960ba20000026","access_token":"2565b0146bf79752ce7917d296f77614c1ebb5ffef28006e61927cd10d87968c"}'
+    http_version: 
+  recorded_at: Wed, 11 Sep 2013 23:27:41 GMT
+recorded_with: VCR 2.5.0

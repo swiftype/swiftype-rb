@@ -24,6 +24,42 @@ module Swiftype
       @options[:platform_access_token]
     end
 
+    module User
+
+      # List users for the configured application.
+      #
+      # @param options [Hash]
+      # @option options [Integer] :page page number of users to fetch (server defaults to 1)
+      # @option options [Integer] :per_page users to return per page (server defaults to 50)
+      def users(options={})
+        params = {
+          :client_id => Swiftype.platform_client_id,
+          :client_secret => Swiftype.platform_client_secret
+        }
+        get("users.json", params.merge(options))
+      end
+
+      # Create a new user for the configured application.
+      def create_user
+        params = {
+          :client_id => Swiftype.platform_client_id,
+          :client_secret => Swiftype.platform_client_secret
+        }
+        post("users.json", params)
+      end
+
+      # Return a user created by the configured application.
+      #
+      # @param user_id [String] the Swiftype User ID
+      def user(user_id)
+        params = {
+          :client_id => Swiftype.platform_client_id,
+          :client_secret => Swiftype.platform_client_secret
+        }
+        get("users/#{user_id}.json", params)
+      end
+    end
+
     module Engine
       def engines
         get("engines.json")
@@ -197,6 +233,7 @@ module Swiftype
       end
     end
 
+    include Swiftype::Easy::User
     include Swiftype::Easy::Engine
     include Swiftype::Easy::DocumentType
     include Swiftype::Easy::Document
