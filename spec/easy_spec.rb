@@ -35,24 +35,24 @@ describe Swiftype::Easy do
 
     it 'searches the engine' do
       results = @client.search(engine_id, '*')
-      results.size.should == 2
+      results.document_types.size.should == 2
     end
 
     it 'searches the engine with options' do
       results = @client.search(engine_id, '*', {:page => 2})
-      results.size.should == 2
+      results.document_types.size.should == 2
     end
 
     it 'suggests for an engine' do
       results = @client.suggest(engine_id, '*')
-      results.size.should == 2
+      results.document_types.size.should == 2
     end
 
     it 'suggests for an engine with options' do
       results = @client.suggest(engine_id, '*', {:page => 2})
-      results.size.should == 2
+      results.document_types.size.should == 2
     end
-end
+  end
 
   context 'DocumentType' do
     it 'gets all document types' do
@@ -77,26 +77,26 @@ end
 
     it 'searches document types' do
       results = @client.search_document_type(engine_id, document_type_id, '*')
-      results.should include(document_type_id)
-      results.size.should == 1
+      results[document_type_id].should_not be_nil
+      results.document_types.size.should == 1
     end
 
     it 'searches document types with options' do
       results = @client.search_document_type(engine_id, document_type_id, '*', {:page => 2})
-      results.should include(document_type_id)
-      results.size.should == 1
+      results[document_type_id].should_not be_nil
+      results.document_types.size.should == 1
     end
 
     it 'suggests for a document types' do
       results = @client.suggest_document_type(engine_id, document_type_id, '*')
-      results.should include(document_type_id)
-      results.size.should == 1
+      results[document_type_id].should_not be_nil
+      results.document_types.size.should == 1
     end
 
     it 'suggests for a document types with options' do
       results = @client.suggest_document_type(engine_id, document_type_id, '*', {:page => 2})
-      results.should include(document_type_id)
-      results.size.should == 1
+      results[document_type_id].should_not be_nil
+      results.document_types.size.should == 1
     end
   end
 

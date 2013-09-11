@@ -12,6 +12,10 @@ module Swiftype
       records[document_type]
     end
 
+    def document_types
+      records.keys
+    end
+
     def facets(document_type)
       info[document_type]['facets']
     end
