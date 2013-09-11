@@ -7,7 +7,21 @@ module Swiftype
 
     include Swiftype::Easy::Request
 
+    # Create a new Swiftype::Easy client
+    #
+    # @param options [Hash] a hash of configuration options that will overrided what is set on the Swiftype class.
+    # @option options [String] :api_key an API Key to use for this client
+    # @option options [String] :platform_access_token a user's access token, will be used instead of API key for authenticating requests
     def initialize(options={})
+      @options = options
+    end
+
+    def api_key
+      @options[:api_key] || Swiftype.api_key
+    end
+
+    def platform_access_token
+      @options[:platform_access_token]
     end
 
     module Engine

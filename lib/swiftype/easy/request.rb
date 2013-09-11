@@ -60,10 +60,6 @@ module Swiftype
       end
 
       def build_request(method, uri, params)
-        if Swiftype.api_key
-          params.merge!(:auth_token => Swiftype.api_key)
-        end
-
         klass = case method
                 when :get
                   Net::HTTP::Get
@@ -86,6 +82,12 @@ module Swiftype
 
         req['User-Agent'] = Swiftype.user_agent
         req['Content-Type'] = 'application/json'
+
+        if platform_access_token
+          req['Authorization'] = "Bearer #{platform_access_token}"
+        elsif api_key
+          req.basic_auth api_key, ''
+        end
 
         req
       end
