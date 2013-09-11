@@ -84,10 +84,6 @@ module Swiftype
           req.body = JSON.generate(params) unless params.length == 0
         end
 
-        if Swiftype.username && Swiftype.password
-          req.basic_auth(Swiftype.username, Swiftype.password)
-        end
-
         req['User-Agent'] = Swiftype.user_agent
         req['Content-Type'] = 'application/json'
 
