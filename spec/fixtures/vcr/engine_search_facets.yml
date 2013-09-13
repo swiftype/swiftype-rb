@@ -1,0 +1,162 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://hello:@localhost:3000/api/v1/engines/swiftype-api-example/search.json
+    body:
+      encoding: UTF-8
+      string: ! '{"q":null,"facets":{"videos":["category_id"]}}'
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Swiftype-Ruby/1.0.0
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Ua-Compatible:
+      - IE=Edge
+      Etag:
+      - ! '"dc400de000085e97fdc8431f44f133a9"'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Set-Cookie:
+      - _session_id=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJTVkODUyZGQ4NzRkZjBiNDM5ZjE3YWQ2NjRlMTkwZTQzBjsAVEkiGXdhcmRlbi51c2VyLnVzZXIua2V5BjsAVFsISSIJVXNlcgY7AEZbBlU6Gk1vcGVkOjpCU09OOjpPYmplY3RJZCIRUDg5%2By7ZYCnHAAABSSIiJDJhJDEwJE1rNmZOdHA1cC9ZNVIuQU5sZFB2UWUGOwBU--ef8207cbe7f92dfdb111a016c904b4e990a2bb1a;
+        path=/; HttpOnly
+      X-Request-Id:
+      - 9cb566ebf56f822f8bf3e0313e945d00
+      X-Runtime:
+      - '0.495633'
+      Connection:
+      - close
+      Server:
+      - thin 1.5.0 codename Knife
+    body:
+      encoding: US-ASCII
+      string: ! '{"records":{"videos":[{"external_id":"foobar","title":"new document","updated_at":"2013-09-12T22:27:53Z","id":"52323fe92ed960589800003a","_score":1.0,"_type":"523231e62ed9605898000020","_index":"51b92f982ed960a844000248","_version":null,"sort":null,"highlight":{},"_explanation":null},{"external_id":"4r7wHMg5Yjg","category_id":"23","caption":"The
+        Crazy Nastyass Honey Badger (original narration by Randall)\n\nEnter the Honey
+        Badger Doll Contest for a chance to win fabulous crazyass prizes: https://www.facebook.com/randallshoneybadger/app_228910107186452
+        !!!\n\n*GET THE TALKING NASTYASS HONEY BADGER DOLL, STUPID: http://randallshoneybadger.com/honey-badger-products/\n\n*Get
+        Randall''s book now!: http://bit.ly/wW79nq ***VOTE HONEY BADGER to learn more
+        visit: http://bit.ly/PiuHIi  \n\n*VISIT: http://bit.ly/wkrWiY  *FOR THE HOT
+        APP\n\n\nSpecial thanks to Colleen and Keith Begg for their extensive work
+        and care--to find out more about the filmmakers and what they do, please visit:
+        http://bit.ly/JSgPWr\n\nThere is no other animal in the kingdom of all animals,
+        as fearless as the crazyass Honey Badger.  Nasty as hell, it eats practically
+        whatever it wants.  Randall is disgusted.  To learn more about the Honey Badger,
+        please visit.  \nwork: http://www.nationalgeographic.com/\n\nThere is no other
+        animal in the kingdom of all animals, as fearless as the crazyass Honey Badger.  Nasty
+        as hell, it eats whatever it wants and don''t give a shit. \n\nGet the Talking
+        Nastyass Honey Badger Doll, stupid: http://randallshoneybadger.com/honey-badger-products\n\nLike
+        the Honey Badger on Facebook: https://www.facebook.com/randallshoneybadger\n\nFollow
+        me on Twitter: https://twitter.com/randallsanimals\n\nRead the Honey Badger
+        book now: http://tinyurl.com/afo92xv\n\nVisit http://bit.ly/wkrWiY for the
+        honey badger app","channel_id":"UCdYazIu26zP1VlU7vcwb-5g","url":"http://www.youtube.com/watch?v=4r7wHMg5Yjg","published_at":"2011-01-18T11:51:47Z","thumbnail_url":"https://i.ytimg.com/vi/4r7wHMg5Yjg/mqdefault.jpg","title":"The
+        Crazy Nastyass Honey Badger (original narration by Randall)","duration":201,"updated_at":"2013-09-12T22:42:45Z","category_name":"Comedy","like_count":265458,"view_count":57549733,"id":"523231e72ed9605898000023","_score":1.0,"_type":"523231e62ed9605898000020","_index":"51b92f982ed960a844000248","_version":null,"sort":null,"highlight":{},"_explanation":null},{"tags":["PSY","\uc2f8\uc774","\uac15\ub0a8\uc2a4\ud0c0\uc77c","\ubba4\uc9c1\ube44\ub514\uc624","Music
+        Video","Gangnam Style","KOREAN SINGER","KPOP","KOERAN WAVE","PSY 6\u7532","6th
+        Studio Album","\uc2f8\uc7746\uc9d1","\uc721\uac11","YG Family","YG Entertainment"],"external_id":"9bZkp7q19f0","category_id":"10","caption":"PSY
+        - Gangnam Style (\uac15\ub0a8\uc2a4\ud0c0\uc77c) \n\u25b6 NOW available on
+        iTunes: http://Smarturl.it/psygangnam\n\u25b6 Official PSY Online Store US
+        & International : http://psy.shop.bravadousa.com/\n\u25b6 About PSY from YG
+        Ent.: http://smarturl.it/YGfamilyAboutPSY\n\u25b6 PSY''s Products on eBay:
+        http://stores.ebay.com/ygentertainment\n\u25b6 YG-eShop: http://www.ygeshop.com\n
+        \nFor More Information @\nhttp://www.facebook.com/officialpsy\nhttp://twitter.com/psy_oppa\nhttp://twitter.com/ygent_official\nhttp://me2day.net/psyfive\nhttp://www.psypark.com\nApp
+        Store: http://goo.gl/l9TU6\nGoogle Play: http://goo.gl/UiEn1\n\n\u00a9 YG
+        Entertainment Inc. All rights reserved.","url":"http://www.youtube.com/watch?v=9bZkp7q19f0","channel_id":"UCrDkAvwZum-UTjHmzDI2iIw","published_at":"2012-07-15T07:46:32Z","thumbnail_url":"https://i.ytimg.com/vi/9bZkp7q19f0/mqdefault.jpg","title":"PSY
+        - GANGNAM STYLE (\uac15\ub0a8\uc2a4\ud0c0\uc77c) M/V","duration":253,"updated_at":"2013-09-12T22:42:47Z","category_name":"Music","like_count":7095431,"view_count":1360426986,"id":"523231e82ed9605898000024","_score":1.0,"_type":"523231e62ed9605898000020","_index":"51b92f982ed960a844000248","_version":null,"sort":null,"highlight":{},"_explanation":null},{"external_id":"C8Wu3Bps9ic","category_id":"23","caption":"Swedish
+        Meatballs. They are good for you.\r\n\r\nLingonsylt are for Swedish nationalists.
+        WE DONT LIKE THAT\r\n\r\n\r\nEnjoy.\r\n\r\n\r\n( Greyish sometimes to compensate
+        for bad lighting, deal with it haters )\r\n\r\nLove us on Facebook http://www.facebook.com/pages/Regular-Ordinary-Swedish-Meal-Time/166173596761030
+        \r\nand Twitter: http://twitter.com/SwedishMealTime","channel_id":"UCfLGZs8bSDbkNJjCRIE7NSg","url":"http://www.youtube.com/watch?v=C8Wu3Bps9ic","published_at":"2011-01-13T21:48:04Z","thumbnail_url":"https://i.ytimg.com/vi/C8Wu3Bps9ic/mqdefault.jpg","title":"Meatball
+        Massacre - Regular Ordinary Swedish Meal Time","duration":199,"updated_at":"2013-09-12T22:42:48Z","category_name":"Comedy","like_count":30139,"view_count":5565896,"id":"523231ea2ed9605898000025","_score":1.0,"_type":"523231e62ed9605898000020","_index":"51b92f982ed960a844000248","_version":null,"sort":null,"highlight":{},"_explanation":null},{"external_id":"dFs9WO2B8uI","category_id":"25","caption":"In
+        this new RSA Animate, renowned psychiatrist and writer Iain McGilchrist explains
+        how our ''divided brain'' has profoundly altered human behaviour, culture
+        and society. \n\nTaken from a lecture given by Iain McGilchrist as part of
+        the RSA''s free public events programme. To view the full lecture, go to http://www.youtube.com/watch?v=SbUHxC4wiWk.
+        The RSA is a charity dedicated to driving social progress and spreading world-changing
+        ideas. For more information about our varied work, visit http://www.thersa.org.
+        \n\nLike the RSA on Facebook: http://www.facebook.com/thersaorg\nBecome a
+        Fellow: http://www.thersa.org/fellowship \nAttend a live event: http://www.thersa.org/events\nSupport
+        us: http://www.thersa.org/support-the-rsa","channel_id":"UCvhsiQGy_zcNCiSbeXEjhLg","url":"http://www.youtube.com/watch?v=dFs9WO2B8uI","published_at":"2012-07-15T07:46:32Z","thumbnail_url":"https://i.ytimg.com/vi/dFs9WO2B8uI/mqdefault.jpg","title":"RSA
+        Animate - The Divided Brain","duration":708,"updated_at":"2013-09-12T22:42:55Z","category_name":"News
+        & Politics","like_count":11993,"view_count":1118857,"id":"523231ef2ed9605898000029","_score":1.0,"_type":"523231e62ed9605898000020","_index":"51b92f982ed960a844000248","_version":null,"sort":null,"highlight":{},"_explanation":null},{"external_id":"dMH0bHeiRNg","category_id":"23","caption":"For
+        more visit http://www.mightaswelldance.com","channel_id":"UC5B9H4l2vtgo7cAoExcFh-w","url":"http://www.youtube.com/watch?v=dMH0bHeiRNg","published_at":"2006-04-06T21:30:53Z","thumbnail_url":"https://i.ytimg.com/vi/dMH0bHeiRNg/mqdefault.jpg","title":"Evolution
+        of Dance - By Judson Laipply","duration":360,"updated_at":"2013-09-12T22:42:55Z","category_name":"Comedy","like_count":927235,"view_count":210433484,"id":"523231ef2ed960589800002a","_score":1.0,"_type":"523231e62ed9605898000020","_index":"51b92f982ed960a844000248","_version":null,"sort":null,"highlight":{},"_explanation":null},{"external_id":"dWGc8JAWWj0","category_id":"2","caption":"SP
+        4449 #1 most viewed train video Daylight Steam Engine with Casper Mountain
+        passenger car coming from Albany, Oregon going to Portland, Oregon  The World''s
+        Most Famous Steam Train Southern Pacific steam locomotive no. 4449 known as
+        the \"Daylight\"  Nikon L5 (If you like my videos, rate, comment and subscribe
+        to my channel)\nDon''t forget to SUBSCRIBE!\nErvans Trains http://www.youtube.com/user/ervans","channel_id":"UCQdo-z5pPkAjJONxsvXESXA","url":"http://www.youtube.com/watch?v=dWGc8JAWWj0","published_at":"2007-04-18T00:49:21Z","thumbnail_url":"https://i.ytimg.com/vi/dWGc8JAWWj0/mqdefault.jpg","title":"(#1
+        most viewed train) SP 4449 crossing at  Roberts, Oregon","duration":50,"updated_at":"2013-09-12T22:42:57Z","category_name":"Autos
+        & Vehicles","like_count":7117,"view_count":22213068,"id":"523231f02ed960589800002b","_score":1.0,"_type":"523231e62ed9605898000020","_index":"51b92f982ed960a844000248","_version":null,"sort":null,"highlight":{},"_explanation":null},{"external_id":"FHtvDA0W34I","category_id":"28","caption":"Song:
+        http://smarturl.it/tafreespacedout\n\nAfter flying to an altitude of 39,045
+        meters (128,100 feet) in a helium-filled balloon, Felix Baumgartner completed
+        a record breaking jump for the ages from the edge of space, exactly 65 years
+        after Chuck Yeager first broke the sound barrier flying in an experimental
+        rocket-powered airplane. Felix reached a maximum of speed of 1,357.6 km/h
+        or 843.6 mph(Mach 1.25) through the near vacuum of the stratosphere before
+        being slowed by the atmosphere later during his 4:20 minute long freefall.
+        The 43-year-old Austrian skydiving expert also broke two other world records
+        (highest freefall, highest manned balloon flight), leaving the one for the
+        longest freefall to project mentor Col. Joe Kittinger.\n\nWatch the Full Recap:
+        http://www.youtube.com/watch?v=dOoHArAzdug\n\nhttp://www.redbullstratos.com\n___________________________________________________________\n\nExperience
+        the world of Red Bull like you have never seen it before. With the best action
+        sports clips on the web and YouTube exclusive series, prepare for your \"stoke
+        factor\" to be at an all time high.\n\nRed Bull on Facebook: http://win.gs/redbullfb\n\nRed
+        Bull on Twitter: http://win.gs/redbulltwitter\n\nSubscribe to Red Bull on
+        Youtube: http://www.youtube.com/subscription_center?add_user=redbull","channel_id":"UCblfuW_4rakIf2h6aqANefA","url":"http://www.youtube.com/watch?v=FHtvDA0W34I","published_at":"2012-10-15T00:06:53Z","thumbnail_url":"https://i.ytimg.com/vi/FHtvDA0W34I/mqdefault.jpg","title":"Felix
+        Baumgartner''s supersonic freefall from 128k'' - Mission Highlights","duration":91,"updated_at":"2013-09-12T22:42:50Z","category_name":"Science
+        & Technology","like_count":127463,"view_count":32874417,"id":"523231eb2ed9605898000026","_score":1.0,"_type":"523231e62ed9605898000020","_index":"51b92f982ed960a844000248","_version":null,"sort":null,"highlight":{},"_explanation":null},{"external_id":"FtX8nswnUKU","category_id":"15","caption":"http://www.facebook.com/pages/Kittens-Inspired-by-Kittens/49930012799","channel_id":"UC0c2TaeQY5VRMltq5Z2TQMA","url":"http://www.youtube.com/watch?v=FtX8nswnUKU","published_at":"2008-09-01T14:25:17Z","thumbnail_url":"https://i.ytimg.com/vi/FtX8nswnUKU/mqdefault.jpg","title":"kittens
+        inspired by kittens","duration":92,"updated_at":"2013-09-12T22:42:51Z","category_name":"Pets
+        & Animals","like_count":47388,"view_count":17228767,"id":"523231eb2ed9605898000027","_score":1.0,"_type":"523231e62ed9605898000020","_index":"51b92f982ed960a844000248","_version":null,"sort":null,"highlight":{},"_explanation":null},{"external_id":"QH2-TGUlwu4","category_id":"23","caption":"For
+        PJ.\n\nCheck out Nyan Cat at http://nyan.cat/\nOfficial Nyan Cat Facebook:
+        http://www.facebook.com/NyanCatWorld\nNyan Cat on Twitter: https://twitter.com/nyannyancat\n\nNyan
+        Cat Store: http://nyancat.cat/store.html\n\nGIF by PRguitarman http://www.prguitarman.com/index.php?id=348\nSong
+        by Daniwell-P/Momone Momo UTAU http://momolabo.lolipop.jp/nyancatsong/Nyan/\n***used
+        with permission; I own neither***","channel_id":"UC3VHfy8e1jbDnT5TG2pjP1w","url":"http://www.youtube.com/watch?v=QH2-TGUlwu4","published_at":"2011-04-06T03:21:59Z","thumbnail_url":"https://i.ytimg.com/vi/QH2-TGUlwu4/mqdefault.jpg","title":"Nyan
+        Cat [original]","duration":217,"updated_at":"2013-09-12T22:42:53Z","category_name":"Comedy","like_count":711548,"view_count":93258193,"id":"523231ed2ed9605898000028","_score":1.0,"_type":"523231e62ed9605898000020","_index":"51b92f982ed960a844000248","_version":null,"sort":null,"highlight":{},"_explanation":null},{"tags":["Glass","Google
+        Glass","Project Glass","Glass video","google","glassesgoogle","goggles","if
+        i had glass","Glass Explorer","Glass Explorers","glass vid","glass video","ok
+        ..."],"external_id":"v1uyQZNg2vE","category_id":"28","caption":"Want to see
+        how Glass actually feels?...","url":"http://www.youtube.com/watch?v=v1uyQZNg2vE","channel_id":"UCK8sQmJBp8GCxrOtXWBpyEA","published_at":"2013-02-20T10:47:18Z","thumbnail_url":"https://i.ytimg.com/vi/v1uyQZNg2vE/mqdefault.jpg","title":"How
+        It Feels [through Glass]","duration":136,"updated_at":"2013-09-12T22:42:58Z","category_name":"Science
+        &amp; Technology","like_count":75952,"view_count":14599202,"id":"523231f12ed960589800002e","_score":1.0,"_type":"523231e62ed9605898000020","_index":"51b92f982ed960a844000248","_version":null,"sort":null,"highlight":{},"_explanation":null},{"external_id":"ik5sdwYZ01Q","category_id":"15","caption":"Best
+        Harlem Shake Ever.  No Ads.","channel_id":"UCiTvufmbsDlYeZ9JOVtiYYQ","url":"http://www.youtube.com/watch?v=ik5sdwYZ01Q","published_at":"2013-02-20T02:37:53Z","thumbnail_url":"https://i.ytimg.com/vi/FHtvDA0W34I/mqdefault.jpg","title":"Grumpy
+        Cat Does The Harlem Shake (Ad Free)","duration":18,"updated_at":"2013-09-12T22:42:57Z","category_name":"Pets
+        & Animals","like_count":1014,"view_count":125939,"id":"523231f02ed960589800002c","_score":1.0,"_type":"523231e62ed9605898000020","_index":"51b92f982ed960a844000248","_version":null,"sort":null,"highlight":{},"_explanation":null},{"external_id":"pITuOcGgpBs","category_id":"22","caption":"","channel_id":"UCPrFOf5ObdBHfNs5BuO-vPQ","url":"http://www.youtube.com/watch?v=pITuOcGgpBs","published_at":"2012-05-08T09:03:17Z","thumbnail_url":"https://i.ytimg.com/vi/pITuOcGgpBs/mqdefault.jpg","title":"Swiftype
+        Demo","duration":110,"updated_at":"2013-09-12T22:42:57Z","category_name":"People
+        & Blogs","like_count":27,"view_count":12865,"id":"523231f02ed960589800002d","_score":1.0,"_type":"523231e62ed9605898000020","_index":"51b92f982ed960a844000248","_version":null,"sort":null,"highlight":{},"_explanation":null},{"external_id":"INscMGmhmX4","title":"hi","thumbnail_url":"https://i.ytimg.com/vi/INscMGmhmX4/mqdefault.jpg","updated_at":"2013-09-12T22:57:05Z","category_name":"Pets
+        &amp; Animals","url":"http://www.youtube.com/watch?v=v1uyQZNg2vE","channel_id":"UCTzVrd9ExsI3Zgnlh3_btLg","id":"5232410d2ed960589800003c","_score":1.0,"_type":"523231e62ed9605898000020","_index":"51b92f982ed960a844000248","_version":null,"sort":null,"highlight":{},"_explanation":null},{"external_id":"XfY9Dsg_DZk","title":"bye","thumbnail_url":"https://i.ytimg.com/vi/XfY9Dsg_DZk/mqdefault.jpg","updated_at":"2013-09-12T22:57:05Z","category_name":"Pets
+        &amp; Animals","url":"http://www.youtube.com/watch?v=XfY9Dsg_DZk","channel_id":"UC5VA5j05FjETg-iLekcyiBw","id":"5232410d2ed960589800003d","_score":1.0,"_type":"523231e62ed9605898000020","_index":"51b92f982ed960a844000248","_version":null,"sort":null,"highlight":{},"_explanation":null}],"channels":[{"external_id":"UC0c2TaeQY5VRMltq5Z2TQMA","title":"blakekelly0","thumbnail_url":"http://i.ytimg.com/i/0c2TaeQY5VRMltq5Z2TQMA/mq1.jpg","updated_at":"2013-09-12T22:42:58Z","description":"my
+        kids are awesome","subscriber_count":3371,"view_count":381741,"video_count":26,"url":"http://www.youtube.com/user/redbull","published_at":"2007-12-21T13:03:48Z","id":"51b92fa52ed960a844000259","_score":1.0,"_type":"51b92f992ed960a84400024b","_index":"51b92f982ed960a844000248","_version":null,"sort":null,"highlight":{},"_explanation":null},{"external_id":"UC3VHfy8e1jbDnT5TG2pjP1w","title":"saraj00n","thumbnail_url":"http://i.ytimg.com/i/3VHfy8e1jbDnT5TG2pjP1w/mq1.jpg","updated_at":"2013-09-12T22:42:58Z","description":"Sara
+        Reihani/Slobs comedy. slobs.productions@gmail.com\n\nFor Nyan Cat inquiries,
+        contact: pr@prguitarman.com","subscriber_count":25729,"view_count":727472,"video_count":41,"url":"http://www.youtube.com/user/saraj00n","published_at":"2011-01-03T00:27:56Z","id":"51b92fa52ed960a84400025a","_score":1.0,"_type":"51b92f992ed960a84400024b","_index":"51b92f982ed960a844000248","_version":null,"sort":null,"highlight":{},"_explanation":null},{"external_id":"UCQdo-z5pPkAjJONxsvXESXA","title":"ervans","thumbnail_url":"http://i.ytimg.com/i/Qdo-z5pPkAjJONxsvXESXA/mq1.jpg","updated_at":"2013-09-12T22:42:59Z","description":"All
+        of my Videos are original short films I recorded, most are train videos. Very
+        little editing.  If you like my videos. (Rate, Comment and Subscribe).","subscriber_count":41464,"view_count":1787374,"video_count":191,"url":"http://www.youtube.com/user/ervans","published_at":"2006-04-26T18:08:07Z","id":"51b92fa62ed960a84400025e","_score":1.0,"_type":"51b92f992ed960a84400024b","_index":"51b92f982ed960a844000248","_version":null,"sort":null,"highlight":{},"_explanation":null},{"external_id":"UCblfuW_4rakIf2h6aqANefA","title":"redbull","thumbnail_url":"http://i.ytimg.com/i/blfuW_4rakIf2h6aqANefA/mq1.jpg","updated_at":"2013-09-12T22:42:59Z","description":"Experience
+        the world of Red Bull like you have never seen it before. With the best action
+        sports clips on the web and YouTube exclusive series, prepare for your \"stoke
+        factor\" to be at an all time high.","subscriber_count":133455,"view_count":2211991,"video_count":201,"url":"http://www.youtube.com/user/redbull","published_at":"2006-09-23T03:44:21Z","id":"51b92fa62ed960a84400025f","_score":1.0,"_type":"51b92f992ed960a84400024b","_index":"51b92f982ed960a844000248","_version":null,"sort":null,"highlight":{},"_explanation":null},{"external_id":"UCdYazIu26zP1VlU7vcwb-5g","title":"czg123","thumbnail_url":"http://i.ytimg.com/i/dYazIu26zP1VlU7vcwb-5g/mq1.jpg","updated_at":"2013-09-12T22:42:59Z","description":"Welcome
+        to Randall''s Honey Badger Channel!\r\n\r\nSubscribe now for even more of
+        the Honey Badger''s Crazy Nastyass Animal videos, stupid!\r\n\r\nFor inquiries,
+        contact ThruLine Entertainment: danny@thrulinela.com","subscriber_count":133455,"view_count":2211991,"video_count":201,"url":"http://www.youtube.com/user/czg123","published_at":"2011-01-06T20:20:03Z","id":"51b92fa62ed960a844000260","_score":1.0,"_type":"51b92f992ed960a84400024b","_index":"51b92f982ed960a844000248","_version":null,"sort":null,"highlight":{},"_explanation":null},{"external_id":"UC5B9H4l2vtgo7cAoExcFh-w","title":"judsonlaipply","thumbnail_url":"http://i.ytimg.com/i/5B9H4l2vtgo7cAoExcFh-w/mq1.jpg","updated_at":"2013-09-12T22:42:59Z","description":"The
+        Evolution of Dance is one of the most watched videos of all time on YouTube.
+        \n\nJudson Laipply, creator and performer of The Evolution of Dance, is an
+        inspirational comedian, author and professional speaker who makes people laugh
+        and think.\n\nLearn more at http://www.MightasWellDance.com","subscriber_count":64227,"view_count":3181464,"video_count":5,"url":"http://www.youtube.com/user/judsonlaipply","published_at":"2006-03-23T15:20:45Z","id":"51b92fa52ed960a84400025b","_score":1.0,"_type":"51b92f992ed960a84400024b","_index":"51b92f982ed960a844000248","_version":null,"sort":null,"highlight":{},"_explanation":null},{"external_id":"UCK8sQmJBp8GCxrOtXWBpyEA","title":"Google","thumbnail_url":"https://lh4.googleusercontent.com/-v0soe-ievYE/AAAAAAAAAAI/AAAAAAAAAAA/OixOH_h84Po/s88-c-k/photo.jpg","updated_at":"2013-09-12T22:42:59Z","description":"Google''s
+        official YouTube channel.","subscriber_count":1270202,"view_count":33428669,"video_count":1546,"url":"http://www.youtube.com/user/Google","published_at":"2005-09-18T22:37:10Z","id":"51b92fa62ed960a84400025c","_score":1.0,"_type":"51b92f992ed960a84400024b","_index":"51b92f982ed960a844000248","_version":null,"sort":null,"highlight":{},"_explanation":null},{"external_id":"UCPrFOf5ObdBHfNs5BuO-vPQ","title":"swiftype","thumbnail_url":"http://i.ytimg.com/i/PrFOf5ObdBHfNs5BuO-vPQ/mq1.jpg","updated_at":"2013-09-12T22:42:59Z","description":"","subscriber_count":5,"view_count":309,"video_count":6,"url":"http://www.youtube.com/user/swiftype","published_at":"2011-11-26T00:17:40Z","id":"51b92fa62ed960a84400025d","_score":1.0,"_type":"51b92f992ed960a84400024b","_index":"51b92f982ed960a844000248","_version":null,"sort":null,"highlight":{},"_explanation":null},{"external_id":"UCfLGZs8bSDbkNJjCRIE7NSg","title":"SwedishMealTime","thumbnail_url":"http://i.ytimg.com/i/fLGZs8bSDbkNJjCRIE7NSg/mq1.jpg","updated_at":"2013-09-12T22:42:59Z","description":"For
+        Mayo in time.","subscriber_count":455337,"view_count":6328566,"video_count":36,"url":"http://www.youtube.com/user/SwedishMealTime","published_at":"2011-01-06T20:20:03Z","id":"51b92fa72ed960a844000261","_score":1.0,"_type":"51b92f992ed960a84400024b","_index":"51b92f982ed960a844000248","_version":null,"sort":null,"highlight":{},"_explanation":null},{"external_id":"UCiTvufmbsDlYeZ9JOVtiYYQ","title":"Joel
+        Zimmerebner","thumbnail_url":"http://i.ytimg.com/i/blfuW_4rakIf2h6aqANefA/mq1.jpg","updated_at":"2013-09-12T22:42:59Z","description":"","subscriber_count":124,"view_count":350,"video_count":3,"url":"http://www.youtube.com/user/DwnWthVwls","published_at":"2006-10-20T04:21:40Z","id":"51b92fa72ed960a844000262","_score":1.0,"_type":"51b92f992ed960a84400024b","_index":"51b92f982ed960a844000248","_version":null,"sort":null,"highlight":{},"_explanation":null},{"external_id":"UCrDkAvwZum-UTjHmzDI2iIw","title":"officialpsy","thumbnail_url":"http://i.ytimg.com/i/rDkAvwZum-UTjHmzDI2iIw/mq1.jpg","updated_at":"2013-09-12T22:42:59Z","description":"PSY
+        Official YouTube Channel","subscriber_count":3060443,"view_count":35989504,"video_count":47,"url":"http://www.youtube.com/user/officialpsy","published_at":"2010-10-04T02:50:53Z","id":"51b92fa72ed960a844000263","_score":1.0,"_type":"51b92f992ed960a84400024b","_index":"51b92f982ed960a844000248","_version":null,"sort":null,"highlight":{},"_explanation":null},{"external_id":"UCvhsiQGy_zcNCiSbeXEjhLg","title":"theRSAorg","thumbnail_url":"http://i.ytimg.com/i/vhsiQGy_zcNCiSbeXEjhLg/mq1.jpg","updated_at":"2013-09-12T22:43:01Z","description":"The
+        RSA: meeting 21st century challenges by showcasing ideas, undertaking innovative
+        research and building civic capacity around the world.\r\n \r\nTo learn more
+        about the RSA, visit: thersa.org\r\n\r\nOur events are made possible with
+        the support of our Fellowship. Support us by donating or applying to bec","subscriber_count":243017,"view_count":2434953,"video_count":557,"url":"http://www.youtube.com/user/theRSAorg","published_at":"2009-08-06T10:21:23Z","id":"51b92fa92ed960a844000264","_score":1.0,"_type":"51b92f992ed960a84400024b","_index":"51b92f982ed960a844000248","_version":null,"sort":null,"highlight":{},"_explanation":null}]},"info":{"videos":{"query":"","current_page":1,"num_pages":1,"per_page":20,"total_result_count":15,"facets":{"category_id":{"23":4,"28":2,"15":2,"25":1,"22":1,"2":1,"10":1}}},"channels":{"query":"","current_page":1,"num_pages":1,"per_page":20,"total_result_count":12,"facets":{}}},"errors":{}}'
+    http_version: 
+  recorded_at: Fri, 13 Sep 2013 23:30:14 GMT
+recorded_with: VCR 2.5.0
