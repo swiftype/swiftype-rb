@@ -1,4 +1,4 @@
-require 'swiftype/easy'
+require 'swiftype/client'
 
 module Swiftype
   extend Swiftype::Configuration

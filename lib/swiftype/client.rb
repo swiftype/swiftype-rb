@@ -1,13 +1,13 @@
 require 'swiftype/configuration'
 require 'swiftype/result_set'
-require 'swiftype/easy/request'
+require 'swiftype/request'
 
 module Swiftype
-  class Easy
+  class Client
 
-    include Swiftype::Easy::Request
+    include Swiftype::Request
 
-    # Create a new Swiftype::Easy client
+    # Create a new Swiftype::Client client
     #
     # @param options [Hash] a hash of configuration options that will overrided what is set on the Swiftype class.
     # @option options [String] :api_key an API Key to use for this client
@@ -242,12 +242,12 @@ module Swiftype
       end
     end
 
-    include Swiftype::Easy::User
-    include Swiftype::Easy::Engine
-    include Swiftype::Easy::DocumentType
-    include Swiftype::Easy::Document
-    include Swiftype::Easy::Analytics
-    include Swiftype::Easy::Domain
-    include Swiftype::Easy::Clickthrough
+    include Swiftype::Client::User
+    include Swiftype::Client::Engine
+    include Swiftype::Client::DocumentType
+    include Swiftype::Client::Document
+    include Swiftype::Client::Analytics
+    include Swiftype::Client::Domain
+    include Swiftype::Client::Clickthrough
   end
 end

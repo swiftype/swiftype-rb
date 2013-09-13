@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'platform user API' do
-  let(:client) { Swiftype::Easy.new }
+  let(:client) { Swiftype::Client.new }
 
   context 'authentication' do
     it 'succeeds with api_key and correct client_id and client_secret' do

@@ -1,8 +1,6 @@
-# Swiftype::Easy - Simple Swiftype API Client with no dependencies
+# Swiftype Ruby API Client
 
-This is a simple client for the Swiftype API with no dependencies outside core Ruby (for 1.9; Ruby 1.8 require the JSON gem).
-
-This library is a direct pass-through to the Swiftype API. It does not use intermediate objects or return them. All parameters and return values are simple Ruby objects.
+This is a simple client for the [Swiftype API](https://swiftype.com/documentation/overview) with no dependencies outside core Ruby (for 1.9 and 2.0; Ruby 1.8 requires the JSON gem).
 
 ## Usage
 
@@ -10,15 +8,19 @@ This library is a direct pass-through to the Swiftype API. It does not use inter
 
 Before issuing commands to the API, configure the client with your API key:
 
-	Swiftype.configure do |config|
-          config.api_key = 'YOUR_API_KEY'
-	end
+	Swiftype.api_key = 'YOUR_API_KEY'
 
-You can find your API key in your [Account Settings](https://swiftype.com/user/edit).
+You can find your API key in your [Account Settings](https://swiftype.com/settings/account).
 
-### Create a Simple Client
+### Create a client
 
-	client = Swiftype::Easy.new
+	client = Swiftype::Client.new
+
+You can also provide the API key when creating the client instance:
+
+	client = Swiftype::Client.new(:api_key => 'different_api_key')
+
+If the API key is provided as an option to constructor, it will override the globally configured Swiftype API key (if any).
 
 ### Search
 
@@ -244,9 +246,3 @@ If you want to improve you search results, you should always have a look at sear
 You can also specifiy a date range for queries without results:
 
 	top_no_result_queries = client.analytics_top_no_result_queries('bookstore', 2.weeks.ago, 1.week.ago)
-
-## todo
-
-* Add specs with webmock
-* Pull `Swiftype::Easy` from the swiftype gem so they are compatable
-* Use SSL for searches

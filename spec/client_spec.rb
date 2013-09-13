@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe Swiftype::Easy do
+describe Swiftype::Client do
   let(:engine_id) { 'swiftype-api-example' }
-  let(:client) { Swiftype::Easy.new }
+  let(:client) { Swiftype::Client.new }
 
   before :each do
     Swiftype.api_key = 'hello'
