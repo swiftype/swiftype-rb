@@ -1,0 +1,68 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://hello:@localhost:3000/api/v1/engines/swiftype-api-example/document_types/videos/documents.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Swiftype-Ruby/1.0.0
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Ua-Compatible:
+      - IE=Edge
+      Etag:
+      - ! '"6a9a170b4de7756b0f1371b0ba3f04fe"'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Set-Cookie:
+      - _session_id=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJTU4MjEyNDMxNGI0NDkwMzMyMzYzYTliYTY4OWM4YzgzBjsAVEkiGXdhcmRlbi51c2VyLnVzZXIua2V5BjsAVFsISSIJVXNlcgY7AEZbBlU6Gk1vcGVkOjpCU09OOjpPYmplY3RJZCIRUDg5%2By7ZYCnHAAABSSIiJDJhJDEwJE1rNmZOdHA1cC9ZNVIuQU5sZFB2UWUGOwBU--9e994b3c88ee82371f7525b8f0bd53584ee7fdee;
+        path=/; HttpOnly
+      X-Request-Id:
+      - a1da222a29ca8afc26bf5ed4a63dcc03
+      X-Runtime:
+      - '0.045269'
+      Connection:
+      - close
+      Server:
+      - thin 1.5.0 codename Knife
+    body:
+      encoding: US-ASCII
+      string: ! '[{"external_id":"C8Wu3Bps9ic","engine_id":"51b92f982ed960a844000248","document_type_id":"523231e62ed9605898000020","id":"523231ea2ed9605898000025","_id":"523231ea2ed9605898000025","updated_at":"2013-09-12T21:28:10Z","url":"http://www.youtube.com/watch?v=C8Wu3Bps9ic","thumbnail_url":"https://i.ytimg.com/vi/C8Wu3Bps9ic/mqdefault.jpg","channel_id":"UCfLGZs8bSDbkNJjCRIE7NSg","title":"Meatball
+        Massacre - Regular Ordinary Swedish Meal Time","caption":"Swedish Meatballs.
+        They are good for you.\r\n\r\nLingonsylt are for Swedish nationalists. WE
+        DONT LIKE THAT\r\n\r\n\r\nEnjoy.\r\n\r\n\r\n( Greyish sometimes to compensate
+        for bad lighting, deal with it haters )\r\n\r\nLove us on Facebook http://www.facebook.com/pages/Regular-Ordinary-Swedish-Meal-Time/166173596761030
+        \r\nand Twitter: http://twitter.com/SwedishMealTime","category_name":"Comedy","category_id":"23","published_at":"2011-01-13T21:48:04Z","duration":199,"view_count":5565896,"like_count":30139},{"external_id":"FHtvDA0W34I","engine_id":"51b92f982ed960a844000248","document_type_id":"523231e62ed9605898000020","id":"523231eb2ed9605898000026","_id":"523231eb2ed9605898000026","updated_at":"2013-09-12T21:28:11Z","url":"http://www.youtube.com/watch?v=FHtvDA0W34I","thumbnail_url":"https://i.ytimg.com/vi/FHtvDA0W34I/mqdefault.jpg","channel_id":"UCblfuW_4rakIf2h6aqANefA","title":"Felix
+        Baumgartner''s supersonic freefall from 128k'' - Mission Highlights","caption":"Song:
+        http://smarturl.it/tafreespacedout\n\nAfter flying to an altitude of 39,045
+        meters (128,100 feet) in a helium-filled balloon, Felix Baumgartner completed
+        a record breaking jump for the ages from the edge of space, exactly 65 years
+        after Chuck Yeager first broke the sound barrier flying in an experimental
+        rocket-powered airplane. Felix reached a maximum of speed of 1,357.6 km/h
+        or 843.6 mph(Mach 1.25) through the near vacuum of the stratosphere before
+        being slowed by the atmosphere later during his 4:20 minute long freefall.
+        The 43-year-old Austrian skydiving expert also broke two other world records
+        (highest freefall, highest manned balloon flight), leaving the one for the
+        longest freefall to project mentor Col. Joe Kittinger.\n\nWatch the Full Recap:
+        http://www.youtube.com/watch?v=dOoHArAzdug\n\nhttp://www.redbullstratos.com\n___________________________________________________________\n\nExperience
+        the world of Red Bull like you have never seen it before. With the best action
+        sports clips on the web and YouTube exclusive series, prepare for your \"stoke
+        factor\" to be at an all time high.\n\nRed Bull on Facebook: http://win.gs/redbullfb\n\nRed
+        Bull on Twitter: http://win.gs/redbulltwitter\n\nSubscribe to Red Bull on
+        Youtube: http://www.youtube.com/subscription_center?add_user=redbull","category_name":"Science
+        & Technology","category_id":"28","published_at":"2012-10-15T00:06:53Z","duration":91,"view_count":32874417,"like_count":127463}]'
+    http_version:
+  recorded_at: Thu, 12 Sep 2013 21:30:21 GMT
+recorded_with: VCR 2.5.0

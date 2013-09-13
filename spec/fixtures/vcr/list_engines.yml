@@ -1,0 +1,46 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://hello:@localhost:3000/api/v1/engines.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Swiftype-Ruby/1.0.0
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Ua-Compatible:
+      - IE=Edge
+      Etag:
+      - ! '"6f157adbf23af6b9bb0546228193603d"'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Set-Cookie:
+      - _session_id=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJTk5OTA0ZjNmNjM4NTAwYjg3N2QzYzhhMjIxYTE5ZWEyBjsAVEkiGXdhcmRlbi51c2VyLnVzZXIua2V5BjsAVFsISSIJVXNlcgY7AEZbBlU6Gk1vcGVkOjpCU09OOjpPYmplY3RJZCIRUDg5%2By7ZYCnHAAABSSIiJDJhJDEwJE1rNmZOdHA1cC9ZNVIuQU5sZFB2UWUGOwBU--3b73ac78f6e0b7fae3954979d536a6b2f39e17e6;
+        path=/; HttpOnly
+      X-Request-Id:
+      - a4f632b2818ff0e0c0a5de80a19829b6
+      X-Runtime:
+      - '0.197433'
+      Connection:
+      - close
+      Server:
+      - thin 1.5.0 codename Knife
+    body:
+      encoding: US-ASCII
+      string: ! '[{"name":"api-test","slug":"api-test","key":"vAWBdVfHeFZSxgEJwgVF","id":"51c1fcbd2ed960d45200000c","_id":"51c1fcbd2ed960d45200000c","updated_at":"2013-07-09T02:06:29Z","document_count":2},{"name":"articulate","slug":"articulate","key":"JKHB2u5fjLyhXLqiiiXg","id":"50ad44382ed960d73200000d","_id":"50ad44382ed960d73200000d","updated_at":"2013-07-09T02:06:29Z","document_count":0},{"name":"articulate
+        support","slug":"articulate-support","key":"X4jThg3nvrs5usN9fZ9g","id":"50819ba72ed9602079000004","_id":"50819ba72ed9602079000004","updated_at":"2013-07-09T02:06:29Z","document_count":1836},{"name":"biota","slug":"biota","key":"F1kK3BRmU77mLYPyGY7X","id":"518aa8e32ed960145200001b","_id":"518aa8e32ed960145200001b","updated_at":"2013-07-09T02:06:29Z","document_count":30},{"name":"bookstore","slug":"bookstore","key":"bookstore","id":"5090306a2ed960358200001b","_id":"5090306a2ed960358200001b","updated_at":"2013-07-09T02:06:30Z","document_count":21},{"name":"crawler","slug":"crawler","key":"3Lq7AzukeA1h5ta64oYX","id":"516f59112ed960d934000003","_id":"516f59112ed960d934000003","updated_at":"2013-07-09T02:06:30Z","document_count":2}]'
+    http_version:
+  recorded_at: Thu, 12 Sep 2013 21:30:21 GMT
+recorded_with: VCR 2.5.0

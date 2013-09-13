@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://hello:@localhost:3000/api/v1/users.json?client_id&client_secret
+    uri: http://hello:@localhost:3000/api/v1/engines/crawler-demo-site/domains/bogus.json
     body:
       encoding: US-ASCII
       string: ''
@@ -15,8 +15,8 @@ http_interactions:
       - application/json
   response:
     status:
-      code: 400
-      message: Bad Request
+      code: 404
+      message: Not Found
     headers:
       Content-Type:
       - application/json; charset=utf-8
@@ -25,19 +25,19 @@ http_interactions:
       Cache-Control:
       - no-cache
       Set-Cookie:
-      - _session_id=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJTllNTAzNzFlZDcwYWFhOWQ4MGRiOGYzMTkxMDUzODgzBjsAVEkiGXdhcmRlbi51c2VyLnVzZXIua2V5BjsAVFsISSIJVXNlcgY7AEZbBlU6Gk1vcGVkOjpCU09OOjpPYmplY3RJZCIRUDg5%2By7ZYCnHAAABSSIiJDJhJDEwJE1rNmZOdHA1cC9ZNVIuQU5sZFB2UWUGOwBU--3a3ffdd780afdce5468176fe6593400bdc28ab0e;
+      - _session_id=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJTRiMzg0MzhjMzJkMDVlY2I5ZjE2MjhlOTIzNTc0NDMzBjsAVEkiGXdhcmRlbi51c2VyLnVzZXIua2V5BjsAVFsISSIJVXNlcgY7AEZbBlU6Gk1vcGVkOjpCU09OOjpPYmplY3RJZCIRUDg5%2By7ZYCnHAAABSSIiJDJhJDEwJE1rNmZOdHA1cC9ZNVIuQU5sZFB2UWUGOwBU--a9fafafb9de8c13294cfb4508ea5c77c6a692c84;
         path=/; HttpOnly
       X-Request-Id:
-      - afbbf899940811879d2af25a041fa397
+      - 6667ca52cfefd21bdb16b46f32d52e21
       X-Runtime:
-      - '0.026651'
+      - '0.161114'
       Connection:
       - close
       Server:
       - thin 1.5.0 codename Knife
     body:
       encoding: US-ASCII
-      string: ! '{"error":"Missing required parameter: client_id"}'
+      string: ! '{"error":"Record not found. No entity with id ''bogus''"}'
     http_version: 
-  recorded_at: Fri, 13 Sep 2013 00:53:23 GMT
+  recorded_at: Thu, 12 Sep 2013 23:15:33 GMT
 recorded_with: VCR 2.5.0

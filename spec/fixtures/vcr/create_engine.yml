@@ -1,0 +1,45 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://hello:@localhost:3000/api/v1/engines.json
+    body:
+      encoding: UTF-8
+      string: ! '{"engine":{"name":"new engine from spec"}}'
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Swiftype-Ruby/1.0.0
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Ua-Compatible:
+      - IE=Edge
+      Etag:
+      - ! '"f022b16e11b2d1d15380ed8f23f78c8c"'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Set-Cookie:
+      - _session_id=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJTA3ZThlODdjZjI1ZmI1MzU4ODY3YjQzMTFjN2FhMGI4BjsAVEkiGXdhcmRlbi51c2VyLnVzZXIua2V5BjsAVFsISSIJVXNlcgY7AEZbBlU6Gk1vcGVkOjpCU09OOjpPYmplY3RJZCIRUDg5%2By7ZYCnHAAABSSIiJDJhJDEwJE1rNmZOdHA1cC9ZNVIuQU5sZFB2UWUGOwBU--c43d6fb40ab9e64c5c31d1f16e708a305817fc57;
+        path=/; HttpOnly
+      X-Request-Id:
+      - 57c41803f457a67906a4e3f2e844140e
+      X-Runtime:
+      - '0.068736'
+      Connection:
+      - close
+      Server:
+      - thin 1.5.0 codename Knife
+    body:
+      encoding: US-ASCII
+      string: ! '{"name":"new engine from spec","slug":"new-engine-from-spec","key":"wpJr9UJKygVyzEVN7GvM","id":"5232326c2ed9605898000033","_id":"5232326c2ed9605898000033","updated_at":"2013-09-12T21:30:20Z","document_count":0}'
+    http_version: 
+  recorded_at: Thu, 12 Sep 2013 21:30:20 GMT
+recorded_with: VCR 2.5.0

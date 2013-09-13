@@ -1,0 +1,43 @@
+---
+http_interactions:
+- request:
+    method: delete
+    uri: http://hello:@localhost:3000/api/v1/engines/swiftype-api-example/document_types/not_there.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Swiftype-Ruby/1.0.0
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Ua-Compatible:
+      - IE=Edge
+      Cache-Control:
+      - no-cache
+      Set-Cookie:
+      - _session_id=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJTdhMDI0OGRhYmRkM2M0ZDJlNDRhMzFiODQ2YTg2MzM3BjsAVEkiGXdhcmRlbi51c2VyLnVzZXIua2V5BjsAVFsISSIJVXNlcgY7AEZbBlU6Gk1vcGVkOjpCU09OOjpPYmplY3RJZCIRUDg5%2By7ZYCnHAAABSSIiJDJhJDEwJE1rNmZOdHA1cC9ZNVIuQU5sZFB2UWUGOwBU--7ea19453061a0c033d6be77318d2546897670234;
+        path=/; HttpOnly
+      X-Request-Id:
+      - 3a21cf4a6c541ccc2e02f5ad51b35c15
+      X-Runtime:
+      - '0.037767'
+      Connection:
+      - close
+      Server:
+      - thin 1.5.0 codename Knife
+    body:
+      encoding: US-ASCII
+      string: ! '{"error":"Record not found. No entity with id ''not_there''"}'
+    http_version: 
+  recorded_at: Thu, 12 Sep 2013 21:30:19 GMT
+recorded_with: VCR 2.5.0

@@ -32,8 +32,10 @@ module Swiftype
 
         request = build_request(method, uri, params)
         http = Net::HTTP.new(uri.host, uri.port)
-        # TODO!
-        #http.use_ssl = true
+
+        if uri.scheme == 'https'
+          http.use_ssl = true
+        end
 
         response = http.request(request)
 
@@ -54,6 +56,10 @@ module Swiftype
           raise Swiftype::NonExistentRecord
         when Net::HTTPConflict
           raise Swiftype::RecordAlreadyExists
+        when Net::HTTPBadRequest
+          raise Swiftype::BadRequest
+        when Net::HTTPForbidden
+          raise Swiftype::Forbidden
         else
           raise Swiftype::UnexpectedHTTPException, "#{response.code} #{response.body}"
         end
@@ -73,7 +79,7 @@ module Swiftype
 
         case method
         when :get, :delete
-          uri.query = URI.encode_www_form(params)
+          uri.query = URI.encode_www_form(params) if params && !params.empty?
           req = klass.new(uri.request_uri)
         when :post, :put
           req = klass.new(uri.request_uri)

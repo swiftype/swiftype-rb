@@ -1,0 +1,45 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: http://hello:@localhost:3000/api/v1/engines/swiftype-api-example/document_types/videos/documents/bulk_update.json
+    body:
+      encoding: UTF-8
+      string: ! '{"documents":[{"external_id":"INscMGmhmX4","fields":{"title":"hi"}},{"external_id":"XfY9Dsg_DZk","fields":{"title":"bye"}}]}'
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Swiftype-Ruby/1.0.0
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Ua-Compatible:
+      - IE=Edge
+      Etag:
+      - ! '"bb009c6dcb5c622766ad5aa1ea1562d9"'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Set-Cookie:
+      - _session_id=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJWM1YzRmN2EwYjg5NzU5YjU3MDE4ZTg0OWUyMzc0ZWU3BjsAVEkiGXdhcmRlbi51c2VyLnVzZXIua2V5BjsAVFsISSIJVXNlcgY7AEZbBlU6Gk1vcGVkOjpCU09OOjpPYmplY3RJZCIRUDg5%2By7ZYCnHAAABSSIiJDJhJDEwJE1rNmZOdHA1cC9ZNVIuQU5sZFB2UWUGOwBU--f928b9637411dd24c049b64c4bb0ca7455bb0508;
+        path=/; HttpOnly
+      X-Request-Id:
+      - 904d7bc728da1bbcb64649cbfb310078
+      X-Runtime:
+      - '0.062213'
+      Connection:
+      - close
+      Server:
+      - thin 1.5.0 codename Knife
+    body:
+      encoding: US-ASCII
+      string: ! '[true,true]'
+    http_version: 
+  recorded_at: Thu, 12 Sep 2013 22:57:05 GMT
+recorded_with: VCR 2.5.0

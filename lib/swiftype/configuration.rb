@@ -31,7 +31,7 @@ module Swiftype
 
     # Yields the Swiftype::Configuration module which can be used to set configuration options.
     #
-    # @returns self
+    # @return self
     def configure
       yield self
       self

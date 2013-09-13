@@ -27,9 +27,9 @@ http_interactions:
       Cache-Control:
       - no-cache
       X-Request-Id:
-      - 1a3264c52a1c8e8ad6ab915dfe5af8a3
+      - 29b283e021cb39b78c9b6ef0c06ec041
       X-Runtime:
-      - '0.014611'
+      - '0.015617'
       Connection:
       - close
       Server:
@@ -38,5 +38,5 @@ http_interactions:
       encoding: US-ASCII
       string: ! '{"error":"You need to sign in or sign up before continuing."}'
     http_version: 
-  recorded_at: Wed, 11 Sep 2013 23:20:19 GMT
+  recorded_at: Fri, 13 Sep 2013 00:53:23 GMT
 recorded_with: VCR 2.5.0

@@ -3,21 +3,13 @@ require 'spec_helper'
 describe 'platform user API' do
   let(:client) { Swiftype::Easy.new }
 
-  before :each do
-    Swiftype.endpoint = "http://localhost:3000/api/v1/"
-  end
-
-  after :each do
-    Swiftype.reset
-  end
-
   context 'authentication' do
     it 'succeeds with api_key and correct client_id and client_secret' do
       Swiftype.api_key = 'hello'
       Swiftype.platform_client_id = '0d94f7cf2bd1e65a7e1f9f929d1bcb2b248af69b8112d24484e87014125538f8'
       Swiftype.platform_client_secret = 'f600fb0b16b516cbb9b9f0eeb60f3b35f685b5ec4a94694ae57b5bbb8860f240'
 
-      VCR.use_cassette('users') do
+      VCR.use_cassette('list_users') do
         expect do
           client.users
         end.to_not raise_error

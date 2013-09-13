@@ -1,0 +1,45 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://hello:@localhost:3000/api/v1/engines/swiftype-api-example.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Swiftype-Ruby/1.0.0
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Ua-Compatible:
+      - IE=Edge
+      Etag:
+      - ! '"08e8d7974722c9259634cc6cff0bd5cf"'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Set-Cookie:
+      - _session_id=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJTMwOTRmZjJiZTY3Njc3MDVjM2UxMjBjOWQ2ODFkMzdmBjsAVEkiGXdhcmRlbi51c2VyLnVzZXIua2V5BjsAVFsISSIJVXNlcgY7AEZbBlU6Gk1vcGVkOjpCU09OOjpPYmplY3RJZCIRUDg5%2By7ZYCnHAAABSSIiJDJhJDEwJE1rNmZOdHA1cC9ZNVIuQU5sZFB2UWUGOwBU--536b127b7e0ad758d2436b429e3a76dad68b8119;
+        path=/; HttpOnly
+      X-Request-Id:
+      - 8e42dc4c230e9212e6754ccff7e1a04f
+      X-Runtime:
+      - '0.038173'
+      Connection:
+      - close
+      Server:
+      - thin 1.5.0 codename Knife
+    body:
+      encoding: US-ASCII
+      string: ! '{"name":"swiftype-api-example","slug":"swiftype-api-example","key":"88LCBKWrZnbQgyqzdefX","id":"51b92f982ed960a844000248","_id":"51b92f982ed960a844000248","updated_at":"2013-09-12T20:39:02Z","document_count":36}'
+    http_version: 
+  recorded_at: Thu, 12 Sep 2013 21:30:20 GMT
+recorded_with: VCR 2.5.0

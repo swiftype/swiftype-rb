@@ -1,0 +1,50 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://hello:@localhost:3000/api/v1/engines/swiftype-api-example/document_types/videos/suggest.json
+    body:
+      encoding: UTF-8
+      string: ! '{"q":"goo"}'
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Swiftype-Ruby/1.0.0
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Ua-Compatible:
+      - IE=Edge
+      Etag:
+      - ! '"607083a79aa0f63bd8b935c2403590ed"'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Set-Cookie:
+      - _session_id=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJTVmNDE4MDM5MmZkMGJjYjM1MzIzMDFiODU2ZTY0NmQzBjsAVEkiGXdhcmRlbi51c2VyLnVzZXIua2V5BjsAVFsISSIJVXNlcgY7AEZbBlU6Gk1vcGVkOjpCU09OOjpPYmplY3RJZCIRUDg5%2By7ZYCnHAAABSSIiJDJhJDEwJE1rNmZOdHA1cC9ZNVIuQU5sZFB2UWUGOwBU--600df89d2f25ff8398120c82f79483230994a841;
+        path=/; HttpOnly
+      X-Request-Id:
+      - b00e75b9a8ab0709884acc92ff8003a2
+      X-Runtime:
+      - '0.209337'
+      Connection:
+      - close
+      Server:
+      - thin 1.5.0 codename Knife
+    body:
+      encoding: US-ASCII
+      string: ! '{"record_count":1,"records":{"videos":[{"tags":["Glass","Google Glass","Project
+        Glass","Glass video","google","glassesgoogle","goggles","if i had glass","Glass
+        Explorer","Glass Explorers","glass vid","glass video","ok ..."],"external_id":"v1uyQZNg2vE","category_id":"28","url":"http://www.youtube.com/watch?v=v1uyQZNg2vE","channel_id":"UCK8sQmJBp8GCxrOtXWBpyEA","published_at":"2013-02-20T10:47:18Z","thumbnail_url":"https://i.ytimg.com/vi/v1uyQZNg2vE/mqdefault.jpg","title":"How
+        It Feels [through Glass]","duration":136,"updated_at":"2013-09-12T21:28:17Z","category_name":"Science
+        &amp; Technology","like_count":75952,"view_count":14599202,"id":"523231f12ed960589800002e","_score":0.6250393,"_type":"523231e62ed9605898000020","_index":"51b92f982ed960a844000248","_version":null,"sort":null,"highlight":{"tags":"<em>Google</em>
+        Glass"},"_explanation":null}]},"info":{"videos":{"query":"goo","current_page":1,"num_pages":1,"per_page":10,"total_result_count":1}},"errors":{}}'
+    http_version: 
+  recorded_at: Thu, 12 Sep 2013 21:30:20 GMT
+recorded_with: VCR 2.5.0

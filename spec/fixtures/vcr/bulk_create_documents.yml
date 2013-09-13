@@ -1,0 +1,49 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://hello:@localhost:3000/api/v1/engines/swiftype-api-example/document_types/videos/documents/bulk_create.json
+    body:
+      encoding: UTF-8
+      string: ! '{"documents":[{"external_id":"INscMGmhmX4","fields":[{"name":"url","value":"http://www.youtube.com/watch?v=v1uyQZNg2vE","type":"enum"},{"name":"thumbnail_url","value":"https://i.ytimg.com/vi/INscMGmhmX4/mqdefault.jpg","type":"enum"},{"name":"channel_id","value":"UCTzVrd9ExsI3Zgnlh3_btLg","type":"enum"},{"name":"title","value":"The
+        Original Grumpy Cat","type":"string"},{"name":"category_name","value":"Pets
+        &amp; Animals","type":"string"}]},{"external_id":"XfY9Dsg_DZk","fields":[{"name":"url","value":"http://www.youtube.com/watch?v=XfY9Dsg_DZk","type":"enum"},{"name":"thumbnail_url","value":"https://i.ytimg.com/vi/XfY9Dsg_DZk/mqdefault.jpg","type":"enum"},{"name":"channel_id","value":"UC5VA5j05FjETg-iLekcyiBw","type":"enum"},{"name":"title","value":"Corgi
+        talks to cat","type":"string"},{"name":"category_name","value":"Pets &amp;
+        Animals","type":"string"}]}]}'
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Swiftype-Ruby/1.0.0
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Ua-Compatible:
+      - IE=Edge
+      Etag:
+      - ! '"bb009c6dcb5c622766ad5aa1ea1562d9"'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Set-Cookie:
+      - _session_id=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJTAyNzczMTcxNDQ4NTNhOTFmNzQ4ZTdmM2Q0NzgxMzExBjsAVEkiGXdhcmRlbi51c2VyLnVzZXIua2V5BjsAVFsISSIJVXNlcgY7AEZbBlU6Gk1vcGVkOjpCU09OOjpPYmplY3RJZCIRUDg5%2By7ZYCnHAAABSSIiJDJhJDEwJE1rNmZOdHA1cC9ZNVIuQU5sZFB2UWUGOwBU--e90d34cab433a83a8ed1d54094fdfb83b6c67c67;
+        path=/; HttpOnly
+      X-Request-Id:
+      - 6a704401ec81b3b2c8cb11fe94984c20
+      X-Runtime:
+      - '0.076536'
+      Connection:
+      - close
+      Server:
+      - thin 1.5.0 codename Knife
+    body:
+      encoding: US-ASCII
+      string: ! '[true,true]'
+    http_version: 
+  recorded_at: Thu, 12 Sep 2013 22:15:47 GMT
+recorded_with: VCR 2.5.0

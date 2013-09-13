@@ -1,0 +1,45 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://hello:@localhost:3000/api/v1/engines/crawler-demo-site/domains/51534c6e2ed960cc79000001.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Swiftype-Ruby/1.0.0
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Ua-Compatible:
+      - IE=Edge
+      Etag:
+      - ! '"c7ea64ce75482ff6c299922bcd87b7af"'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Set-Cookie:
+      - _session_id=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJTI0ZTgzZjYyNjZiZDMwOWIyZDhiYjE5ZWE4NmIxNGFlBjsAVEkiGXdhcmRlbi51c2VyLnVzZXIua2V5BjsAVFsISSIJVXNlcgY7AEZbBlU6Gk1vcGVkOjpCU09OOjpPYmplY3RJZCIRUDg5%2By7ZYCnHAAABSSIiJDJhJDEwJE1rNmZOdHA1cC9ZNVIuQU5sZFB2UWUGOwBU--65ede0a4cc89f4446d351e20a92bccf6d14bffba;
+        path=/; HttpOnly
+      X-Request-Id:
+      - 20c1f48621e18c7baf28ced390f38fc3
+      X-Runtime:
+      - '0.051562'
+      Connection:
+      - close
+      Server:
+      - thin 1.5.0 codename Knife
+    body:
+      encoding: US-ASCII
+      string: ! '{"id":"51534c6e2ed960cc79000001","engine_id":"51534c502ed960a1e6000005","submitted_url":"http://crawler-demo-site.herokuapp.com/","start_crawl_url":"http://crawler-demo-site.herokuapp.com/","crawling":false,"document_count":5,"updated_at":"2013-09-12T23:15:31Z"}'
+    http_version: 
+  recorded_at: Thu, 12 Sep 2013 23:15:33 GMT
+recorded_with: VCR 2.5.0

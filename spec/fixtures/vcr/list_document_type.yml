@@ -1,0 +1,45 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://hello:@localhost:3000/api/v1/engines/swiftype-api-example/document_types.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Swiftype-Ruby/1.0.0
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Ua-Compatible:
+      - IE=Edge
+      Etag:
+      - ! '"4374411a4b29635b19346e2fae4a4761"'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Set-Cookie:
+      - _session_id=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJTYxN2EyOGEzNzM3ZDQwZDAzYjA1MmY4YzY3ZTBmZjVlBjsAVEkiGXdhcmRlbi51c2VyLnVzZXIua2V5BjsAVFsISSIJVXNlcgY7AEZbBlU6Gk1vcGVkOjpCU09OOjpPYmplY3RJZCIRUDg5%2By7ZYCnHAAABSSIiJDJhJDEwJE1rNmZOdHA1cC9ZNVIuQU5sZFB2UWUGOwBU--ac4885951e99ca51ab5666fd79e27bb1bb705fd4;
+        path=/; HttpOnly
+      X-Request-Id:
+      - 30c047178b2bad4a36470cfe5e36aeab
+      X-Runtime:
+      - '0.057562'
+      Connection:
+      - close
+      Server:
+      - thin 1.5.0 codename Knife
+    body:
+      encoding: US-ASCII
+      string: ! '[{"id":"523231e62ed9605898000020","name":"videos","slug":"videos","engine_id":"51b92f982ed960a844000248","updated_at":"2013-09-12T21:28:13Z","document_count":12,"field_mapping":{"external_id":"enum","updated_at":"date","url":"enum","thumbnail_url":"enum","channel_id":"enum","title":"string","caption":"text","category_name":"string","category_id":"enum","published_at":"date","duration":"integer","view_count":"integer","like_count":"integer","tags":"string"}},{"id":"51b92f992ed960a84400024b","name":"channels","slug":"channels","engine_id":"51b92f982ed960a844000248","updated_at":"2013-06-13T02:34:16Z","document_count":12,"field_mapping":{"external_id":"enum","updated_at":"date","url":"enum","thumbnail_url":"enum","title":"string","description":"string","published_at":"date","view_count":"integer","subscriber_count":"integer","video_count":"integer"}}]'
+    http_version: 
+  recorded_at: Thu, 12 Sep 2013 21:30:20 GMT
+recorded_with: VCR 2.5.0

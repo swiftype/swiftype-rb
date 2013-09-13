@@ -1,0 +1,55 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://hello:@localhost:3000/api/v1/engines/recursion/analytics/top_no_result_queries.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Swiftype-Ruby/1.0.0
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - ngx_openresty/1.2.7.8
+      Date:
+      - Fri, 13 Sep 2013 00:40:33 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Status:
+      - 200 OK
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      Etag:
+      - ! '"3b52d910b292efe472c5485e30ae8843"'
+      Cache-Control:
+      - must-revalidate, private, max-age=0
+      Set-Cookie:
+      - _session_id=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJTMwMjU3NDJkZjhhM2RkM2I4M2VlNTZkNWQ2YThiOWFlBjsAVEkiGXdhcmRlbi51c2VyLnVzZXIua2V5BjsAVFsISSIJVXNlcgY7AEZbBlU6Gk1vcGVkOjpCU09OOjpPYmplY3RJZCIRT6oFg9uoiHqsAAABSSIiJDJhJDEwJE1CYU9abE5nbU01T3hvMFI1Zy5Cay4GOwBU--46e9833dccbb87f52f5d20893ed1a3cb4f06c2c9;
+        path=/; HttpOnly; secure
+      X-Request-Id:
+      - 73ec527ea4932198890c535bbb739ddc
+      X-Runtime:
+      - '0.040592'
+      X-Rack-Cache:
+      - miss
+    body:
+      encoding: US-ASCII
+      string: ! '[["no results",10], ["more no results",2]]'
+    http_version:
+  recorded_at: Fri, 13 Sep 2013 00:40:33 GMT
+recorded_with: VCR 2.5.0

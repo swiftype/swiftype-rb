@@ -1,0 +1,55 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://hello:@localhost:3000/api/v1/engines/recursion/analytics/top_queries.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Swiftype-Ruby/1.0.0
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - ngx_openresty/1.2.7.8
+      Date:
+      - Fri, 13 Sep 2013 00:06:31 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Status:
+      - 200 OK
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      Etag:
+      - ! '"38253efa6f6bfcb07a504b138c9d3679"'
+      Cache-Control:
+      - must-revalidate, private, max-age=0
+      Set-Cookie:
+      - _session_id=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJTU3NGJlMWM1NTVhY2U5Mjk0MGQwNWRiZDFkYTdhMjI5BjsAVEkiGXdhcmRlbi51c2VyLnVzZXIua2V5BjsAVFsISSIJVXNlcgY7AEZbBlU6Gk1vcGVkOjpCU09OOjpPYmplY3RJZCIRT6oFg9uoiHqsAAABSSIiJDJhJDEwJE1CYU9abE5nbU01T3hvMFI1Zy5Cay4GOwBU--d7359e2ce195adbe1af2a6dcb6d9357780b3774d;
+        path=/; HttpOnly; secure
+      X-Request-Id:
+      - 4d611a3ebc799daf080dc231d0e63397
+      X-Runtime:
+      - '0.120699'
+      X-Rack-Cache:
+      - miss
+    body:
+      encoding: US-ASCII
+      string: ! '[["\"fire watch\"",1],["fire watch",1],["wells fargo",1]]'
+    http_version: 
+  recorded_at: Fri, 13 Sep 2013 00:06:31 GMT
+recorded_with: VCR 2.5.0

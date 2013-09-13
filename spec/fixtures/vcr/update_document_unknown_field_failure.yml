@@ -1,0 +1,45 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: http://hello:@localhost:3000/api/v1/engines/swiftype-api-example/document_types/videos/documents/FtX8nswnUKU/update_fields.json
+    body:
+      encoding: UTF-8
+      string: ! '{"fields":{"not_a_field":"not a field"}}'
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Swiftype-Ruby/1.0.0
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Ua-Compatible:
+      - IE=Edge
+      Cache-Control:
+      - no-cache
+      Set-Cookie:
+      - _session_id=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJTAyNzA5MzQyMWU1YjAxMzQ4NDVkNGMxNDIxZWUyZmFhBjsAVEkiGXdhcmRlbi51c2VyLnVzZXIua2V5BjsAVFsISSIJVXNlcgY7AEZbBlU6Gk1vcGVkOjpCU09OOjpPYmplY3RJZCIRUDg5%2By7ZYCnHAAABSSIiJDJhJDEwJE1rNmZOdHA1cC9ZNVIuQU5sZFB2UWUGOwBU--2f8beaf078c885a87f8fe33dc37fff06995d1993;
+        path=/; HttpOnly
+      X-Request-Id:
+      - 0ee335dac175f232bf27d29dc65cc45a
+      X-Runtime:
+      - '0.034146'
+      Connection:
+      - close
+      Server:
+      - thin 1.5.0 codename Knife
+    body:
+      encoding: US-ASCII
+      string: ! '{"error":"Error updating field(s). Attempt to set() nonexistent key.  Known
+        keys are: url, thumbnail_url, channel_id, title, caption, category_name, category_id,
+        published_at, duration, view_count, like_count"}'
+    http_version: 
+  recorded_at: Thu, 12 Sep 2013 22:40:58 GMT
+recorded_with: VCR 2.5.0

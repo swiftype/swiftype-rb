@@ -1,0 +1,45 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://hello:@localhost:3000/api/v1/engines/swiftype-api-example/document_types/videos.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Swiftype-Ruby/1.0.0
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Ua-Compatible:
+      - IE=Edge
+      Etag:
+      - ! '"c0b8e0a96ec5b4216a0f7059ea47b93a"'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Set-Cookie:
+      - _session_id=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJWQxMTkxOGJhNGY5MDNlMzljMmIyNGExYWM4OWE1MmMyBjsAVEkiGXdhcmRlbi51c2VyLnVzZXIua2V5BjsAVFsISSIJVXNlcgY7AEZbBlU6Gk1vcGVkOjpCU09OOjpPYmplY3RJZCIRUDg5%2By7ZYCnHAAABSSIiJDJhJDEwJE1rNmZOdHA1cC9ZNVIuQU5sZFB2UWUGOwBU--7c4487a9697246fbe8f2bf96762f0e24d886601c;
+        path=/; HttpOnly
+      X-Request-Id:
+      - b8db67ee444cb38bd096d9887d3347b8
+      X-Runtime:
+      - '0.037643'
+      Connection:
+      - close
+      Server:
+      - thin 1.5.0 codename Knife
+    body:
+      encoding: US-ASCII
+      string: ! '{"id":"523231e62ed9605898000020","name":"videos","slug":"videos","engine_id":"51b92f982ed960a844000248","updated_at":"2013-09-12T21:28:13Z","document_count":12,"field_mapping":{"external_id":"enum","updated_at":"date","url":"enum","thumbnail_url":"enum","channel_id":"enum","title":"string","caption":"text","category_name":"string","category_id":"enum","published_at":"date","duration":"integer","view_count":"integer","like_count":"integer","tags":"string"}}'
+    http_version: 
+  recorded_at: Thu, 12 Sep 2013 21:30:19 GMT
+recorded_with: VCR 2.5.0

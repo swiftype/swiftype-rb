@@ -1,0 +1,45 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://hello:@localhost:3000/api/v1/engines/swiftype-api-example/document_types.json
+    body:
+      encoding: UTF-8
+      string: ! '{"document_type":{"name":"new_doc_type"}}'
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Swiftype-Ruby/1.0.0
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Ua-Compatible:
+      - IE=Edge
+      Etag:
+      - ! '"06f1be79a40ef40229e7fe40dfd2c3a5"'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Set-Cookie:
+      - _session_id=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJWUwYzc2ZmY5ZWJkZWY4MzVmMGU1ZDdhNTUzMmZkNjk3BjsAVEkiGXdhcmRlbi51c2VyLnVzZXIua2V5BjsAVFsISSIJVXNlcgY7AEZbBlU6Gk1vcGVkOjpCU09OOjpPYmplY3RJZCIRUDg5%2By7ZYCnHAAABSSIiJDJhJDEwJE1rNmZOdHA1cC9ZNVIuQU5sZFB2UWUGOwBU--a4f56ce685daf5b6bd20bc129a83967ab6ae35e9;
+        path=/; HttpOnly
+      X-Request-Id:
+      - feee119776285704decf36d041dbe2cb
+      X-Runtime:
+      - '0.190533'
+      Connection:
+      - close
+      Server:
+      - thin 1.5.0 codename Knife
+    body:
+      encoding: US-ASCII
+      string: ! '{"id":"523248752ed9605898000048","name":"new_doc_type","slug":"new-doc-type","engine_id":"51b92f982ed960a844000248","updated_at":"2013-09-12T23:04:21Z","document_count":0,"field_mapping":{}}'
+    http_version: 
+  recorded_at: Thu, 12 Sep 2013 23:04:21 GMT
+recorded_with: VCR 2.5.0

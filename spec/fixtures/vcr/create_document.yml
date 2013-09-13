@@ -1,0 +1,48 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://hello:@localhost:3000/api/v1/engines/swiftype-api-example/document_types/videos/documents.json
+    body:
+      encoding: UTF-8
+      string: ! '{"document":{"external_id":"INscMGmhmX4","fields":[{"name":"url","value":"http://www.youtube.com/watch?v=v1uyQZNg2vE","type":"enum"},{"name":"thumbnail_url","value":"https://i.ytimg.com/vi/INscMGmhmX4/mqdefault.jpg","type":"enum"},{"name":"channel_id","value":"UCTzVrd9ExsI3Zgnlh3_btLg","type":"enum"},{"name":"title","value":"The
+        Original Grumpy Cat","type":"string"},{"name":"category_name","value":"Pets
+        &amp; Animals","type":"string"}]}}'
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Swiftype-Ruby/1.0.0
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Ua-Compatible:
+      - IE=Edge
+      Etag:
+      - ! '"5247c7b2d32d42ddedbe443f986a4de6"'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Set-Cookie:
+      - _session_id=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJTg4NzczNDMyMGZlMGMwZjIwZTMwMjA1YmMwNjc4NjJhBjsAVEkiGXdhcmRlbi51c2VyLnVzZXIua2V5BjsAVFsISSIJVXNlcgY7AEZbBlU6Gk1vcGVkOjpCU09OOjpPYmplY3RJZCIRUDg5%2By7ZYCnHAAABSSIiJDJhJDEwJE1rNmZOdHA1cC9ZNVIuQU5sZFB2UWUGOwBU--3b7af0396c432043e915447bfd2cbf3fa506d77f;
+        path=/; HttpOnly
+      X-Request-Id:
+      - 17c210b74766b815e46049e9456749d0
+      X-Runtime:
+      - '0.217177'
+      Connection:
+      - close
+      Server:
+      - thin 1.5.0 codename Knife
+    body:
+      encoding: US-ASCII
+      string: ! '{"external_id":"INscMGmhmX4","engine_id":"51b92f982ed960a844000248","document_type_id":"523231e62ed9605898000020","id":"52323cbf2ed9605898000035","_id":"52323cbf2ed9605898000035","updated_at":"2013-09-12T22:14:23Z","url":"http://www.youtube.com/watch?v=v1uyQZNg2vE","thumbnail_url":"https://i.ytimg.com/vi/INscMGmhmX4/mqdefault.jpg","channel_id":"UCTzVrd9ExsI3Zgnlh3_btLg","title":"The
+        Original Grumpy Cat","category_name":"Pets &amp; Animals"}'
+    http_version: 
+  recorded_at: Thu, 12 Sep 2013 22:14:23 GMT
+recorded_with: VCR 2.5.0

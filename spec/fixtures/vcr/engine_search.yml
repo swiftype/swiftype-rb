@@ -1,0 +1,64 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://hello:@localhost:3000/api/v1/engines/swiftype-api-example/search.json
+    body:
+      encoding: UTF-8
+      string: ! '{"q":"cat"}'
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Swiftype-Ruby/1.0.0
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Ua-Compatible:
+      - IE=Edge
+      Etag:
+      - ! '"a456a5ea8dfad98108c0006d7487af40"'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Set-Cookie:
+      - _session_id=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJTA5YmQxYjE1YTQ2ZDkzZTM1MDZkYzJhNzA3NDg1NzFmBjsAVEkiGXdhcmRlbi51c2VyLnVzZXIua2V5BjsAVFsISSIJVXNlcgY7AEZbBlU6Gk1vcGVkOjpCU09OOjpPYmplY3RJZCIRUDg5%2By7ZYCnHAAABSSIiJDJhJDEwJE1rNmZOdHA1cC9ZNVIuQU5sZFB2UWUGOwBU--58027e7ada6b13641007cd961c34df4ed196db48;
+        path=/; HttpOnly
+      X-Request-Id:
+      - ea4c09e7dbf6712aa9db1d795e577c38
+      X-Runtime:
+      - '0.220203'
+      Connection:
+      - close
+      Server:
+      - thin 1.5.0 codename Knife
+    body:
+      encoding: US-ASCII
+      string: ! '{"records":{"videos":[{"external_id":"QH2-TGUlwu4","category_id":"23","caption":"For
+        PJ.\n\nCheck out Nyan Cat at http://nyan.cat/\nOfficial Nyan Cat Facebook:
+        http://www.facebook.com/NyanCatWorld\nNyan Cat on Twitter: https://twitter.com/nyannyancat\n\nNyan
+        Cat Store: http://nyancat.cat/store.html\n\nGIF by PRguitarman http://www.prguitarman.com/index.php?id=348\nSong
+        by Daniwell-P/Momone Momo UTAU http://momolabo.lolipop.jp/nyancatsong/Nyan/\n***used
+        with permission; I own neither***","channel_id":"UC3VHfy8e1jbDnT5TG2pjP1w","url":"http://www.youtube.com/watch?v=QH2-TGUlwu4","published_at":"2011-04-06T03:21:59Z","thumbnail_url":"https://i.ytimg.com/vi/QH2-TGUlwu4/mqdefault.jpg","title":"Nyan
+        Cat [original]","duration":217,"updated_at":"2013-09-12T21:28:13Z","category_name":"Comedy","like_count":711548,"view_count":93258193,"id":"523231ed2ed9605898000028","_score":1.1538672,"_type":"523231e62ed9605898000020","_index":"51b92f982ed960a844000248","_version":null,"sort":null,"highlight":{"title":"Nyan
+        <em>Cat</em> [original]","caption":"For PJ.\n\nCheck out Nyan <em>Cat</em>
+        at http://nyan.<em>cat</em>/\nOfficial Nyan <em>Cat</em> Facebook: http://www.facebook.com/Nyan<em>Cat</em>World\nNyan
+        <em>Cat</em> on Twitter: https://twitter.com/nyannyancat\n\nNyan <em>Cat</em>
+        Store: http://nyancat.<em>cat</em>/store.html\n\nGIF by PRguitarman http://www.prguitarman.com/index.php?id=348\nSong
+        by Daniwell-P/Momone"},"_explanation":null},{"external_id":"ik5sdwYZ01Q","category_id":"15","caption":"Best
+        Harlem Shake Ever.  No Ads.","channel_id":"UCiTvufmbsDlYeZ9JOVtiYYQ","url":"http://www.youtube.com/watch?v=ik5sdwYZ01Q","published_at":"2013-02-20T02:37:53Z","thumbnail_url":"https://i.ytimg.com/vi/FHtvDA0W34I/mqdefault.jpg","title":"Grumpy
+        Cat Does The Harlem Shake (Ad Free)","duration":18,"updated_at":"2013-09-12T21:28:16Z","category_name":"Pets
+        & Animals","like_count":1014,"view_count":125939,"id":"523231f02ed960589800002c","_score":0.86540043,"_type":"523231e62ed9605898000020","_index":"51b92f982ed960a844000248","_version":null,"sort":null,"highlight":{"title":"Grumpy
+        <em>Cat</em> Does The Harlem Shake (Ad Free)"},"_explanation":null}],"channels":[{"external_id":"UC3VHfy8e1jbDnT5TG2pjP1w","title":"saraj00n","thumbnail_url":"http://i.ytimg.com/i/3VHfy8e1jbDnT5TG2pjP1w/mq1.jpg","updated_at":"2013-09-12T21:28:17Z","description":"Sara
+        Reihani/Slobs comedy. slobs.productions@gmail.com\n\nFor Nyan Cat inquiries,
+        contact: pr@prguitarman.com","subscriber_count":25729,"view_count":727472,"video_count":41,"url":"http://www.youtube.com/user/saraj00n","published_at":"2011-01-03T00:27:56Z","id":"51b92fa52ed960a84400025a","_score":0.8814321,"_type":"51b92f992ed960a84400024b","_index":"51b92f982ed960a844000248","_version":null,"sort":null,"highlight":{"description":"Sara
+        Reihani/Slobs comedy. slobs.productions@gmail.com\n\nFor Nyan <em>Cat</em>
+        inquiries, contact: pr@prguitarman.com"},"_explanation":null}]},"info":{"videos":{"query":"cat","current_page":1,"num_pages":1,"per_page":20,"total_result_count":2,"facets":{}},"channels":{"query":"cat","current_page":1,"num_pages":1,"per_page":20,"total_result_count":1,"facets":{}}},"errors":{}}'
+    http_version: 
+  recorded_at: Thu, 12 Sep 2013 21:30:21 GMT
+recorded_with: VCR 2.5.0

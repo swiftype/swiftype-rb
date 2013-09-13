@@ -1,0 +1,55 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://hello:@localhost:3000/api/v1/engines/recursion/analytics/autoselects.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Swiftype-Ruby/1.0.0
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - ngx_openresty/1.2.7.8
+      Date:
+      - Fri, 13 Sep 2013 00:01:12 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Status:
+      - 200 OK
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      Etag:
+      - ! '"5794f59d1c925941f162d1e441d7a1d8"'
+      Cache-Control:
+      - must-revalidate, private, max-age=0
+      Set-Cookie:
+      - _session_id=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJTk3ZDNhZTNkNzg5ODEyNTVmMzhhMTA2YzlmN2RkNGYxBjsAVEkiGXdhcmRlbi51c2VyLnVzZXIua2V5BjsAVFsISSIJVXNlcgY7AEZbBlU6Gk1vcGVkOjpCU09OOjpPYmplY3RJZCIRT6oFg9uoiHqsAAABSSIiJDJhJDEwJE1CYU9abE5nbU01T3hvMFI1Zy5Cay4GOwBU--341d8494621560116b9dd4e5f43a9eba350d1582;
+        path=/; HttpOnly; secure
+      X-Request-Id:
+      - 5dd05df0f299100e39049fb01613e7c1
+      X-Runtime:
+      - '0.307775'
+      X-Rack-Cache:
+      - miss
+    body:
+      encoding: US-ASCII
+      string: ! '[["2013-09-13",0],["2013-09-12",0],["2013-09-11",0],["2013-09-10",0],["2013-09-09",0],["2013-09-08",0],["2013-09-07",1],["2013-09-06",0],["2013-09-05",0],["2013-09-04",0],["2013-09-03",0],["2013-09-02",1],["2013-09-01",0],["2013-08-31",0],["2013-08-30",0]]'
+    http_version: 
+  recorded_at: Fri, 13 Sep 2013 00:01:12 GMT
+recorded_with: VCR 2.5.0

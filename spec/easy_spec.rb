@@ -1,263 +1,477 @@
 require 'spec_helper'
 
 describe Swiftype::Easy do
-  let(:engine_id) { 'engine' }
-  let(:document_type_id) { 'document_type' }
+  let(:engine_id) { 'swiftype-api-example' }
+  let(:client) { Swiftype::Easy.new }
 
   before :each do
-    Swiftype.configure do |config|
-      config.endpoint = ENV['API_HOST'] || config.endpoint
-      config.api_key = 'dummy'
-    end
-
-    @client = Swiftype::Easy.new
+    Swiftype.api_key = 'hello'
   end
 
   context 'Engine' do
     it 'gets all engines' do
-      engines = @client.engines
-      engines.size.should == 2
+      VCR.use_cassette(:list_engines) do
+        engines = client.engines
+        engines.size.should == 6
+      end
     end
 
     it 'gets an engine' do
-      engine = @client.engine(engine_id)
-      engine['slug'].should == engine_id
+      VCR.use_cassette(:find_engine) do
+        engine = client.engine(engine_id)
+        engine['slug'].should == engine_id
+      end
     end
 
     it 'creates engines' do
-      engine = @client.create_engine(engine_id)
-      engine['slug'].should == engine_id
+      VCR.use_cassette(:create_engine) do
+        engine = client.create_engine('new engine from spec')
+        engine['slug'].should == 'new-engine-from-spec'
+      end
     end
 
     it 'destroys engines' do
-      @client.destroy_engine(engine_id)
+      VCR.use_cassette(:destroy_engine) do
+        response = client.destroy_engine('new-engine-from-spec')
+        response.should be_nil
+      end
     end
 
     it 'searches the engine' do
-      results = @client.search(engine_id, '*')
-      results.document_types.size.should == 2
+      VCR.use_cassette(:engine_search) do
+        results = client.search(engine_id, 'cat')
+        results.document_types.size.should == 2
+        results['videos'].size.should == 2
+        results['channels'].size.should == 1
+      end
     end
 
     it 'searches the engine with options' do
-      results = @client.search(engine_id, '*', {:page => 2})
-      results.document_types.size.should == 2
+      VCR.use_cassette(:engine_search_pagination) do
+        results = client.search(engine_id, 'cat', {:page => 2})
+        results.document_types.size.should == 2
+        results['videos'].size.should == 0
+        results['channels'].size.should == 0
+      end
     end
 
     it 'suggests for an engine' do
-      results = @client.suggest(engine_id, '*')
-      results.document_types.size.should == 2
+      VCR.use_cassette(:engine_suggest) do
+        results = client.suggest(engine_id, 'goo')
+        results.document_types.size.should == 2
+        results['videos'].size.should == 1
+        results['channels'].size.should == 1
+      end
     end
 
     it 'suggests for an engine with options' do
-      results = @client.suggest(engine_id, '*', {:page => 2})
-      results.document_types.size.should == 2
+      VCR.use_cassette(:engine_suggest_pagination) do
+        results = client.suggest(engine_id, 'goo', {:page => 2})
+        results.document_types.size.should == 2
+        results['videos'].size.should == 0
+        results['channels'].size.should == 0
+      end
     end
   end
 
   context 'DocumentType' do
+    let(:document_type_id) { 'videos' }
+
     it 'gets all document types' do
-      document_types = @client.document_types(engine_id)
-      document_types.size.should == 2
+      VCR.use_cassette(:list_document_type) do
+        document_types = client.document_types(engine_id)
+        document_types.size.should == 2
+        document_types.map { |dt| dt['name'] }.sort.should == ['channels', 'videos']
+      end
     end
 
     it 'gets a document type' do
-      document_type = @client.document_type(engine_id, document_type_id)
-      document_type['slug'].should == document_type_id
+      VCR.use_cassette(:find_document_type) do
+        document_type = client.document_type(engine_id, document_type_id)
+        document_type['slug'].should == document_type_id
+      end
     end
 
     it 'creates a document type' do
-      name = document_type_id
-      document_type = @client.create_document_type(engine_id, name)
-      document_type['name'].should == name
+      VCR.use_cassette(:create_document_type) do
+        name = document_type_id
+        document_type = client.create_document_type(engine_id, 'new_doc_type')
+        document_type['name'].should == 'new_doc_type'
+        document_type['slug'].should == 'new-doc-type'
+      end
     end
 
     it 'destroys document types' do
-      @client.destroy_document_type(engine_id, document_type_id)
+      VCR.use_cassette(:destroy_document_type) do
+        response = client.destroy_document_type(engine_id, 'new-doc-type')
+        response.should be_nil
+      end
+    end
+
+    it 'raises an error if deleting a non-existent DocumentType' do
+      VCR.use_cassette(:destroy_non_existent_document_type) do
+        expect do
+          response = client.destroy_document_type(engine_id, 'not_there')
+        end.to raise_error
+      end
     end
 
     it 'searches document types' do
-      results = @client.search_document_type(engine_id, document_type_id, '*')
-      results[document_type_id].should_not be_nil
-      results.document_types.size.should == 1
+      VCR.use_cassette(:document_type_search) do
+        results = client.search_document_type(engine_id, document_type_id, 'cat')
+        results.document_types.size.should == 1
+      end
     end
 
     it 'searches document types with options' do
-      results = @client.search_document_type(engine_id, document_type_id, '*', {:page => 2})
-      results[document_type_id].should_not be_nil
-      results.document_types.size.should == 1
+      VCR.use_cassette(:document_type_search_pagination) do
+        results = client.search_document_type(engine_id, document_type_id, 'cat', {:page => 2})
+        results.document_types.size.should == 1
+        results[document_type_id].size.should == 0
+      end
     end
 
     it 'suggests for a document types' do
-      results = @client.suggest_document_type(engine_id, document_type_id, '*')
-      results[document_type_id].should_not be_nil
-      results.document_types.size.should == 1
+      VCR.use_cassette(:document_type_suggest) do
+        results = client.suggest_document_type(engine_id, document_type_id, 'goo')
+        results.document_types.size.should == 1
+      end
     end
 
     it 'suggests for a document types with options' do
-      results = @client.suggest_document_type(engine_id, document_type_id, '*', {:page => 2})
-      results[document_type_id].should_not be_nil
-      results.document_types.size.should == 1
+      VCR.use_cassette(:document_type_suggest_pagination) do
+        results = client.suggest_document_type(engine_id, document_type_id, 'goo', {:page => 2})
+        results.document_types.size.should == 1
+        results[document_type_id].size.should == 0
+      end
     end
   end
 
   context 'Document' do
-    let(:document_id) { 'doc_id'}
-    let(:simple_documents) { ['doc_id1', 'doc_id2'].map { |id| {:external_id => id} } }
-
-    it 'gets all documents' do
-      documents = @client.documents(engine_id, document_type_id)
-      documents.size.should == 2
+    let(:document_type_id) { 'videos' }
+    let(:document_id) { 'FtX8nswnUKU'}
+    let(:documents) do
+      [{'external_id'=>'INscMGmhmX4',
+         'fields' => [{'name'=>'url', 'value'=>'http://www.youtube.com/watch?v=v1uyQZNg2vE', 'type'=>'enum'},
+                      {'name'=>'thumbnail_url', 'value'=>'https://i.ytimg.com/vi/INscMGmhmX4/mqdefault.jpg', 'type'=>'enum'},
+                      {'name'=>'channel_id', 'value'=>'UCTzVrd9ExsI3Zgnlh3_btLg', 'type'=>'enum'},
+                      {'name'=>'title', 'value'=>'The Original Grumpy Cat', 'type'=>'string'},
+                      {'name'=>'category_name', 'value'=>'Pets &amp; Animals', 'type'=>'string'}]},
+       {'external_id'=>'XfY9Dsg_DZk',
+         'fields' => [{'name'=>'url', 'value'=>'http://www.youtube.com/watch?v=XfY9Dsg_DZk', 'type'=>'enum'},
+                      {'name'=>'thumbnail_url', 'value'=>'https://i.ytimg.com/vi/XfY9Dsg_DZk/mqdefault.jpg', 'type'=>'enum'},
+                      {'name'=>'channel_id', 'value'=>'UC5VA5j05FjETg-iLekcyiBw', 'type'=>'enum'},
+                      {'name'=>'title', 'value'=>'Corgi talks to cat', 'type'=>'string'},
+                      {'name'=>'category_name', 'value'=>'Pets &amp; Animals', 'type'=>'string'}]}]
     end
 
-    it 'paginations documents' do
-      documents = @client.documents(engine_id, document_type_id, 2, 10)
-      documents.size.should == 2
+    it 'lists documents in a document type' do
+      VCR.use_cassette(:list_documents) do
+        documents = client.documents(engine_id, document_type_id)
+        documents.size.should == 2
+      end
     end
 
-    it 'shows a document' do
-      document = @client.document(engine_id, document_type_id, document_id)
-      document['external_id'].should == document_id
+    it 'lists documents with pagination' do
+      VCR.use_cassette(:list_documents_with_pagination) do
+        documents = client.documents(engine_id, document_type_id, 2, 2)
+        documents.size.should == 2
+      end
+    end
+
+    it 'find a document' do
+      VCR.use_cassette(:find_document) do
+        document = client.document(engine_id, document_type_id, document_id)
+        document['external_id'].should == document_id
+      end
     end
 
     it 'creates a document' do
-      external_id = '1'
-      document = @client.create_document(engine_id, document_type_id, {:external_id => external_id})
-      document['external_id'].should == external_id
+      VCR.use_cassette(:create_document) do
+        document = client.create_document(engine_id, document_type_id, documents.first)
+        document['external_id'].should == 'INscMGmhmX4'
+      end
     end
 
-    it 'creates multiple documents' do
-      stati = @client.create_documents(engine_id, document_type_id, simple_documents)
-      stati.should == simple_documents.map { |_| true }
+    it 'bulk create multiple documents' do
+      VCR.use_cassette(:bulk_create_documents) do
+        response = client.create_documents(engine_id, document_type_id, documents)
+        response.should == [true, true]
+      end
     end
 
     it 'destroys a document' do
-      @client.destroy_document(engine_id, document_type_id, document_id)
+      VCR.use_cassette(:destroy_document) do
+        response = client.destroy_document(engine_id, document_type_id, 'INscMGmhmX4')
+        response.should be_nil
+      end
     end
 
     it 'destroys multiple documents' do
-      document_ids = ['1', '2']
-      stati = @client.destroy_documents(engine_id, document_type_id, document_ids)
-      stati.should == document_ids.map { |_| true }
+      VCR.use_cassette(:bulk_destroy_documents) do
+        response = client.destroy_documents(engine_id, document_type_id, ['INscMGmhmX4', 'XfY9Dsg_DZk'])
+        response.should == [true, true]
+      end
     end
 
-    it 'creates or updates a document' do
-      document = @client.create_or_update_document(engine_id, document_type_id, {:external_id => document_id, :fields => {}})
-      document['external_id'].should == document_id
+    context '#create_or_update_document' do
+      it 'creates a document' do
+        VCR.use_cassette(:create_or_update_document_create) do
+          response = client.create_or_update_document(engine_id, document_type_id, {:external_id => 'foobar', :fields => [{:type => :string, :name => 'title', :value => 'new document'}]})
+          response['external_id'].should == 'foobar'
+          response['title'].should == 'new document'
+        end
+      end
+
+      it 'updates an existing document' do
+        VCR.use_cassette(:create_or_update_document_update) do
+          response = client.create_or_update_document(engine_id, document_type_id, {:external_id => document_id, :fields => [{:type => :string, :name => 'title', :value => 'new title'}]})
+          response['external_id'].should == document_id
+          response['title'].should == 'new title'
+        end
+      end
     end
 
-    it 'creates or updates multiple documents' do
-      stati = @client.create_or_update_documents(engine_id, document_type_id, simple_documents)
-      stati.should == simple_documents.map { |_| true }
+    context '#bulk_create_or_update_documents' do
+      it 'returns true for all documents successfully created or updated' do
+        VCR.use_cassette(:bulk_create_or_update_documents_success) do
+          response = client.create_or_update_documents(engine_id, document_type_id, documents)
+          response.should == [true, true]
+        end
+      end
+
+      it 'returns false if a document cannot be created or updated due to an error' do
+        documents = [{:external_id => 'failed_doc', :fields => [{:type => :string, :name => :title}]}] # missing value
+
+        VCR.use_cassette(:bulk_create_or_update_documents_failure) do
+          response = client.create_or_update_documents(engine_id, document_type_id, documents)
+          response.should == [false]
+        end
+      end
     end
 
-    it 'updates a document' do
-      fields = {:title => 'title'}
-      document = @client.update_document(engine_id, document_type_id, document_id, fields)
-      document['id'].should == document_id
+    context '#update_document' do
+      it 'updates a document given its id and fields to update' do
+        fields = {:title => 'awesome new title', :channel_id => 'UC5VA5j05FjETg-iLekcyiBw'}
+        VCR.use_cassette(:update_document) do
+          response = client.update_document(engine_id, document_type_id, document_id, fields)
+          response['external_id'].should == document_id
+          response['title'].should == 'awesome new title'
+          response['channel_id'].should == 'UC5VA5j05FjETg-iLekcyiBw'
+        end
+      end
+
+      it 'raises an error if a unknown field is included' do
+        fields = {:not_a_field => 'not a field'}
+
+        VCR.use_cassette(:update_document_unknown_field_failure) do
+          expect do
+            response = client.update_document(engine_id, document_type_id, document_id, fields)
+          end.to raise_error
+        end
+      end
     end
 
-    it 'updates multiple documents' do
-      stati = @client.update_documents(engine_id, document_type_id, simple_documents)
-      stati.should == simple_documents.map { |_| true }
+    context "#update_documents" do
+      it 'returns true for each document successfully updated' do
+        documents = [{:external_id => 'INscMGmhmX4', :fields => {:title => 'hi'}}, {:external_id => 'XfY9Dsg_DZk', :fields => {:title => 'bye'}}]
+
+        VCR.use_cassette(:update_documents_success) do
+          response = client.update_documents(engine_id, document_type_id, documents)
+          response.should == [true, true]
+        end
+      end
+
+      it 'returns false if document is not successfully updated' do
+        documents = [{:external_id => 'not_there', :fields => [{:name => :title, :value => 'hi', :type => :string}]}]
+
+        VCR.use_cassette(:update_documents_failure_non_existent_document) do
+          response = client.update_documents(engine_id, document_type_id, documents)
+          response.should == [false]
+        end
+      end
     end
   end
 
   context 'Analytics' do
-    it 'has searches' do
-      searches = @client.analytics_searches(engine_id)
-      searches.size.should == 1
+    let(:engine_id) { 'recursion' }
+
+    context '#analytics_searches' do
+      it 'returns search counts for the default time frame' do
+        VCR.use_cassette(:analytics_searches) do
+          searches = client.analytics_searches(engine_id)
+          searches.size.should == 15 # FIXME: is this a bug in the API?
+          searches.first.should == ['2013-09-13', 0]
+        end
+      end
+
+      it 'returns search counts for a specified time range' do
+        VCR.use_cassette(:analytics_searches_with_time_range) do
+          searches = client.analytics_searches(engine_id, '2013-01-01', '2013-01-07')
+          searches.size.should == 7
+          searches.first.should == ['2013-01-07', 0]
+        end
+      end
     end
 
-    it 'has searches in ranges' do
-      searches = @client.analytics_searches(engine_id, Time.now, Time.now)
-      searches.size.should == 0
+    context '#analytics_autoselects' do
+      it 'returns autoselect counts for the default time frame' do
+        VCR.use_cassette(:analytics_autoselects) do
+          autoselects = client.analytics_autoselects(engine_id)
+          autoselects.size.should == 15
+          autoselects.first.should == ['2013-09-13', 0]
+        end
+      end
+
+      it 'returns autoselects counts for a specified time range' do
+        VCR.use_cassette(:analytics_autoselects_with_time_range) do
+          autoselects = client.analytics_autoselects(engine_id, '2013-07-01', '2013-07-07')
+          autoselects.size.should == 7
+        end
+      end
     end
 
-    it 'has autoselects' do
-      autoselects = @client.analytics_autoselects(engine_id)
-      autoselects.size.should == 1
+    context '#analytics_top_queries' do
+      it 'returns top queries' do
+        VCR.use_cassette(:analytics_top_queries) do
+          top_queries = client.analytics_top_queries(engine_id)
+          top_queries.size.should == 3
+          top_queries.first.should == ['"fire watch"', 1]
+        end
+      end
+
+      it 'returns top queries with pagination' do
+        VCR.use_cassette(:analytics_top_queries_paginated) do
+          top_queries = client.analytics_top_queries(engine_id, :start_date => '2013-08-01', :end_date => '2013-08-30', :per_page => 5, :page => 2)
+          top_queries.size.should == 5
+          top_queries.first.should == ['no simple victory', 1]
+        end
+      end
+
+      it 'raises an error if the timeframe is to large' do
+        VCR.use_cassette(:analytics_top_queries_too_large) do
+          expect do
+            top_queries = client.analytics_top_queries(engine_id, :start_date => '2013-01-01', :end_date => '2013-05-01')
+          end.to raise_error(Swiftype::BadRequest)
+        end
+      end
     end
 
-    it 'has autoselects in ranges' do
-      autoselects = @client.analytics_autoselects(engine_id, Time.now, Time.now)
-      autoselects.size.should == 0
-    end
+    context 'analytics_top_no_result_queries' do
+      it 'returns top queries with no results for the default time range' do
+        VCR.use_cassette(:analytics_top_no_result_queries) do
+          top_no_result_queries = client.analytics_top_no_result_queries(engine_id)
+          top_no_result_queries.size.should == 2
+          top_no_result_queries.first.should == ['no results', 10]
+        end
+      end
 
-    it 'has top queries' do
-      top_queries = @client.analytics_top_queries(engine_id)
-      top_queries.size.should == 2
-    end
-
-    it 'has top queries pagination' do
-      top_queries = @client.analytics_top_queries(engine_id, 2, 10)
-      top_queries.size.should == 0
-    end
-
-    it 'has top queries in date ranges' do
-      top_queries = @client.analytics_top_queries_in_range(engine_id, Time.now, Time.now)
-      top_queries.size.should == 1
-    end
-
-    it 'has top no result queries' do
-      top_no_result_queries = @client.analytics_top_no_result_queries(engine_id)
-      top_no_result_queries.size.should == 2
-    end
-
-    it 'has top no result queries in date ranges' do
-      top_no_result_queries = @client.analytics_top_no_result_queries(engine_id, Time.now, Time.now)
-      top_no_result_queries.size.should == 0
+      it 'has top no result queries in date ranges' do
+        VCR.use_cassette(:analytics_top_no_result_queries_paginated) do
+          top_no_result_queries = client.analytics_top_no_result_queries(engine_id, :start_date => '2013-08-01', :end_date => '2013-08-30', :per_page => 5, :page => 2)
+          top_no_result_queries.size.should == 1
+          top_no_result_queries.first.should == ['no result again', 2]
+        end
+      end
     end
   end
 
   context 'Domain' do
-    let(:domain_id) { 'domain_id'}
+    let(:engine_id) { 'crawler-demo-site' }
+    let(:domain_id) { '51534c6e2ed960cc79000001' }
 
     it 'gets all domains' do
-      domains = @client.domains(engine_id)
-      domains.size.should == 2
+      VCR.use_cassette(:list_domains) do
+        domains = client.domains(engine_id)
+        domains.size.should == 1
+        domains.first['id'].should == domain_id
+      end
     end
 
-    it 'shows a domain' do
-      domain = @client.domain(engine_id, domain_id)
-      domain['id'].should == domain_id
+    context '#domain' do
+      it 'shows a domain if it exists' do
+        VCR.use_cassette(:find_domain) do
+          domain = client.domain(engine_id, domain_id)
+          domain['id'].should == domain_id
+        end
+      end
+
+      it 'raises an error if the domain does not exist' do
+        VCR.use_cassette(:find_domain_failure) do
+          expect do
+            domain = client.domain(engine_id, 'bogus')
+          end.to raise_error(Swiftype::NonExistentRecord)
+        end
+      end
     end
 
-    it 'creates a domain' do
-      url = 'http://www.example.com'
-      domain = @client.create_domain(engine_id, url)
-      domain['submitted_url'].should == url
+    context '#create_domain' do
+      it 'creates a domain' do
+        VCR.use_cassette(:create_domain) do
+          url = 'http://www.zombo.com/'
+          domain = client.create_domain(engine_id, url)
+          domain['submitted_url'].should == url
+        end
+      end
     end
 
     it 'destroys a domain' do
-      @client.destroy_domain(engine_id, domain_id)
+      VCR.use_cassette(:destroy_domain) do
+        response = client.destroy_domain(engine_id, '52324b132ed960589800004a')
+        response.should be_nil
+      end
     end
 
-    it 'recrawl a domain' do
-      domain = @client.recrawl_domain(engine_id, domain_id)
-      domain['id'].should == domain_id
+    context '#recrawl_domain' do
+      it 'enqueues a request to recrawl a domain' do
+        VCR.use_cassette(:recrawl_domain_success) do
+          domain = client.recrawl_domain(engine_id, domain_id)
+          domain['id'].should == domain_id
+        end
+      end
+
+      it 'raises an exception if domain recrawl is not allowed' do
+        VCR.use_cassette(:recrawl_domain_failure) do
+          expect do
+            domain = client.recrawl_domain(engine_id, domain_id)
+          end.to raise_error(Swiftype::Forbidden)
+        end
+      end
     end
 
-    it 'crawls a url on a domain' do
-      url = 'http://www.example.com'
-      crawled_url = @client.crawl_url(engine_id, domain_id, url)['url']
-      crawled_url.should == url
+    context '#crawl_url' do
+      it 'enqueues a request to crawl a URL on a domain' do
+        VCR.use_cassette(:crawl_url) do
+          url = 'http://crawler-demo-site.herokuapp.com/2012/01/01/first-post.html'
+          crawled_url = client.crawl_url(engine_id, domain_id, url)
+          crawled_url['url'].should == url
+        end
+      end
     end
   end
 
   context 'Clickthrough' do
     let(:query) { 'foo' }
-    let(:id) { 1 }
+    let(:document_type_id) { 'videos' }
+    let(:external_id) { 'FtX8nswnUKU'}
 
-    context "#log_clickthough"
-    # Not thrilled with this test, but since nothing is returned all we
-    # can reasonably check is that an error isn't raised
-    it 'returns nil' do
-      response = @client.log_clickthrough(engine_id, document_type_id, query, id)
-      response.should == nil
-    end
+    context "#log_clickthough" do
+      # Not thrilled with this test, but since nothing is returned all we
+      # can reasonably check is that an error isn't raised
+      it 'returns nil' do
+        VCR.use_cassette(:log_clickthrough_success) do
+          response = client.log_clickthrough(engine_id, document_type_id, query, external_id)
+          response.should == nil
+        end
+      end
 
-    it 'raises an error when missing params' do
-      expect{@client.log_clickthrough(engine_id, document_type_id, nil, id)}.to(raise_error(Swiftype::UnexpectedHTTPException))
+      it 'raises an error when missing params' do
+        VCR.use_cassette(:log_clickthrough_failure) do
+          expect do
+            client.log_clickthrough(engine_id, document_type_id, nil, external_id)
+          end.to raise_error(Swiftype::BadRequest)
+        end
+      end
     end
   end
 end

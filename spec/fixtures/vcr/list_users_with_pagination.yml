@@ -27,12 +27,12 @@ http_interactions:
       Cache-Control:
       - max-age=0, private, must-revalidate
       Set-Cookie:
-      - _session_id=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJTQwZDkwYjI0ZTFiMDZjMWY4YzQ0MTE3NmY0NDVlNDIzBjsAVEkiGXdhcmRlbi51c2VyLnVzZXIua2V5BjsAVFsISSIJVXNlcgY7AEZbBlU6Gk1vcGVkOjpCU09OOjpPYmplY3RJZCIRUDg5%2By7ZYCnHAAABSSIiJDJhJDEwJE1rNmZOdHA1cC9ZNVIuQU5sZFB2UWUGOwBU--3678b729454e5c2bb4cc07117ba7132496c1e6d0;
+      - _session_id=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJWY4ZTBmZDFkY2IxYzlmNDg3MmQ4NGNkZjExYmI3NmRlBjsAVEkiGXdhcmRlbi51c2VyLnVzZXIua2V5BjsAVFsISSIJVXNlcgY7AEZbBlU6Gk1vcGVkOjpCU09OOjpPYmplY3RJZCIRUDg5%2By7ZYCnHAAABSSIiJDJhJDEwJE1rNmZOdHA1cC9ZNVIuQU5sZFB2UWUGOwBU--2235d3b123ac9c7407cc1d4f7964d816f0948011;
         path=/; HttpOnly
       X-Request-Id:
-      - f179cf6feaf20cf7b23eb7a1cb46639b
+      - 908b69372144b9a8e2c3014fd8f784b1
       X-Runtime:
-      - '0.052013'
+      - '0.045036'
       Connection:
       - close
       Server:
@@ -41,5 +41,5 @@ http_interactions:
       encoding: US-ASCII
       string: ! '[]'
     http_version: 
-  recorded_at: Wed, 11 Sep 2013 23:31:53 GMT
+  recorded_at: Fri, 13 Sep 2013 00:53:23 GMT
 recorded_with: VCR 2.5.0

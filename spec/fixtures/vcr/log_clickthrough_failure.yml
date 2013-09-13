@@ -1,0 +1,43 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://hello:@localhost:3000/api/v1/engines/swiftype-api-example/document_types/videos/analytics/log_clickthrough.json
+    body:
+      encoding: UTF-8
+      string: ! '{"q":null,"id":"FtX8nswnUKU"}'
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Swiftype-Ruby/1.0.0
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Ua-Compatible:
+      - IE=Edge
+      Cache-Control:
+      - no-cache
+      Set-Cookie:
+      - _session_id=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJWFlOGQ0Yzg1Yjg5MDU4M2E0MjFiY2ZjYzgyZGViYTljBjsAVEkiGXdhcmRlbi51c2VyLnVzZXIua2V5BjsAVFsISSIJVXNlcgY7AEZbBlU6Gk1vcGVkOjpCU09OOjpPYmplY3RJZCIRUDg5%2By7ZYCnHAAABSSIiJDJhJDEwJE1rNmZOdHA1cC9ZNVIuQU5sZFB2UWUGOwBU--beefa75ecb409269e6210641c4ca982a3e865ac9;
+        path=/; HttpOnly
+      X-Request-Id:
+      - e078385a4d1d8982a0e84158c18442fd
+      X-Runtime:
+      - '0.032657'
+      Connection:
+      - close
+      Server:
+      - thin 1.5.0 codename Knife
+    body:
+      encoding: US-ASCII
+      string: ! ' '
+    http_version: 
+  recorded_at: Thu, 12 Sep 2013 23:01:24 GMT
+recorded_with: VCR 2.5.0

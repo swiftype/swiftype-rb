@@ -23,23 +23,23 @@ http_interactions:
       X-Ua-Compatible:
       - IE=Edge
       Etag:
-      - ! '"42c9bfbd88f6b771bbb443007ace8ab5"'
+      - ! '"f667288357fd5b6401e78f25c6bc7216"'
       Cache-Control:
       - max-age=0, private, must-revalidate
       Set-Cookie:
-      - _session_id=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJWJmZmEwYzg1ZmYwNGIxNTE4MDdmMTgzYTQ1ZjJhMTU0BjsAVEkiGXdhcmRlbi51c2VyLnVzZXIua2V5BjsAVFsISSIJVXNlcgY7AEZbBlU6Gk1vcGVkOjpCU09OOjpPYmplY3RJZCIRUDg5%2By7ZYCnHAAABSSIiJDJhJDEwJE1rNmZOdHA1cC9ZNVIuQU5sZFB2UWUGOwBU--aa3521daa865322d0cac3bfe397df0c71578bd2b;
+      - _session_id=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJTVlZDQ4ZjdmNjZmNjRjMGI2NjllMzI5ZDdmN2JlZTY1BjsAVEkiGXdhcmRlbi51c2VyLnVzZXIua2V5BjsAVFsISSIJVXNlcgY7AEZbBlU6Gk1vcGVkOjpCU09OOjpPYmplY3RJZCIRUDg5%2By7ZYCnHAAABSSIiJDJhJDEwJE1rNmZOdHA1cC9ZNVIuQU5sZFB2UWUGOwBU--65fe1f516fe61490759edfc961a4d6793df541fb;
         path=/; HttpOnly
       X-Request-Id:
-      - 2d84a05fc5ab40efc4f788db5f6b7c2e
+      - 1d5d3cb5f037bc9533615229314a6772
       X-Runtime:
-      - '0.087011'
+      - '0.242698'
       Connection:
       - close
       Server:
       - thin 1.5.0 codename Knife
     body:
       encoding: US-ASCII
-      string: ! '{"id":"5230fc6d2ed960ba20000026","access_token":"2565b0146bf79752ce7917d296f77614c1ebb5ffef28006e61927cd10d87968c"}'
+      string: ! '{"id":"523262032ed960589800004b","access_token":"06feb198d229d781f53a9f2e9747569e3494d3a5a6a90687231847462063911c"}'
     http_version: 
-  recorded_at: Wed, 11 Sep 2013 23:27:41 GMT
+  recorded_at: Fri, 13 Sep 2013 00:53:23 GMT
 recorded_with: VCR 2.5.0

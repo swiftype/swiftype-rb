@@ -1,0 +1,45 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://hello:@localhost:3000/api/v1/engines/swiftype-api-example/search.json
+    body:
+      encoding: UTF-8
+      string: ! '{"q":"cat","page":2}'
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Swiftype-Ruby/1.0.0
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Ua-Compatible:
+      - IE=Edge
+      Etag:
+      - ! '"b812398f012ce5e89b43bdc9463d5d22"'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Set-Cookie:
+      - _session_id=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJWI0MmIwZDE1Yjk4NzBmMDQxZjc2Nzg4ZGZkMmIxMWJmBjsAVEkiGXdhcmRlbi51c2VyLnVzZXIua2V5BjsAVFsISSIJVXNlcgY7AEZbBlU6Gk1vcGVkOjpCU09OOjpPYmplY3RJZCIRUDg5%2By7ZYCnHAAABSSIiJDJhJDEwJE1rNmZOdHA1cC9ZNVIuQU5sZFB2UWUGOwBU--66bff87ad0a7a13a5e8b9349a27325d99a76c475;
+        path=/; HttpOnly
+      X-Request-Id:
+      - 2342cdc2f23a5433ff1d7d0efbaad487
+      X-Runtime:
+      - '0.190687'
+      Connection:
+      - close
+      Server:
+      - thin 1.5.0 codename Knife
+    body:
+      encoding: US-ASCII
+      string: ! '{"records":{"videos":[],"channels":[]},"info":{"videos":{"query":"cat","current_page":2,"num_pages":1,"per_page":20,"total_result_count":2,"facets":{}},"channels":{"query":"cat","current_page":2,"num_pages":1,"per_page":20,"total_result_count":1,"facets":{}}},"errors":{}}'
+    http_version: 
+  recorded_at: Thu, 12 Sep 2013 21:30:20 GMT
+recorded_with: VCR 2.5.0

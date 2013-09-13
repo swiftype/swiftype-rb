@@ -1,0 +1,45 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://hello:@localhost:3000/api/v1/engines/swiftype-api-example/suggest.json
+    body:
+      encoding: UTF-8
+      string: ! '{"q":"goo","page":2}'
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Swiftype-Ruby/1.0.0
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Ua-Compatible:
+      - IE=Edge
+      Etag:
+      - ! '"3808268d101ef1017e4abf36ab55aa2e"'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Set-Cookie:
+      - _session_id=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJWQyZmJkMTcyMTEwN2U0ZDcwNjZjOTI4MTMwMGI5Y2I4BjsAVEkiGXdhcmRlbi51c2VyLnVzZXIua2V5BjsAVFsISSIJVXNlcgY7AEZbBlU6Gk1vcGVkOjpCU09OOjpPYmplY3RJZCIRUDg5%2By7ZYCnHAAABSSIiJDJhJDEwJE1rNmZOdHA1cC9ZNVIuQU5sZFB2UWUGOwBU--21e3ec1874607815193e8c7793a3e9974144075b;
+        path=/; HttpOnly
+      X-Request-Id:
+      - 04b206c0beb9fb36b8ea6f8109c61dd7
+      X-Runtime:
+      - '0.183618'
+      Connection:
+      - close
+      Server:
+      - thin 1.5.0 codename Knife
+    body:
+      encoding: US-ASCII
+      string: ! '{"record_count":0,"records":{"videos":[],"channels":[]},"info":{"videos":{"query":"goo","current_page":2,"num_pages":1,"per_page":10,"total_result_count":1},"channels":{"query":"goo","current_page":2,"num_pages":1,"per_page":10,"total_result_count":1}},"errors":{}}'
+    http_version: 
+  recorded_at: Thu, 12 Sep 2013 21:30:21 GMT
+recorded_with: VCR 2.5.0
