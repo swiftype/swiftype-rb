@@ -2,247 +2,301 @@
 
 This is a simple client for the [Swiftype API](https://swiftype.com/documentation/overview) with no dependencies outside core Ruby (for 1.9 and 2.0; Ruby 1.8 requires the JSON gem).
 
+## Getting Started
+
+Before beginning with the Swiftype gem, you should be familar with the concepts behind the Swiftype API: **Engines**, **DocumentTypes**, and **Documents**.
+
+An **Engine** is a search engine. It can contain one or more **DocumentTypes** which are collections of **Documents**. A **Document** is a collection of fields that can be queried using the Swiftype API. Documents have a special **external_id** field that ties a Document in Swiftype to a record in your system. The layout of fields of the Documents belonging to a DocumentType is called a **schema**. Fields may be strings, integers, geographic locations, and so forth.
+
+The Documents in your Engine can be searched two ways: **full-text** (`search`) or **autocomplete** (`suggest`). The difference is that autocomplete queries work on prefixes (for example, "gla" will match "glass"). This is less accurage in general, but is useful for implementing type-ahead search drop downs.
+
+You can think of an Engine as a database, DocumentTypes as tables, and Documents as rows. Using the API, you can search an engine for all Documents containing a word. You can also search an individual DocumentType, or any subset of DocumentTypes.
+
+The examples in this documentation use the schema defined in the [swiftype-api-example](https://github.com/swiftype/swiftype-api-example) project, which is based on YouTube. It has two DocumentTypes, **videos** and **channels**. Using the script found in the swiftype-api-example project, you can create your own search engine that matches the examples and try the queries for yourself.
+
+To learn more about the Swiftype API, read the [API overview](https://swiftype.com/documentation/overview) and our [schema design tutorial](https://swiftype.com/documentation/tutorials/schema_design).
+
+## Installation
+
+To install the gem, execute:
+
+        gem install swiftype
+
+Or place `gem 'swiftype', '~> 1.0.0` in your `Gemfile` and run `bundle install`.
+
 ## Usage
 
 ### Configuration:
 
 Before issuing commands to the API, configure the client with your API key:
 
-	Swiftype.api_key = 'YOUR_API_KEY'
+    Swiftype.api_key = 'YOUR_API_KEY'
 
 You can find your API key in your [Account Settings](https://swiftype.com/settings/account).
 
 ### Create a client
 
-	client = Swiftype::Client.new
+    client = Swiftype::Client.new
 
 You can also provide the API key when creating the client instance:
 
-	client = Swiftype::Client.new(:api_key => 'different_api_key')
+    client = Swiftype::Client.new(:api_key => 'different_api_key')
 
 If the API key is provided as an option to constructor, it will override the globally configured Swiftype API key (if any).
 
-### Search
+### Full-text search
 
-If you want to search for e.g. `action` on your engine, you can use:
+If you want to search for `cat` on your engine, you can use:
 
-	results = client.search('bookstore', 'action')
+    results = client.search('swiftype-api-example', 'cat')
+    results['videos']   # => [{'external_id' => 'QH2-TGUlwu4', 'title' => 'Nyan Cat [original]', ... }, ... ]
+    results['channels'] # => [{'external_id' => 'UC3VHfy8e1jbDnT5TG2pjP1w', 'title' => 'saraj00n', ... }, ... ]
 
-To limit the search to only the `books` DocumentType:
+To limit the search to only the `videos` DocumentType:
 
-	results = client.search_document_type('bookstore', 'books', 'action')
+    results = client.search_document_type('swiftype-api-example', 'videos', 'cat')
+    results['videos']   # => [{'external_id' => 'QH2-TGUlwu4', 'title' => 'Nyan Cat [original]', ... }, ... ]
+    results['channels'] # => nil
 
-Both search methods allow you to specify options as an extra parameter to e.g. filter or sort on fields. For more details on these options pelease have a look at the [Search Options](https://swiftype.com/documentation/searching). Here is an example for showing only books that are in stock:
+Both search methods allow you to specify options to filter or sort on fields, boost the weight of certain fields, calculate faceted counts, and so on. For more details on these options, review the [Search Options](https://swiftype.com/documentation/searching).
 
-	results = client.search_document_type('bookstore', 'books', 'action', {:filters => {"books" => {:in_stock => true}}})
+Here is an example for showing only videos in the "Pets & Animals" category (which has ID 23):
 
-### Autocomplete
+    results = client.search_document_type('swiftype-api-example', 'videos', 'cat', {:filters => {'videos' => {:category_id => '23'}}})
 
-Autocompletes have the same functionality as searches. You can autocomplete using all documents:
+### Autocomplete search
 
-	results = client.suggest('bookstore', 'acti')
+Autocomplete (also known as suggest, prefix, or type-ahead) searches can be used to implement autocompletion. They have the same functionality as full-text searches, but work on prefixes instead of all the text. Because of this, autocomplete queries only search string fields.
+
+You can perform a suggest query across all of your Engine's Documents:
+
+    results = client.suggest("swiftype-api-example", "gla")
+    results['videos'] # => [{'external_id' => 'v1uyQZNg2vE', 'title' => 'How It Feels [through Glass]', ...}, ...]
 
 or just for one DocumentType:
 
-	results = client.suggest_document_type('bookstore', 'books', 'acti')
+    results = client.suggest_document_type("swiftype-api-example", "videos", "gla")
+    results['videos'] # => [{'external_id' => 'v1uyQZNg2vE', 'title' => 'How It Feels [through Glass]', ...}, ...]
 
 or add options to have more control over the results:
 
-	results = client.suggest('bookstore', 'acti', {:sort_field => {'books' => 'price'}})
+    results = client.suggest('swiftype-api-example', 'glass', {:sort_field => {'videos' => 'view_count'}, :sort_direction => {'videos' => 'desc'}})
 
 ### Engines
 
-Retrieve every `Engine`:
+Retrieve every Engine:
 
-	engines = client.engines
+    engines = client.engines
 
-Create a new `Engine` with the name `bookstore`:
+Create a new Engine with the name `swiftype-api-example`:
 
-	engine = client.create_engine('bookstore')
+    engine = client.create_engine('swiftype-api-example')
 
-Retrieve an `Engine` by `slug` or `id`:
+Retrieve an Engine by `slug` or `id`:
 
-	engine = client.engine('bookstore')
+    engine = client.engine('swiftype-api-example')
+    engine = client.engine('5230b9102ed960ba20000021')
 
-To delete an `Engine` you need the `slug` or the `id` field of an `engine`:
+Delete an Engine by `slug` or the `id`:
 
-	client.destroy_engine('bookstore')
+    client.destroy_engine('swiftype-api-example')
 
 ### Document Types
 
-Retrieve `DocumentTypes`s of the `Engine` with the `slug` field `bookstore`:
+List all the
 
-	document_types = client.document_types('bookstore')
+Retrieve `DocumentTypes`s of the Engine with the `slug` field `swiftype-api-example`:
+
+    document_types = client.document_types('swiftype-api-example')
 
 Show the second batch of documents:
 
-	document_types = client.document_types('bookstore', 2)
+    document_types = client.document_types('swiftype-api-example', 2)
 
-Create a new `DocumentType` for an `Engine` with the name `books`:
+Create a new DocumentType for an Engine with the name `videos`:
 
-	document_type = client.create_document_type('bookstore', 'books')
+    document_type = client.create_document_type('swiftype-api-example', 'videos')
 
-Retrieve an `DocumentType` by `slug` or `id`:
+Retrieve an DocumentType by `slug` or `id`:
 
-	document_type = client.document_type('bookstore', 'books')
+    document_type = client.document_type('swiftype-api-example', 'videos')
 
-Delete a `DocumentType` using the `slug` or `id` of it:
+Delete a DocumentType using the `slug` or `id` of it:
 
-	client.destroy_document_type('bookstore', 'books')
+    client.destroy_document_type('swiftype-api-example', 'videos')
 
 ### Documents
 
-Retrieve all `Document`s of `Engine` `bookstore` and `DocumentType` `books`:
+Retrieve the first page of Documents of Engine `swiftype-api-example` and DocumentType `videos`:
 
-	documents = client.documents('bookstore', 'books')
+    documents = client.documents('swiftype-api-example', 'videos')
 
-Retrieve a specific `Document` using its `id` or `external_id`:
+Retrieve a specific Document using its `id` or `external_id`:
 
-	document = client.document('bookstore', 'books', 'id1')
+    document = client.document('swiftype-api-example', 'videos', 'FHtvDA0W34I')
 
-Create a new `Document` with mandatory `external_id` and user-defined fields:
+Create a new Document with mandatory `external_id` and user-defined fields:
 
-	document = client.create_document('bookstore', 'books', {
-		:external_id => '1',
-		:fields => [
-			{:name => 'title', :value => 'Information Retrieval', :type => 'string'},
-			{:name => 'genre', :value => 'non-fiction', :type => 'enum'},
-			{:name => 'author', :value => 'Stefan Buttcher', :type => 'string'},
-			{:name => 'in_stock', :value => true, :type => 'enum'},
-			{:name => 'on_sale', :value => false, :type => 'enum'}
-		]})
+    document = client.create_document('swiftype-api-example', 'videos', {
+        :external_id => 'FHtvDA0W34I',
+        :fields => [
+            {:name => 'title', :value => "Felix Baumgartner's supersonic freefall from 128k' - Mission Highlights", :type => 'string'},
+            {:name => 'url', :value => 'http://www.youtube.com/watch?v=FHtvDA0W34I', :type => 'enum'},
+            {:name => 'chanel_id', :value => 'UCblfuW_4rakIf2h6aqANefA', :type => 'enum'}
+        ]})
 
-Create multiple `Document`s at once and return status for each `Document` creation:
+Create multiple Documents at once and return status for each Document creation:
 
-	stati = client.create_documents('bookstore', 'books', [{
-		:external_id => '2',
-		:fields => [
-			{:name => 'title', :value => 'Lucene in Action', :type => 'string'},
-			{:name => 'genre', :value => 'non-fiction', :type => 'enum'},
-			{:name => 'author', :value => 'Michael McCandless', :type => 'string'},
-			{:name => 'in_stock', :value => true, :type => 'enum'},
-			{:name => 'on_sale', :value => false, :type => 'enum'}
-		]},{
-		:external_id => '3',
-		:fields => [
-			{:name => 'title', :value => 'MongoDB in Action', :type => 'string'},
-			{:name => 'genre', :value => 'non-fiction', :type => 'enum'},
-			{:name => 'author', :value => 'Kyle Banker', :type => 'string'},
-			{:name => 'in_stock', :value => true, :type => 'enum'},
-			{:name => 'on_sale', :value => false, :type => 'enum'}
-		]}])
+    response = client.create_documents('swiftype-api-example', 'videos', [{
+        :external_id => 'FHtvDA0W34I',
+        :fields => [
+            {:name => 'title', :value => "Felix Baumgartner's supersonic freefall from 128k' - Mission Highlights", :type => 'string'},
+            {:name => 'url', :value => 'http://www.youtube.com/watch?v=FHtvDA0W34I', :type => 'enum'},
+            {:name => 'chanel_id', :value => 'UCblfuW_4rakIf2h6aqANefA', :type => 'enum'}
+        ]}, {
+        :external_id => 'dMH0bHeiRNg',
+        :fields => [
+            {:name => 'title', :value => 'Evolution of Dance - By Judson Laipply', :type => 'string'},
+            {:name => 'url', :value => 'http://www.youtube.com/watch?v='dMH0bHeiRNg', :type => 'enum'},
+            {:name => 'chanel_id', :value => UC5B9H4l2vtgo7cAoExcFh-w', :type => 'enum'}
+        ]}])
+        #=> [true, true]
 
-Update fields of an existing `Document` specified by `id` or `external_id`:
+Update fields of an existing Document specified by `id` or `external_id`:
 
-	client.update_document('bookstore','books','1', { :in_stock => false, :on_sale => false })
+    client.update_document('swiftype-api-example', 'videos', 'FHtvDA0W34I', {:title =>'New Title'})
 
-Update multiple `Document`s at once:
+**NOTE:** A field must already exist on a Document in order to update it.
 
-	stati = client.update_documents('bookstore','books', [
-		{:external_id => '2', :fields => {:in_stock => false}},
-		{:external_id => '3', :fields => {:in_stock => true}}
-	])
+Update multiple Documents at once:
 
-Create or update a `Document`:
+    response = client.update_documents('swiftype-api-example','videos', [
+        {:external_id => 'FHtvDA0W34I', :fields => {:view_count => 32874417}},
+        {:external_id => 'dMH0bHeiRNg', :fields => {:view_count => 98323493}}
+    ])
+        #=> [true, true]
 
-	document = client.create_or_update_document('bookstore', 'books', {
-		:external_id => '1',
-		:fields => [
-			{:name => 'title', :value => 'Information Retrieval', :type => 'string'},
-			{:name => 'genre', :value => 'non-fiction', :type => 'enum'},
-			{:name => 'author', :value => 'Stefan Buttcher', :type => 'string'},
-			{:name => 'in_stock', :value => false, :type => 'enum'},
-			{:name => 'on_sale', :value => true, :type => 'enum'}
-		]})
+Create or update a Document:
+
+    document = client.create_or_update_document('swiftype-api-example', 'videos', {
+        :external_id => 'FHtvDA0W34I',
+        :fields => [
+            {:name => 'title', :value => "Felix Baumgartner's supersonic freefall from 128k' - Mission Highlights", :type => 'string'},
+            {:name => 'url', :value => 'http://www.youtube.com/watch?v=FHtvDA0W34I', :type => 'enum'},
+            {:name => 'chanel_id', :value => 'UCblfuW_4rakIf2h6aqANefA', :type => 'enum'}
+        ]})
 
 Create or update multiple `Documents` at once:
 
-	stati = client.create_or_update_documents('bookstore', 'books', [{
-		:external_id => '2',
-		:fields => [
-			{:name => 'title', :value => 'Lucene in Action', :type => 'string'},
-			{:name => 'genre', :value => 'non-fiction', :type => 'enum'},
-			{:name => 'author', :value => 'Michael McCandless', :type => 'string'},
-			{:name => 'in_stock', :value => false, :type => 'enum'},
-			{:name => 'on_sale', :value => false, :type => 'enum'}
-		]},{
-		:external_id => '3',
-		:fields => [
-			{:name => 'title', :value => 'MongoDB in Action', :type => 'string'},
-			{:name => 'genre', :value => 'non-fiction', :type => 'enum'},
-			{:name => 'author', :value => 'Kyle Banker', :type => 'string'},
-			{:name => 'in_stock', :value => false, :type => 'enum'},
-			{:name => 'on_sale', :value => false, :type => 'enum'}
-		]}])
+    response = client.create_or_update_documents('swiftype-api-example', 'videos', [{
+        :external_id => 'FHtvDA0W34I',
+        :fields => [
+            {:name => 'title', :value => "Felix Baumgartner's supersonic freefall from 128k' - Mission Highlights", :type => 'string'},
+            {:name => 'url', :value => 'http://www.youtube.com/watch?v=FHtvDA0W34I', :type => 'enum'},
+            {:name => 'chanel_id', :value => 'UCblfuW_4rakIf2h6aqANefA', :type => 'enum'}
+        ]}, {
+        :external_id => 'dMH0bHeiRNg',
+        :fields => [
+            {:name => 'title', :value => 'Evolution of Dance - By Judson Laipply', :type => 'string'},
+            {:name => 'url', :value => 'http://www.youtube.com/watch?v='dMH0bHeiRNg', :type => 'enum'},
+            {:name => 'chanel_id', :value => UC5B9H4l2vtgo7cAoExcFh-w', :type => 'enum'}
+        ]}])
 
-Destroy a `Document`:
+Destroy a Document by external_id:
 
-	client.destroy_document('bookstore','books','1')
+    client.destroy_document('swiftype-api-example','videos','dFs9WO2B8uI')
 
-Destroy multiple `Document`s at once:
+Destroy multiple Documents at once:
 
-	stati = client.destroy_documents('bookstore','books',['1','2','3'])
+    response = client.destroy_documents('swiftype-api-example', 'videos', ['QH2-TGUlwu4, 'v1uyQZNg2vE', 'ik5sdwYZ01Q'])
+    #=> [true, true, true]
 
 ### Domains
 
-Retrieve all `Domain`s of `Engine` `websites`:
+**Domains** are a feature of crawler-based engines that represent a web site to index with the Swiftype web crawler.
 
-	domains = client.domains('websites')
+Retrieve all Domains of Engine `websites`:
 
-Retrieve a specific `Domain` by `id`:
+    domains = client.domains('websites')
+    #=> [{"id"=>"513fcc042ed960c186000001", "engine_id"=>"513fcc042ed960114400000d", "submitted_url"=>"http://example.com/", "start_crawl_url"=>"http://www.example.com/", "crawling"=>false, "document_count"=>337, "updated_at"=>"2013-03-13T00:48:32Z"}, ...]
 
-	domain = client.domain('websites', 'generated_id')
+Retrieve a specific Domain by `id`:
 
-Create a new `Domain` with the URL `https://swiftype.com` and start crawling:
+    domain = client.domain('websites', '513fcc042ed960c186000001'')
+    #=> {"id"=>"513fcc042ed960c186000001", "engine_id"=>"513fcc042ed960114400000d", "submitted_url"=>"http://example.com/", "start_crawl_url"=>"http://www.example.com/", "crawling"=>false, "document_count"=>337, "updated_at"=>"2013-03-13T00:48:32Z"}
 
-	domain = client.create_domain('websites', 'https://swiftype.com')
+Create a new Domain with the URL `https://swiftype.com` and start crawling:
 
-Delete a `Domain` using its `id`:
+    domain = client.create_domain('websites', 'https://swiftype.com')
 
-	client.destroy_domain('websites', 'generated_id')
+Delete a Domain using its `id`:
 
-Initiate a recrawl of a specific `Domain` using its `id`:
+    client.destroy_domain('websites', '513fcc042ed960c186000001')
 
-	client.recrawl_domain('websites', 'generated_id')
+Initiate a recrawl of a specific Domain using its `id`:
 
-Add or update a URL for a `Domain`:
+    client.recrawl_domain('websites', '513fcc042ed960c186000001')
 
-	client.crawl_url('websites', 'generated_id', 'https://swiftype.com/new/path/about.html')
+Add or update a URL for a Domain:
+
+    client.crawl_url('websites', '513fcc042ed960c186000001', 'https://swiftype.com/new/path.html')
 
 ### Analytics
 
-To get the amount of searches on your `Engine` in the last 14 days use:
+Swiftype records the number of searches, autoselects (when a user clicks a link from a suggest result), and clickthroughs (when a user clicks through to an item from a search result list. You can view this information in your Swiftype Dashboard, but you can also export it using the API.
 
-	searches = client.analytics_searches('bookstore')
+To get the number of searches per day from an Engine in the last 14 days:
+
+    searches = client.analytics_searches('swiftype-api-example')
+    #=> [['2013-09-13', '123'], [2013-09-12', '94'], ... ]
 
 You can also use a specific start and/or end date:
 
-	searches = client.analytics_searches('bookstore', 10.weeks.ago, 9.weeks.ago)
+    searches = client.analytics_searches('swiftype-api-example', '2013-01-01', '2013-01-07')
 
-To get the amount of autoselects (clicks on autocomplete results) use:
+To get the number of autoselects in the past 14 days:
 
-	autoselects = client.analytics_autoselects('bookstore')
+    autoselects = client.analytics_autoselects('swiftype-api-example')
 
 As with searches you can also limit by start and/or end date:
 
-	autoselects = client.analytics_autoselects('bookstore', from=30.days.ago)
+    autoselects = client.analytics_autoselects('swiftype-api-example', '2013-01-01', '2013-01-07')
 
-If you are interested in the top queries for your `Engine` you can use:
+If you are interested in the top queries for your Engine you can use:
 
-	top_queries = client.analytics_top_queries('bookstore')
+    top_queries = client.analytics_top_queries('swiftype-api-example')
+    # => [['query term', 123], ['another query', 121], ['yet another query', 92], ...]
 
 To see more top queries you can paginate through them using:
 
-	top_queries = client.analytics_top_queries('bookstore', page=2)
+    top_queries = client.analytics_top_queries('swiftype-api-example', {:page => 2})
 
 Or you can get the top queries in a specific date range:
 
-	top_queries = client.analytics_top_queries_in_range('bookstore', 1.week.ago, Time.now)
+    top_queries = client.analytics_top_queries('swiftype-api-example', {:start_date => '2013-01-01', :end_date => '2013-01-07'})
 
 If you want to improve you search results, you should always have a look at search queries, that return no results and perhaps add some Documents that match for this query or use our pining feature to add Documents for this query:
 
-	top_no_result_queries = client.analytics_top_no_result_queries('bookstore')
+    top_no_result_queries = client.analytics_top_no_result_queries('swiftype-api-example')
 
 You can also specifiy a date range for queries without results:
 
-	top_no_result_queries = client.analytics_top_no_result_queries('bookstore', 2.weeks.ago, 1.week.ago)
+    top_no_result_queries = client.analytics_top_no_result_queries('swiftype-api-example', {:start_date => '2013-01-01', :end_date => '2013-01-07'})
+
+## Migrating from previous versions
+
+swiftype-rb 1.0.0 has been rewritten to be simpler and easier to use. However, it is not compatable with the previous version, 0.0.5.
+
+To upgrade:
+
+* If you previously used the `Swiftype::Easy` client, change `Swiftype::Easy` to `Swiftype::Client`. Almost all method calls should be the same (there are a few minor changes).
+* If you previously used the `Swiftype` client, migrate your API calls to the `Swiftype::Client` format. If you are not able to do that, lock your gem version to 0.0.5 by adding this to your Gemfile:
+
+    gem 'swiftype, '= 0.0.5'
+
+## Development
+
+You can run tests with `rspec`. All HTTP interactions are stubbed out using VCR.
+
+To contribute code to this gem, please fork the repository and submit a pull request.
+
