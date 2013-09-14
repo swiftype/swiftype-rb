@@ -1,5 +1,7 @@
 # Swiftype Ruby API Client
 
+[![Build Status](https://travis-ci.org/swiftype/swiftype-rb.png?branch=easy)](https://travis-ci.org/swiftype/swiftype-rb)
+
 This is a simple client for the [Swiftype API](https://swiftype.com/documentation/overview) with no dependencies outside core Ruby (for 1.9 and 2.0; Ruby 1.8 requires the JSON gem).
 
 ## Getting Started
@@ -20,7 +22,7 @@ To learn more about the Swiftype API, read the [API overview](https://swiftype.c
 
 To install the gem, execute:
 
-        gem install swiftype
+    gem install swiftype
 
 Or place `gem 'swiftype', '~> 1.0.0` in your `Gemfile` and run `bundle install`.
 
