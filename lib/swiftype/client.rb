@@ -3,8 +3,8 @@ require 'swiftype/result_set'
 require 'swiftype/request'
 
 module Swiftype
+  # API client for the {Swiftype API}[https://swiftype.com/documentation/overview].
   class Client
-
     include Swiftype::Request
 
     # Create a new Swiftype::Client client
@@ -24,59 +24,12 @@ module Swiftype
       @options[:platform_access_token]
     end
 
-    module User
-
-      # List users for the configured application.
-      #
-      # @param options [Hash]
-      # @option options [Integer] :page page number of users to fetch (server defaults to 1)
-      # @option options [Integer] :per_page users to return per page (server defaults to 50)
-      def users(options={})
-        params = {
-          :client_id => Swiftype.platform_client_id,
-          :client_secret => Swiftype.platform_client_secret
-        }
-        get("users.json", params.merge(options))
-      end
-
-      # Create a new user for the configured application.
-      def create_user
-        params = {
-          :client_id => Swiftype.platform_client_id,
-          :client_secret => Swiftype.platform_client_secret
-        }
-        post("users.json", params)
-      end
-
-      # Return a user created by the configured application.
-      #
-      # @param user_id [String] the Swiftype User ID
-      def user(user_id)
-        params = {
-          :client_id => Swiftype.platform_client_id,
-          :client_secret => Swiftype.platform_client_secret
-        }
-        get("users/#{user_id}.json", params)
-      end
-    end
-
-    module Engine
-      def engines
-        get("engines.json")
-      end
-
-      def engine(engine_id)
-        get("engines/#{engine_id}.json")
-      end
-
-      def create_engine(name)
-        post("engines.json", :engine => {:name => name})
-      end
-
-      def destroy_engine(engine_id)
-        delete("engines/#{engine_id}.json")
-      end
-
+    # Methods wrapping the Swiftype private search and API endpoints. Using these methods, you can perform full-text
+    # and prefix searches over the Documents in your Engine, in a specific DocumentType, or any subset of DocumentTypes.
+    # You can also filter results and get faceted counts for results.
+    #
+    # For more information, visit the {REST API documentation on searching}[https://swiftype.com/documentation/searching].
+    module Search
       # Perform an autocomplete (prefix) search over all the DocumentTypes of the provided engine.
       # This can be used to implement type-ahead autocompletion. However, if your data is not sensitive,
       # you should consider using the {Swiftype public JSONP API}[https://swiftype.com/documentation/public_api]
@@ -152,24 +105,6 @@ module Swiftype
         search_params = { :q => query }.merge(options)
         response = post("engines/#{engine_id}/search.json", search_params)
         ResultSet.new(response)
-      end
-    end
-
-    module DocumentType
-      def document_types(engine_id)
-        get("engines/#{engine_id}/document_types.json")
-      end
-
-      def document_type(engine_id, document_type_id)
-        get("engines/#{engine_id}/document_types/#{document_type_id}.json")
-      end
-
-      def create_document_type(engine_id, name)
-        post("engines/#{engine_id}/document_types.json", :document_type => {:name => name})
-      end
-
-      def destroy_document_type(engine_id, document_type_id)
-        delete("engines/#{engine_id}/document_types/#{document_type_id}.json")
       end
 
       # Perform an autocomplete (prefix) search over a single DocumentType in an Engine.
@@ -248,6 +183,83 @@ module Swiftype
       end
     end
 
+    module User
+      # List users for the configured application.
+      #
+      # @param options [Hash]
+      # @option options [Integer] :page page number of users to fetch (server defaults to 1)
+      # @option options [Integer] :per_page users to return per page (server defaults to 50)
+      def users(options={})
+        params = {
+          :client_id => Swiftype.platform_client_id,
+          :client_secret => Swiftype.platform_client_secret
+        }
+        get("users.json", params.merge(options))
+      end
+
+      # Create a new user for the configured application.
+      def create_user
+        params = {
+          :client_id => Swiftype.platform_client_id,
+          :client_secret => Swiftype.platform_client_secret
+        }
+        post("users.json", params)
+      end
+
+      # Return a user created by the configured application.
+      #
+      # @param user_id [String] the Swiftype User ID
+      def user(user_id)
+        params = {
+          :client_id => Swiftype.platform_client_id,
+          :client_secret => Swiftype.platform_client_secret
+        }
+        get("users/#{user_id}.json", params)
+      end
+    end
+
+    # An Engine is a search engine that lets you search and filter the Documents it contains.
+    # For more information, see the {REST API overview}[https://swiftype.com/documentation/overview].
+    module Engine
+      def engines
+        get("engines.json")
+      end
+
+      def engine(engine_id)
+        get("engines/#{engine_id}.json")
+      end
+
+      def create_engine(name)
+        post("engines.json", :engine => {:name => name})
+      end
+
+      def destroy_engine(engine_id)
+        delete("engines/#{engine_id}.json")
+      end
+    end
+
+    # Every Document must belong to a DocumentType. For more information, see the {REST API overview}[https://swiftype.com/documentation/overview].
+    module DocumentType
+      def document_types(engine_id)
+        get("engines/#{engine_id}/document_types.json")
+      end
+
+      def document_type(engine_id, document_type_id)
+        get("engines/#{engine_id}/document_types/#{document_type_id}.json")
+      end
+
+      def create_document_type(engine_id, name)
+        post("engines/#{engine_id}/document_types.json", :document_type => {:name => name})
+      end
+
+      def destroy_document_type(engine_id, document_type_id)
+        delete("engines/#{engine_id}/document_types/#{document_type_id}.json")
+      end
+    end
+
+    # Documents have fields that can be searched or filtered.
+    #
+    # For more information on indexing documents, see the {REST API indexing documentation}[https://swiftype.com/documentation/indexing].
     module Document
       def documents(engine_id, document_type_id, page=nil, per_page=nil)
         options = {}
@@ -356,6 +368,9 @@ module Swiftype
       end
     end
 
+    # A Domain represents a host in a crawler-based Engine. Domains
+    # are only relevant to crawler-base engines, but you can
+    # manipulate them through the REST API.
     module Domain
       def domains(engine_id)
         get("engines/#{engine_id}/domains.json")
@@ -373,16 +388,33 @@ module Swiftype
         delete("engines/#{engine_id}/domains/#{domain_id}.json")
       end
 
+      # Trigger a recrawl request for a Domain. Note that this will fail if you have exceeded your recrawl limit.
       def recrawl_domain(engine_id, domain_id)
         put("engines/#{engine_id}/domains/#{domain_id}/recrawl.json")
       end
 
+      # Request to add or update a URL on a Domain. The host of the URL must match the host of the Domain.
+      #
+      # @param [String] engine_id the Engine slug or ID
+      # @param [String] domain_id the Domain ID
+      # @param [String] url the URL to crawl
       def crawl_url(engine_id, domain_id, url)
         put("engines/#{engine_id}/domains/#{domain_id}/crawl_url.json", {:url => url})
       end
     end
 
+    # A Clickthrough represents a user clicking on a full-text search result.
+    #
+    # If you are routing searches through your own server instead of
+    # executing them client-side with the Swiftype JavaScript API, you
+    # will need to record clickthroughs yourself.
     module Clickthrough
+      # Log a clickthrough for a Document.
+      #
+      # @param [String] engine_id the Engine slug or ID
+      # @param [String] document_type the DocumentType slug or ID
+      # @param [String] q the query that generated the search result
+      # @param [String] id the external_id or ID of the Document
       def log_clickthrough(engine_id, document_type, q, id)
         post(
           "engines/#{engine_id}/document_types/#{document_type}/analytics/log_clickthrough.json",
@@ -392,6 +424,7 @@ module Swiftype
     end
 
     include Swiftype::Client::User
+    include Swiftype::Client::Search
     include Swiftype::Client::Engine
     include Swiftype::Client::DocumentType
     include Swiftype::Client::Document
