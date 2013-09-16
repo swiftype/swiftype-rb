@@ -343,9 +343,26 @@ describe Swiftype::Client do
 
       it 'returns search counts for a specified time range' do
         VCR.use_cassette(:analytics_searches_with_time_range) do
-          searches = client.analytics_searches(engine_slug, '2013-01-01', '2013-01-07')
+          searches = client.analytics_searches(engine_slug, :start_date => '2013-01-01', :end_date => '2013-01-07')
           searches.size.should == 7
           searches.first.should == ['2013-01-07', 0]
+        end
+      end
+
+      it 'returns search counts for a specified DocumentType' do
+        VCR.use_cassette(:analytics_searchs_with_document_type) do
+          searches = client.analytics_searches(engine_slug, :document_type_id => 'page')
+          searches.size.should == 15
+          searches.first.should == ['2013-09-16', 0]
+
+        end
+      end
+
+      it 'returns search counts for a specified DocumentType and time range' do
+        VCR.use_cassette(:analytics_searches_with_document_type_and_time_range) do
+          searches = client.analytics_autoselects(engine_slug, :document_type_id => 'page', :start_date => '2013-07-01', :end_date => '2013-07-07')
+          searches.size.should == 7
+          searches.first.should == ['2013-07-07', 0]
         end
       end
     end
@@ -361,7 +378,21 @@ describe Swiftype::Client do
 
       it 'returns autoselects counts for a specified time range' do
         VCR.use_cassette(:analytics_autoselects_with_time_range) do
-          autoselects = client.analytics_autoselects(engine_slug, '2013-07-01', '2013-07-07')
+          autoselects = client.analytics_autoselects(engine_slug, :start_date => '2013-07-01', :end_date => '2013-07-07')
+          autoselects.size.should == 7
+        end
+      end
+
+      it 'returns autoselect counts for a specified DocumentType' do
+        VCR.use_cassette(:analytics_autoselects_with_document_type) do
+          autoselects = client.analytics_autoselects(engine_slug, :document_type_id => 'page')
+          autoselects.size.should == 15
+        end
+      end
+
+      it 'returns autoselect counts for a specified DocumentType and time range' do
+        VCR.use_cassette(:analytics_autoselects_with_document_type_and_time_range) do
+          autoselects = client.analytics_autoselects(engine_slug, :document_type_id => 'page', :start_date => '2013-07-01', :end_date => '2013-07-07')
           autoselects.size.should == 7
         end
       end

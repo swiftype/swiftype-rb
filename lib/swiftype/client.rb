@@ -293,13 +293,42 @@ module Swiftype
       end
     end
 
+    # The analytics API provides a way to export analytics data similar to what is found in the Swiftype Dashboard.
+    # See the {REST API Documentation}[https://swiftype.com/documentation/analytics] for details.
     module Analytics
-      def analytics_searches(engine_id, from=nil, to=nil)
-        get("engines/#{engine_id}/analytics/searches.json", date_range(from, to))
+      # Return the number of searches that occurred on each day in the time range for the provided Engine and optional DocumentType.
+      # The maximum time range between start and end dates is 30 days.
+      #
+      # @param [String] engine_id the Engine slug or ID
+      # @param [Hash] options
+      # @option options [String] :document_type_id the DocumentType slug or ID
+      # @option options [String] :start_date a date formatted like '2013-01-01'
+      # @option options [String] :end_date to a date formatted like '2013-01-01'
+      def analytics_searches(engine_id, options={})
+        document_type_id = options.delete(:document_type_id)
+        if document_type_id
+          get("engines/#{engine_id}/document_types/#{document_type_id}/analytics/searches.json", options)
+        else
+          get("engines/#{engine_id}/analytics/searches.json", options)
+        end
       end
 
-      def analytics_autoselects(engine_id, from=nil, to=nil)
-        get("engines/#{engine_id}/analytics/autoselects.json", date_range(from, to))
+      # Return the number of autoselects (when a user clicks a result from an autocomplete dropdown)
+      # that occurred on each day in the time range for the provided Engine and optional DocumentType.
+      # The maximum time range between start and end dates is 30 days.
+      #
+      # @param [String] engine_id the Engine slug or ID
+      # @param [Hash] options
+      # @option options [String] :document_type_id the DocumentType slug or ID
+      # @option options [String] :start_date a date formatted like '2013-01-01'
+      # @option options [String] :end_date to a date formatted like '2013-01-01'
+      def analytics_autoselects(engine_id, options={})
+        document_type_id = options.delete(:document_type_id)
+        if document_type_id
+          get("engines/#{engine_id}/document_types/#{document_type_id}/analytics/autoselects.json", options)
+        else
+          get("engines/#{engine_id}/analytics/autoselects.json", options)
+        end
       end
 
       # Return top queries for an engine.
@@ -324,14 +353,6 @@ module Swiftype
       # @option options [Integer] :per_page number of results per page. The server defaults to 20 and the maximum is 100.
       def analytics_top_no_result_queries(engine_id, options={})
         get("engines/#{engine_id}/analytics/top_no_result_queries.json", options)
-      end
-
-      private
-      def date_range(from, to)
-        options = {}
-        options[:start_date] = from if from
-        options[:end_date] = to if to
-        options
       end
     end
 
