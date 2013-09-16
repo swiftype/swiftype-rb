@@ -349,7 +349,7 @@ module Swiftype
       # @param [Hash] options
       # @option options [String] :start_date a date formatted like '2013-01-01'
       # @option options [String] :end_date a date formatted like '2013-01-01'
-      # @option options [Integer] :page page number (0-based). The server defaults to page 0 and the maximum is 50.
+      # @option options [Integer] :page page number. The server defaults to page 1 and the maximum is 50.
       # @option options [Integer] :per_page number of results per page. The server defaults to 20 and the maximum is 100.
       def analytics_top_queries(engine_id, options={})
         get("engines/#{engine_id}/analytics/top_queries.json", options)
@@ -361,7 +361,7 @@ module Swiftype
       # @param [Hash] options
       # @option options [String] :start_date a date formatted like '2013-01-01'
       # @option options [String] :end_date a date formatted like '2013-01-01'
-      # @option options [Integer] :page page number (0-based). The server defaults to page 0 and the maximum is 50.
+      # @option options [Integer] :page page number. The server defaults to page 1 and the maximum is 50.
       # @option options [Integer] :per_page number of results per page. The server defaults to 20 and the maximum is 100.
       def analytics_top_no_result_queries(engine_id, options={})
         get("engines/#{engine_id}/analytics/top_no_result_queries.json", options)
