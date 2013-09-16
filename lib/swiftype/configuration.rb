@@ -1,3 +1,4 @@
+require 'uri'
 require 'swiftype/version'
 
 module Swiftype
@@ -42,6 +43,25 @@ module Swiftype
       options = {}
       VALID_OPTIONS_KEYS.each{|k| options[k] = send(k)}
       options
+    end
+
+    # Set api_key and endpoint based on a URL with HTTP authentication.
+    # Useful if you're using the Swiftype Heroku add-on.
+    def authenticated_url=(url)
+      uri = URI(url)
+      self.api_key = uri.user
+      uri.user = nil
+      uri.password = nil
+      self.endpoint = uri.to_s
+    end
+
+    # setter for endpoint that ensures it always ends in '/'
+    def endpoint=(endpoint)
+      if endpoint.end_with?('/')
+        @endpoint = endpoint
+      else
+        @endpoint = "#{endpoint}/"
+      end
     end
   end
 end
