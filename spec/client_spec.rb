@@ -354,7 +354,6 @@ describe Swiftype::Client do
           searches = client.analytics_searches(engine_slug, :document_type_id => 'page')
           searches.size.should == 15
           searches.first.should == ['2013-09-16', 0]
-
         end
       end
 
@@ -394,6 +393,39 @@ describe Swiftype::Client do
         VCR.use_cassette(:analytics_autoselects_with_document_type_and_time_range) do
           autoselects = client.analytics_autoselects(engine_slug, :document_type_id => 'page', :start_date => '2013-07-01', :end_date => '2013-07-07')
           autoselects.size.should == 7
+        end
+      end
+    end
+
+    context '#analytics_clicks' do
+      it 'returns click counts for the default time frame' do
+        VCR.use_cassette(:analytics_clicks) do
+          clicks = client.analytics_clicks(engine_slug)
+          clicks.size.should == 15
+          clicks.first.should == ['2013-09-17', 0]
+        end
+      end
+
+      it 'returns clicks counts for a specified time range' do
+        VCR.use_cassette(:analytics_clicks_with_time_range) do
+          clicks = client.analytics_clicks(engine_slug, :start_date => '2013-07-01', :end_date => '2013-07-07')
+          clicks.size.should == 7
+          clicks.first.should == ['2013-07-07', 0]
+        end
+      end
+
+      it 'returns click counts for a specified DocumentType' do
+        VCR.use_cassette(:analytics_clicks_with_document_type) do
+          clicks = client.analytics_clicks(engine_slug, :document_type_id => 'page')
+          clicks.size.should == 15
+        end
+      end
+
+      it 'returns click counts for a specified DocumentType and time range' do
+        VCR.use_cassette(:analytics_clicks_with_document_type_and_time_range) do
+          clicks = client.analytics_clicks(engine_slug, :document_type_id => 'page', :start_date => '2013-07-01', :end_date => '2013-07-07')
+          clicks.size.should == 7
+          clicks.first.should == ['2013-07-07', 0]
         end
       end
     end

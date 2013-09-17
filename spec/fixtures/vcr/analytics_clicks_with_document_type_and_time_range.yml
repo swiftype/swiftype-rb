@@ -1,0 +1,55 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://hello:@localhost:3000/api/v1/engines/recursion/document_types/page/analytics/clicks.json?end_date=2013-07-07&start_date=2013-07-01
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Swiftype-Ruby/1.0.0
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - ngx_openresty/1.2.7.8
+      Date:
+      - Tue, 17 Sep 2013 00:07:17 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Status:
+      - 200 OK
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      Etag:
+      - ! '"b55e3fc5da2c4b1937f7bb6580de94f6"'
+      Cache-Control:
+      - must-revalidate, private, max-age=0
+      Set-Cookie:
+      - _session_id=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJTc5Njk1Y2I4MDVkM2JkZmI0MmJjYTU3OTdkMjk5NGE1BjsAVEkiGXdhcmRlbi51c2VyLnVzZXIua2V5BjsAVFsISSIJVXNlcgY7AEZbBlU6Gk1vcGVkOjpCU09OOjpPYmplY3RJZCIRT6oFg9uoiHqsAAABSSIiJDJhJDEwJE1CYU9abE5nbU01T3hvMFI1Zy5Cay4GOwBU--448a73b8c641507815ddaf760803c397c7d5ea14;
+        path=/; HttpOnly; secure
+      X-Request-Id:
+      - 302a83a9093a45ffd0b652beafaf3870
+      X-Runtime:
+      - '0.064719'
+      X-Rack-Cache:
+      - miss
+    body:
+      encoding: US-ASCII
+      string: ! '[["2013-07-07",0],["2013-07-06",0],["2013-07-05",0],["2013-07-04",0],["2013-07-03",0],["2013-07-02",0],["2013-07-01",0]]'
+    http_version:
+  recorded_at: Tue, 17 Sep 2013 00:07:17 GMT
+recorded_with: VCR 2.5.0

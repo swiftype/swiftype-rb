@@ -343,6 +343,24 @@ module Swiftype
         end
       end
 
+      # Return the number of clickthroughs (when a user clicks a result from a search results page)
+      # that occurred on each day in the time range for the provided Engine and optional DocumentType.
+      # The maximum time range between start and end dates is 30 days.
+      #
+      # @param [String] engine_id the Engine slug or ID
+      # @param [Hash] options
+      # @option options [String] :document_type_id the DocumentType slug or ID
+      # @option options [String] :start_date a date formatted like '2013-01-01'
+      # @option options [String] :end_date to a date formatted like '2013-01-01'
+      def analytics_clicks(engine_id, options={})
+        document_type_id = options.delete(:document_type_id)
+        if document_type_id
+          get("engines/#{engine_id}/document_types/#{document_type_id}/analytics/clicks.json", options)
+        else
+          get("engines/#{engine_id}/analytics/clicks.json", options)
+        end
+      end
+
       # Return top queries for an engine.
       #
       # @param [String] engine_id the engine slug or ID
