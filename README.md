@@ -294,7 +294,7 @@ To upgrade:
 * If you previously used the `Swiftype::Easy` client, change `Swiftype::Easy` to `Swiftype::Client`. Almost all method calls should be the same (there are a few minor changes).
 * If you previously used the `Swiftype` client, migrate your API calls to the `Swiftype::Client` format. If you are not able to do that, lock your gem version to 0.0.5 by adding this to your Gemfile:
 
-    gem 'swiftype, '= 0.0.5'
+        gem 'swiftype, '= 0.0.5'
 
 ## Development
 
