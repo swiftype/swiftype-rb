@@ -295,6 +295,19 @@ To upgrade:
 * If you previously used the `Swiftype` client, migrate your API calls to the `Swiftype::Client` format. If you are not able to do that, lock your gem version to 0.0.5 by adding this to your Gemfile:
 
         gem 'swiftype, '= 0.0.5'
+* If you previously used the beta swiftype-easy-rb library (which was the precursor of swiftype-rb 1.0), change `Swiftype::Easy` to `Swiftype::Client` and move your configuration from the `Swiftype::Easy` module to the `Swiftype` module. For example:
+
+        Swiftype:Easy.configure do |configure|
+          config.api_key = 'your_api_key'
+        end
+
+  can be converted to
+
+        Swiftype.configure do |config|
+          config.api_key = 'your_api_key'
+        end
+
+  or simply `Swiftype.api_key = 'your_api_key'`.
 
 ## Development
 
