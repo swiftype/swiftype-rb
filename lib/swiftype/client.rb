@@ -7,6 +7,11 @@ module Swiftype
   class Client
     include Swiftype::Request
 
+    def self.configure(&block)
+      warn "`Swiftype::Easy.configure` has been deprecated. Use `Swiftype.configure` instead."
+      Swiftype.configure &block
+    end
+
     # Create a new Swiftype::Client client
     #
     # @param options [Hash] a hash of configuration options that will overrided what is set on the Swiftype class.
