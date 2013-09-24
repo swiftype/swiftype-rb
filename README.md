@@ -1,6 +1,6 @@
 # Swiftype Ruby API Client
 
-[![Build Status](https://travis-ci.org/swiftype/swiftype-rb.png?branch=easy)](https://travis-ci.org/swiftype/swiftype-rb)
+[![Build Status](https://travis-ci.org/swiftype/swiftype-rb.png)](https://travis-ci.org/swiftype/swiftype-rb)
 
 This is a simple client for the [Swiftype API](https://swiftype.com/documentation/overview) with no dependencies outside core Ruby (for 1.9 and 2.0; Ruby 1.8 requires the JSON gem).
 
