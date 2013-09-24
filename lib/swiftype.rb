@@ -1,4 +1,5 @@
 require 'swiftype/client'
+require 'swiftype/sso'
 
 module Swiftype
   extend Swiftype::Configuration

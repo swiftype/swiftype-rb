@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'swiftype/sso'
 
 describe Swiftype::SSO do
   let(:user_id) { '5064a7de2ed960e715000276' }
