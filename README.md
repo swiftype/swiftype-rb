@@ -24,7 +24,7 @@ To install the gem, execute:
 
     gem install swiftype
 
-Or place `gem 'swiftype', '~> 1.0.0` in your `Gemfile` and run `bundle install`.
+Or place `gem 'swiftype', '~> 1.0.1` in your `Gemfile` and run `bundle install`.
 
 ## Usage
 
@@ -287,7 +287,7 @@ You can also specifiy a date range for queries without results:
 
 ## Migrating from previous versions
 
-swiftype-rb 1.0.0 has been rewritten to be simpler and easier to use. However, it is not compatable with the previous version, 0.0.5.
+swiftype-rb 1.0 has been rewritten to be simpler and easier to use. However, it is not compatable with the previous version, 0.0.5.
 
 To upgrade from the old version of swiftype-rb:
 
