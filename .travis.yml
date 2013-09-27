@@ -1,5 +1,5 @@
 language: ruby
-script: rspec spec/platform_spec.rb
+script: rspec 
 rvm:
   - 1.8.7
   - 1.9.3
