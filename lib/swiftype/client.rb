@@ -301,6 +301,10 @@ module Swiftype
         post("engines/#{engine_id}/document_types/#{document_type_id}/documents/bulk_create_or_update.json", :documents => documents)
       end
 
+      def create_or_update_documents_verbose(engine_id, document_type_id, documents=[])
+        post("engines/#{engine_id}/document_types/#{document_type_id}/documents/bulk_create_or_update_verbose.json", :documents => documents)
+      end
+
       def update_document(engine_id, document_type_id, document_id, fields)
         put("engines/#{engine_id}/document_types/#{document_type_id}/documents/#{document_id}/update_fields.json", { :fields => fields })
       end

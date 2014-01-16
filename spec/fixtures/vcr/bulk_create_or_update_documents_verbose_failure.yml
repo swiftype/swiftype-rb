@@ -1,0 +1,47 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://hello:@localhost:3000/api/v1/engines/swiftype-api-example/document_types/videos/documents/bulk_create_or_update_verbose.json
+    body:
+      encoding: UTF-8
+      string: "{\"documents\":[{\"external_id\":\"failed_doc\",\"fields\":[{\"type\":\"string\",\"name\":\"title\"}]}]}"
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Swiftype-Ruby/1.0.1
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Ua-Compatible:
+      - IE=Edge
+      Etag:
+      - "\"45d92cba10f804a2e430c32f79c06377\""
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Set-Cookie:
+      - _st_main_session=BAh7B0kiD3Nlc3Npb25faWQGOgZFVEkiJTI3ODQwNDI1NzU3ZWE0YjkyZDU1NzI5ZjZiMjg0NDM2BjsAVEkiGXdhcmRlbi51c2VyLnJvbGUua2V5BjsAVFsISSIJUm9sZQY7AEZbBlU6Gk1vcGVkOjpCU09OOjpPYmplY3RJZCIRUscPIjrnQFhtAAADMA%3D%3D--67548ff009df98e934a16364aa58b29632bc2cd6;
+        path=/; HttpOnly
+      X-Request-Id:
+      - 525743b187eb7b876042ebc3778d6b84
+      X-Runtime:
+      - '0.156692'
+      Connection:
+      - close
+      Server:
+      - thin 1.5.0 codename Knife
+    body:
+      encoding: UTF-8
+      string: "[\"Invalid field definition: Field definition requires a 'value' attribute\"]"
+    http_version: 
+  recorded_at: Thu, 16 Jan 2014 23:13:08 GMT
+recorded_with: VCR 2.8.0

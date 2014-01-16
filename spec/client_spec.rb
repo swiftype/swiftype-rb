@@ -286,6 +286,25 @@ describe Swiftype::Client do
       end
     end
 
+    context '#bulk_create_or_update_documents_verbose' do
+      it 'returns true for all documents successfully created or updated' do
+        VCR.use_cassette(:bulk_create_or_update_documents_verbose_success) do
+          response = client.create_or_update_documents_verbose(engine_slug, document_type_slug, documents)
+          response.should == [true, true]
+        end
+      end
+
+      it 'returns a descriptive error message if a document cannot be created or updated due to an error' do
+        documents = [{:external_id => 'failed_doc', :fields => [{:type => :string, :name => :title}]}] # missing value
+
+        VCR.use_cassette(:bulk_create_or_update_documents_verbose_failure) do
+          response = client.create_or_update_documents_verbose(engine_slug, document_type_slug, documents)
+          response.size.should == 1
+          response.first.should match /^Invalid field definition/
+        end
+      end
+    end
+
     context '#update_document' do
       it 'updates a document given its id and fields to update' do
         fields = {:title => 'awesome new title', :channel_id => 'UC5VA5j05FjETg-iLekcyiBw'}

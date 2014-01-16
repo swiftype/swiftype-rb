@@ -1,0 +1,51 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://hello:@localhost:3000/api/v1/engines/swiftype-api-example/document_types/videos/documents/bulk_create_or_update_verbose.json
+    body:
+      encoding: UTF-8
+      string: "{\"documents\":[{\"external_id\":\"INscMGmhmX4\",\"fields\":[{\"name\":\"url\",\"value\":\"http://www.youtube.com/watch?v=v1uyQZNg2vE\",\"type\":\"enum\"},{\"name\":\"thumbnail_url\",\"value\":\"https://i.ytimg.com/vi/INscMGmhmX4/mqdefault.jpg\",\"type\":\"enum\"},{\"name\":\"channel_id\",\"value\":\"UCTzVrd9ExsI3Zgnlh3_btLg\",\"type\":\"enum\"},{\"name\":\"title\",\"value\":\"The
+        Original Grumpy Cat\",\"type\":\"string\"},{\"name\":\"category_name\",\"value\":\"Pets
+        &amp; Animals\",\"type\":\"string\"}]},{\"external_id\":\"XfY9Dsg_DZk\",\"fields\":[{\"name\":\"url\",\"value\":\"http://www.youtube.com/watch?v=XfY9Dsg_DZk\",\"type\":\"enum\"},{\"name\":\"thumbnail_url\",\"value\":\"https://i.ytimg.com/vi/XfY9Dsg_DZk/mqdefault.jpg\",\"type\":\"enum\"},{\"name\":\"channel_id\",\"value\":\"UC5VA5j05FjETg-iLekcyiBw\",\"type\":\"enum\"},{\"name\":\"title\",\"value\":\"Corgi
+        talks to cat\",\"type\":\"string\"},{\"name\":\"category_name\",\"value\":\"Pets
+        &amp; Animals\",\"type\":\"string\"}]}]}"
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Swiftype-Ruby/1.0.1
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Ua-Compatible:
+      - IE=Edge
+      Etag:
+      - "\"bb009c6dcb5c622766ad5aa1ea1562d9\""
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Set-Cookie:
+      - _st_main_session=BAh7B0kiD3Nlc3Npb25faWQGOgZFVEkiJWZmYjQwMDY5M2RlZjFiNzk5NDkyNGVlYmY5MWRlODFlBjsAVEkiGXdhcmRlbi51c2VyLnJvbGUua2V5BjsAVFsISSIJUm9sZQY7AEZbBlU6Gk1vcGVkOjpCU09OOjpPYmplY3RJZCIRUscPIjrnQFhtAAADMA%3D%3D--1b489621236a6a65bd84a0e24987078b09db855e;
+        path=/; HttpOnly
+      X-Request-Id:
+      - 8f984b0c4a86889b38527cde5b3cdf47
+      X-Runtime:
+      - '0.034945'
+      Connection:
+      - close
+      Server:
+      - thin 1.5.0 codename Knife
+    body:
+      encoding: UTF-8
+      string: "[true,true]"
+    http_version: 
+  recorded_at: Thu, 16 Jan 2014 23:13:08 GMT
+recorded_with: VCR 2.8.0
