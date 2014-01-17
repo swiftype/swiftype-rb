@@ -203,6 +203,8 @@ Create or update multiple `Documents` at once:
             {:name => 'url', :value => 'http://www.youtube.com/watch?v='dMH0bHeiRNg', :type => 'enum'},
             {:name => 'chanel_id', :value => UC5B9H4l2vtgo7cAoExcFh-w', :type => 'enum'}
         ]}])
+        
+**NOTE:** If you'd like a more descriptive error message to be returned when documents fail to be created, use `client.create_or_update_documents_verbose` instead.
 
 Destroy a Document by external_id:
 
