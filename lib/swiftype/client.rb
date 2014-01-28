@@ -17,6 +17,9 @@ module Swiftype
     # @param options [Hash] a hash of configuration options that will overrided what is set on the Swiftype class.
     # @option options [String] :api_key an API Key to use for this client
     # @option options [String] :platform_access_token a user's access token, will be used instead of API key for authenticating requests
+    # @option options [Fixnum] :open_timeout the number of seconds Net::HTTP
+    #   will while opening a connection before raising a Timeout::Error
+
     def initialize(options={})
       @options = options
     end
@@ -27,6 +30,10 @@ module Swiftype
 
     def platform_access_token
       @options[:platform_access_token]
+    end
+
+    def open_timeout
+      @options[:open_timeout]
     end
 
     # Methods wrapping the Swiftype private search and API endpoints. Using these methods, you can perform full-text
