@@ -71,7 +71,7 @@ describe Swiftype::Client do
     let(:options_client) { Swiftype::Client.new(options) }
 
     context '#request' do
-      let(:options) { { open_timeout => 3 } }
+      let(:options) { { :open_timeout => 3 } }
       it 'respects the Net::HTTP open_timeout option' do
         expect(options_client.open_timeout).to eq(3)
       end
