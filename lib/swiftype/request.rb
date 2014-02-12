@@ -31,6 +31,7 @@ module Swiftype
 
       request = build_request(method, uri, params)
       http = Net::HTTP.new(uri.host, uri.port)
+      http.open_timeout = @options[:open_timeout]
 
       if uri.scheme == 'https'
         http.use_ssl = true
