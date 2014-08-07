@@ -60,8 +60,8 @@ describe 'platform user API' do
       it 'returns a Hash with user info' do
         VCR.use_cassette('create_user') do
           user = client.create_user
-          user.should have_key('id')
-          user.should have_key('access_token')
+          expect(user).to have_key('id')
+          expect(user).to have_key('access_token')
         end
       end
     end
@@ -70,14 +70,14 @@ describe 'platform user API' do
       it 'returns the first page of users' do
         VCR.use_cassette('list_users') do
           users = client.users
-          users.length.should == 3
+          expect(users.length).to eq(3)
         end
       end
 
       it 'returns an empty list of users once you page past the end' do
         VCR.use_cassette('list_users_with_pagination') do
           users = client.users(:page => 2)
-          users.length.should == 0
+          expect(users.length).to eq(0)
         end
       end
     end
@@ -86,8 +86,8 @@ describe 'platform user API' do
       it 'returns a Hash with user info' do
         VCR.use_cassette('show_user') do
           user = client.user('5230b8c82ed960ba2000001d')
-          user['id'].should == '5230b8c82ed960ba2000001d'
-          user['access_token'].should == '0381294b7ef41db44fba20aad86a52d294b9fae67a26e85139d323eb78106706'
+          expect(user['id']).to eq('5230b8c82ed960ba2000001d')
+          expect(user['access_token']).to eq('0381294b7ef41db44fba20aad86a52d294b9fae67a26e85139d323eb78106706')
         end
       end
     end
