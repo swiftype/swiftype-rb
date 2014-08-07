@@ -14,11 +14,11 @@ module Swiftype
 
     # Create a new Swiftype::Client client
     #
-    # @param options [Hash] a hash of configuration options that will overrided what is set on the Swiftype class.
+    # @param options [Hash] a hash of configuration options that will override what is set on the Swiftype class.
     # @option options [String] :api_key an API Key to use for this client
     # @option options [String] :platform_access_token a user's access token, will be used instead of API key for authenticating requests
     # @option options [Fixnum] :open_timeout the number of seconds Net::HTTP
-    #   will while opening a connection before raising a Timeout::Error
+    #   will wait while opening a connection before raising a Timeout::Error
 
     def initialize(options={})
       @options = options
