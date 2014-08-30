@@ -36,6 +36,10 @@ Before issuing commands to the API, configure the client with your API key:
 
 You can find your API key in your [Account Settings](https://swiftype.com/settings/account).
 
+If you're using Heroku, you can configure the client with the `SWIFTYPE_URL` configuration variable:
+
+    Swiftype.authenticated_url = ENV['SWIFTYPE_URL']
+
 ### Create a client
 
     client = Swiftype::Client.new
@@ -203,7 +207,7 @@ Create or update multiple `Documents` at once:
             {:name => 'url', :value => 'http://www.youtube.com/watch?v='dMH0bHeiRNg', :type => 'enum'},
             {:name => 'chanel_id', :value => UC5B9H4l2vtgo7cAoExcFh-w', :type => 'enum'}
         ]}])
-        
+
 **NOTE:** If you'd like a more descriptive error message to be returned when documents fail to be created, use `client.create_or_update_documents_verbose` instead.
 
 Destroy a Document by external_id:
@@ -293,7 +297,7 @@ swiftype-rb 1.0 has been rewritten to be simpler and easier to use. However, it 
 
 To upgrade from the old version of swiftype-rb:
 
-* If you previously used the `Swiftype` client, migrate your API calls to the `Swiftype::Client` format. 
+* If you previously used the `Swiftype` client, migrate your API calls to the `Swiftype::Client` format.
 * If you previously used the `Swiftype::Easy` client, change `Swiftype::Easy` to `Swiftype::Client`. Almost all method calls should be the same (there are a few minor changes).
 
 Additionally, the result object returned by search methods (for example, the old Swiftype gem's `Engine#search` or `Swiftype::Easy#search` methods) returns results in a different way. Instead of being an array of `Swiftype::Document` objects, it will be an array of Hashes.
