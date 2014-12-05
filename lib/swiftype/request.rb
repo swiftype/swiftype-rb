@@ -26,6 +26,18 @@ module Swiftype
       request(:delete, path, params)
     end
 
+    def poll(options={})
+      timeout = options[:timeout] || 10
+      delay = 0.05
+      Timeout::timeout(timeout) do
+        while true
+          res = yield
+          return res if res
+          sleep delay *= 2
+        end
+      end
+    end
+
     def request(method, path, params={})
       uri = URI.parse("#{Swiftype.endpoint}#{path}")
 

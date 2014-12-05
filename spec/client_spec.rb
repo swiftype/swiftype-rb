@@ -195,6 +195,17 @@ describe Swiftype::Client do
   end
 
   context 'Document' do
+    before :each do
+      def check_async_response_format(response, options = {})
+        expect(response.keys).to match_array(["document_receipts", "batch_link"])
+        expect(response["document_receipts"]).to be_a_kind_of(Array)
+        expect(response["document_receipts"].first.keys).to match_array(["id", "external_id", "link", "status", "errors"])
+        expect(response["document_receipts"].first["external_id"]).to eq(options[:external_id]) if options[:external_id]
+        expect(response["document_receipts"].first["status"]).to eq(options[:status]) if options[:status]
+        expect(response["document_receipts"].first["errors"]).to eq(options[:errors]) if options[:errors]
+      end
+    end
+
     let(:document_type_slug) { 'videos' }
     let(:document_id) { 'FtX8nswnUKU'}
     let(:documents) do
@@ -293,6 +304,81 @@ describe Swiftype::Client do
         VCR.use_cassette(:bulk_create_or_update_documents_failure) do
           response = client.create_or_update_documents(engine_slug, document_type_slug, documents)
           expect(response).to eq([false])
+        end
+      end
+    end
+
+    context '#async_create_or_update_documents' do
+      it 'returns true for all documents successfully created or updated' do
+        VCR.use_cassette(:async_create_or_update_document_success) do
+          response = client.async_create_or_update_documents(engine_slug, document_type_slug, documents)
+          check_async_response_format(response, :external_id => documents.first["external_id"], :status => "pending")
+        end
+      end
+
+      it 'returns false if a document cannot be created or updated due to an error' do
+        documents = [{:external_id => 'failed_doc', :fields => [{:type => :string, :name => :title}]}] # missing value
+
+        VCR.use_cassette(:async_create_or_update_document_failure) do
+          response = client.async_create_or_update_documents(engine_slug, document_type_slug, documents)
+          check_async_response_format(response, :external_id => documents.first["external_id"], :status => "failed", :errors => ["Missing required parameter: value"])
+        end
+      end
+    end
+
+    context '#document_receipts' do
+      before :each do
+        def get_receipt_ids
+          receipt_ids = nil
+          VCR.use_cassette(:async_create_or_update_document_success) do
+            response = client.async_create_or_update_documents(engine_slug, document_type_slug, documents)
+            receipt_ids = response["document_receipts"].map { |r| r["id"] }
+          end
+          receipt_ids
+        end
+      end
+
+      it 'returns hash with one receipt' do
+        VCR.use_cassette(:document_receipts_single) do
+          receipt_ids = get_receipt_ids
+          response = client.document_receipts(receipt_ids.first)
+          expect(response).to eq("id" => receipt_ids.first, "status" => "pending")
+        end
+      end
+
+      it 'returns array of hashes one for each receipt' do
+        VCR.use_cassette(:document_receipts_multiple) do
+          receipt_ids = get_receipt_ids
+          response = client.document_receipts(receipt_ids)
+          expect(response).to eq([{"id" => receipt_ids[0], "status" => "pending"}, {"id" => receipt_ids[1], "status" => "pending"}])
+        end
+      end
+    end
+
+    context '#index_documents' do
+      it 'returns #async_create_or_update_documents format return when async has been passed as true' do
+        VCR.use_cassette(:async_create_or_update_document_success) do
+          response = client.index_documents(engine_slug, document_type_slug, documents, :async => true)
+          check_async_response_format(response, :external_id => documents.first["external_id"], :status => "pending")
+        end
+      end
+
+      it 'returns document_receipts when successfull' do
+        VCR.use_cassette(:async_create_or_update_document_success) do
+          VCR.use_cassette(:document_receipts_multiple_complete) do
+            response = client.index_documents(engine_slug, document_type_slug, documents)
+            expect(response.map(&:keys)).to eq([["id", "status", "link"], ["id", "status", "link"]])
+            expect(response.map { |a| a["status"] }).to eq(["complete", "complete"])
+          end
+        end
+      end
+
+      it 'should timeout if the process takes longer than the timeout option passed' do
+        client.stub(:document_receipts){ sleep 1}
+        VCR.use_cassette(:async_create_or_update_document_success) do
+          expect {
+            client.index_documents(engine_slug, document_type_slug, documents, :timeout => 0.5)
+          }.to raise_error Timeout::Error
         end
       end
     end

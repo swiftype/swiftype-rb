@@ -1,0 +1,51 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://hello:@localhost:3000/api/v1/engines/swiftype-api-example/document_types/videos/documents/async_bulk_create_or_update.json
+    body:
+      encoding: UTF-8
+      string: '{"documents":[{"external_id":"INscMGmhmX4","fields":[{"name":"url","value":"http://www.youtube.com/watch?v=v1uyQZNg2vE","type":"enum"},{"name":"thumbnail_url","value":"https://i.ytimg.com/vi/INscMGmhmX4/mqdefault.jpg","type":"enum"},{"name":"channel_id","value":"UCTzVrd9ExsI3Zgnlh3_btLg","type":"enum"},{"name":"title","value":"The
+        Original Grumpy Cat","type":"string"},{"name":"category_name","value":"Pets
+        &amp; Animals","type":"string"}]},{"external_id":"XfY9Dsg_DZk","fields":[{"name":"url","value":"http://www.youtube.com/watch?v=XfY9Dsg_DZk","type":"enum"},{"name":"thumbnail_url","value":"https://i.ytimg.com/vi/XfY9Dsg_DZk/mqdefault.jpg","type":"enum"},{"name":"channel_id","value":"UC5VA5j05FjETg-iLekcyiBw","type":"enum"},{"name":"title","value":"Corgi
+        talks to cat","type":"string"},{"name":"category_name","value":"Pets &amp;
+        Animals","type":"string"}]}]}'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Swiftype-Ruby/1.1.1
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Ua-Compatible:
+      - IE=Edge
+      Cache-Control:
+      - no-cache
+      Set-Cookie:
+      - __profilin=p%3Dt; path=/
+      - __profilin=p%3Dt; path=/
+      - _st_main_session=BAh7B0kiD3Nlc3Npb25faWQGOgZFVEkiJTRlMjk1MmVjN2M0ZTFlYWEyMDlkODZiY2VmNmZlOTQ1BjsAVEkiGXdhcmRlbi51c2VyLnJvbGUua2V5BjsAVFsHWwZVOhpNb3BlZDo6QlNPTjo6T2JqZWN0SWQiEVR%2BFdjOomAoqQAAAzA%3D--c1e57d7c1f013e03b8ddc72206de74c987f00d4b;
+        path=/; HttpOnly
+      X-Request-Id:
+      - f7e41df2d0d029fcc51f6481298a7069
+      X-Runtime:
+      - '1.167600'
+      Connection:
+      - close
+      Server:
+      - thin 1.5.0 codename Knife
+    body:
+      encoding: UTF-8
+      string: '{"document_receipts":[{"id":"54821784cea2601e1b000001","external_id":"INscMGmhmX4","link":"http://localhost:3000/api/v1/document_receipts/54821784cea2601e1b000001.json","status":"pending","errors":[]},{"id":"54821784cea2601e1b000003","external_id":"XfY9Dsg_DZk","link":"http://localhost:3000/api/v1/document_receipts/54821784cea2601e1b000003.json","status":"pending","errors":[]}],"batch_link":"http://localhost:3000/api/v1/document_receipts.json?ids=54821784cea2601e1b000001%2C54821784cea2601e1b000003"}'
+    http_version: 
+  recorded_at: Fri, 05 Dec 2014 20:37:24 GMT
+recorded_with: VCR 2.9.3

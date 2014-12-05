@@ -319,6 +319,40 @@ module Swiftype
       def update_documents(engine_id, document_type_id, documents={})
         put("engines/#{engine_id}/document_types/#{document_type_id}/documents/bulk_update.json", { :documents => documents })
       end
+
+      def async_create_or_update_documents(engine_id, document_type_id, documents=[])
+        post("engines/#{engine_id}/document_types/#{document_type_id}/documents/async_bulk_create_or_update.json", :documents => documents)
+      end
+
+      def document_receipts(receipt_ids)
+        case receipt_ids
+        when Array
+          post("document_receipts.json", :ids => receipt_ids)
+        else
+          get("document_receipts/#{receipt_ids}.json")
+        end
+      end
+
+      # options - (Hash)
+      #           :async => true (When true, return is same as #async_create_or_update_documents)
+      #           :timeout => Fixnum <seconds> Default is 10 secs.
+      def index_documents(engine_id, document_type_id, documents = [], options = {})
+        documents = Array(documents)
+
+        res = async_create_or_update_documents(engine_id, document_type_id, documents)
+
+        if options[:async]
+          res
+        else
+          receipt_ids = res["document_receipts"].map { |a| a["id"] }
+              
+          poll(options) do
+            receipts = document_receipts(receipt_ids)
+            flag = receipts.all? { |a| a["status"] != "pending" }
+            flag ? receipts : false
+          end
+        end
+      end
     end
 
     # The analytics API provides a way to export analytics data similar to what is found in the Swiftype Dashboard.

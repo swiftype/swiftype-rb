@@ -24,7 +24,7 @@ To install the gem, execute:
 
     gem install swiftype
 
-Or place `gem 'swiftype', '~> 1.0.1` in your `Gemfile` and run `bundle install`.
+Or place `gem 'swiftype', '~> 1.2.0` in your `Gemfile` and run `bundle install`.
 
 ## Usage
 
@@ -141,9 +141,11 @@ Retrieve a specific Document using its `id` or `external_id`:
 
     document = client.document('swiftype-api-example', 'videos', 'FHtvDA0W34I')
 
+To create or update. single or multiple documents, we use the method `index_documents`.
+
 Create a new Document with mandatory `external_id` and user-defined fields:
 
-    document = client.create_document('swiftype-api-example', 'videos', {
+    document = client.index_documents('swiftype-api-example', 'videos', {
         :external_id => 'FHtvDA0W34I',
         :fields => [
             {:name => 'title', :value => "Felix Baumgartner's supersonic freefall from 128k' - Mission Highlights", :type => 'string'},
@@ -153,7 +155,7 @@ Create a new Document with mandatory `external_id` and user-defined fields:
 
 Create multiple Documents at once and return status for each Document creation:
 
-    response = client.create_documents('swiftype-api-example', 'videos', [{
+    response = client.index_documents('swiftype-api-example', 'videos', [{
         :external_id => 'FHtvDA0W34I',
         :fields => [
             {:name => 'title', :value => "Felix Baumgartner's supersonic freefall from 128k' - Mission Highlights", :type => 'string'},
@@ -166,35 +168,50 @@ Create multiple Documents at once and return status for each Document creation:
             {:name => 'url', :value => 'http://www.youtube.com/watch?v='dMH0bHeiRNg', :type => 'enum'},
             {:name => 'chanel_id', :value => UC5B9H4l2vtgo7cAoExcFh-w', :type => 'enum'}
         ]}])
-        #=> [true, true]
 
 Update fields of an existing Document specified by `id` or `external_id`:
 
-    client.update_document('swiftype-api-example', 'videos', 'FHtvDA0W34I', {:title =>'New Title'})
+    client.index_documents('swiftype-api-example', 'videos', 'FHtvDA0W34I', {:title =>'New Title'})
 
 **NOTE:** A field must already exist on a Document in order to update it.
 
 Update multiple Documents at once:
 
-    response = client.update_documents('swiftype-api-example','videos', [
+    response = client.index_documents('swiftype-api-example','videos', [
         {:external_id => 'FHtvDA0W34I', :fields => {:view_count => 32874417}},
         {:external_id => 'dMH0bHeiRNg', :fields => {:view_count => 98323493}}
     ])
-        #=> [true, true]
 
-Create or update a Document:
+All methods above will have a return in the following format:
+    
+    [
+      {
+        "id": "5473d6142ed96065a9000001",
+        "external_id": "FHtvDA0W34I",
+        "status": "complete",
+        "errors": [],
+        "links": {
+          "receipt": "https://api.swiftype.com/api/v1/document_receipts/5473d6142ed96065a9000001.json",
+          "document": "https://api.swiftype.com/api/v1/engine/xyz/document_type/abc/document/5473d6142ed96065a9000001.json"
+        }
+      },
+      {
+        "id": "5473d6142ed96065a9000002",
+        "external_id": "dMH0bHeiRNg",
+        "status": "complete",
+        "errors": [],
+        "links": {
+          "receipt": "https://api.swiftype.com/api/v1/document_receipts/5473d6142ed96065a9000001.json",
+          "document": "https://api.swiftype.com/api/v1/engine/xyz/document_type/abc/document/5473d6142ed96065a9000002.json"
+        }
+      }
+    ]
 
-    document = client.create_or_update_document('swiftype-api-example', 'videos', {
-        :external_id => 'FHtvDA0W34I',
-        :fields => [
-            {:name => 'title', :value => "Felix Baumgartner's supersonic freefall from 128k' - Mission Highlights", :type => 'string'},
-            {:name => 'url', :value => 'http://www.youtube.com/watch?v=FHtvDA0W34I', :type => 'enum'},
-            {:name => 'chanel_id', :value => 'UCblfuW_4rakIf2h6aqANefA', :type => 'enum'}
-        ]})
+**NOTE:** If you'd like to create or update documents asynchronously, simply pass the option `:async => true` as the last argument.
 
-Create or update multiple `Documents` at once:
+For instance, to Create multiple Documents at once:
 
-    response = client.create_or_update_documents('swiftype-api-example', 'videos', [{
+    response = client.index_documents('swiftype-api-example', 'videos', [{
         :external_id => 'FHtvDA0W34I',
         :fields => [
             {:name => 'title', :value => "Felix Baumgartner's supersonic freefall from 128k' - Mission Highlights", :type => 'string'},
@@ -206,9 +223,59 @@ Create or update multiple `Documents` at once:
             {:name => 'title', :value => 'Evolution of Dance - By Judson Laipply', :type => 'string'},
             {:name => 'url', :value => 'http://www.youtube.com/watch?v='dMH0bHeiRNg', :type => 'enum'},
             {:name => 'chanel_id', :value => UC5B9H4l2vtgo7cAoExcFh-w', :type => 'enum'}
-        ]}])
+        ]}],
+        :async => true )
+        #=> {
+          "batch_link": "https://api.swiftype.com/api/v1/document_receipts.json?ids=5473d6142ed96065a9000001,5473d6142ed96065a9000002",
+          "document_receipts": [
+            {
+              "id": "5473d6142ed96065a9000001",
+              "external_id": "FHtvDA0W34I",
+              "status": "pending",
+              "errors": [],
+              "links": {
+                "receipt": "https://api.swiftype.com/api/v1/document_receipts/5473d6142ed96065a9000001.json",
+                "document": null
+              }
+            },
+            {
+              "id": "5473d6342ed96065a9000002",
+              "external_id": "dMH0bHeiRNg",
+              "status": "pending",
+              "errors": [],
+              "links": {
+                "receipt": "https://api.swiftype.com/api/v1/document_receipts/5473d6142ed96065a9000002.json",
+                "document": null
+              }
+            }
+          ]
+        }
 
-**NOTE:** If you'd like a more descriptive error message to be returned when documents fail to be created, use `client.create_or_update_documents_verbose` instead.
+To check the status of documents with their document_receipt ids:
+
+    response = client.document_receipts(["5473d6142ed96065a9000001", "5473d6342ed96065a9000002"])
+    #=> [
+      {
+        "id": "5473d6142ed96065a9000001",
+        "external_id": "FHtvDA0W34I",
+        "status": "complete",
+        "errors": [],
+        "links": {
+          "receipt": "https://api.swiftype.com/api/v1/document_receipts/5473d6142ed96065a9000001.json",
+          "document": "https://api.swiftype.com/api/v1/engine/xyz/document_type/abc/document/5473d6142ed96065a9000001.json"
+        }
+      },
+      {
+        "id": "5473d6142ed96065a9000002",
+        "external_id": "dMH0bHeiRNg",
+        "status": "complete",
+        "errors": [],
+        "links": {
+          "receipt": "https://api.swiftype.com/api/v1/document_receipts/5473d6142ed96065a9000001.json",
+          "document": "https://api.swiftype.com/api/v1/engine/xyz/document_type/abc/document/5473d6142ed96065a9000002.json"
+        }
+      }
+    ]
 
 Destroy a Document by external_id:
 
