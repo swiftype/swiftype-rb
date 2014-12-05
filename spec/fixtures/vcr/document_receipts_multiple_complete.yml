@@ -1,0 +1,48 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://hello:@localhost:3000/api/v1/document_receipts.json
+    body:
+      encoding: UTF-8
+      string: '{"ids":["54821784cea2601e1b000001","54821784cea2601e1b000003"]}'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Swiftype-Ruby/1.1.1
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Ua-Compatible:
+      - IE=Edge
+      Cache-Control:
+      - no-store, must-revalidate, private, max-age=0
+      X-Request-Id:
+      - 78b1973f92a6b4fbbf23a8e1c10cebec
+      X-Runtime:
+      - '0.147900'
+      Set-Cookie:
+      - __profilin=p%3Dt; path=/
+      - __profilin=p%3Dt; path=/
+      - __profilin=p%3Dt; path=/
+      X-Miniprofiler-Ids:
+      - '["qdj3h7dwl6d2met76a0b","wnmyc1ntihxyqrftyh0s","xojyod7vqafw3v4hpbe8","3zi0s45yypdciv34jb3j","if6ym4l6ou4o5u4ntv0e","dui42ogtturqbgny85u2","fcfv77mu922vgmg7nnve","j9661fznrcqg80dka4wg","lxgud0sbzlyd1zu5zuou","xp2t3gwak0solmyqhf08"]'
+      Connection:
+      - close
+      Server:
+      - thin 1.5.0 codename Knife
+    body:
+      encoding: UTF-8
+      string: '[{"id":"54821784cea2601e1b000001","status":"complete","link":"http://localhost:3000/api/v1/engines/547e3790cea260a430000005/document_types/547e380fcea26028a900000c/documents/547e3830cea260b9a0000001.json"},{"id":"54821784cea2601e1b000003","status":"complete","link":"http://localhost:3000/api/v1/engines/547e3790cea260a430000005/document_types/547e380fcea26028a900000c/documents/547e3830cea260b9a0000002.json"}]'
+    http_version: 
+  recorded_at: Fri, 05 Dec 2014 20:49:40 GMT
+recorded_with: VCR 2.9.3

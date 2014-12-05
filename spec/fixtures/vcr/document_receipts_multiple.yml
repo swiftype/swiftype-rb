@@ -1,0 +1,48 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://hello:@localhost:3000/api/v1/document_receipts.json
+    body:
+      encoding: UTF-8
+      string: '{"ids":["54821784cea2601e1b000001","54821784cea2601e1b000003"]}'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Swiftype-Ruby/1.1.1
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Ua-Compatible:
+      - IE=Edge
+      Cache-Control:
+      - no-store, must-revalidate, private, max-age=0
+      X-Request-Id:
+      - 644fe481ad904d735add3f74800ac0a4
+      X-Runtime:
+      - '0.229593'
+      Set-Cookie:
+      - __profilin=p%3Dt; path=/
+      - __profilin=p%3Dt; path=/
+      - __profilin=p%3Dt; path=/
+      X-Miniprofiler-Ids:
+      - '["o03utgnh6d907hptlew8","czss15qltmk44cy6j9cq","u8yackxsybg5on0cs7i7","vh8t204jhxm6loeah20m","rqy499ku14jw71ohgvss","zp9s6k9zyz1kmcrpu5xy","dvj034r7mg1lpsi3r06f","dp13y57w3blu9jwv9fiw","2ldkuoa3jkcs3pz2dki6","xojyod7vqafw3v4hpbe8"]'
+      Connection:
+      - close
+      Server:
+      - thin 1.5.0 codename Knife
+    body:
+      encoding: UTF-8
+      string: '[{"id":"54821784cea2601e1b000001","status":"pending"},{"id":"54821784cea2601e1b000003","status":"pending"}]'
+    http_version: 
+  recorded_at: Fri, 05 Dec 2014 20:37:24 GMT
+recorded_with: VCR 2.9.3
