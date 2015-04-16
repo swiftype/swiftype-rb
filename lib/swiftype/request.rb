@@ -29,7 +29,7 @@ module Swiftype
     def poll(options={})
       timeout = options[:timeout] || 10
       delay = 0.05
-      Timeout::timeout(timeout) do
+      Timeout.timeout(timeout) do
         while true
           res = yield
           return res if res
