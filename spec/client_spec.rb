@@ -366,11 +366,12 @@ describe Swiftype::Client do
       end
 
       it 'should timeout if the process takes longer than the timeout option passed' do
-        client.stub(:document_receipts){ sleep 1}
+        allow(client).to receive(:document_receipts) { sleep 0.05 }
+
         VCR.use_cassette(:async_create_or_update_document_success) do
-          expect {
-            client.index_documents(engine_slug, document_type_slug, documents, :timeout => 0.5)
-          }.to raise_error Timeout::Error
+          expect do
+            client.index_documents(engine_slug, document_type_slug, documents, :timeout => 0.01)
+          end.to raise_error(Timeout::Error)
         end
       end
     end
