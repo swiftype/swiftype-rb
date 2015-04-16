@@ -195,15 +195,14 @@ describe Swiftype::Client do
   end
 
   context 'Document' do
-    before :each do
-      def check_async_response_format(response, options = {})
-        expect(response.keys).to match_array(["document_receipts", "batch_link"])
-        expect(response["document_receipts"]).to be_a_kind_of(Array)
-        expect(response["document_receipts"].first.keys).to match_array(["id", "external_id", "link", "status", "errors"])
-        expect(response["document_receipts"].first["external_id"]).to eq(options[:external_id]) if options[:external_id]
-        expect(response["document_receipts"].first["status"]).to eq(options[:status]) if options[:status]
-        expect(response["document_receipts"].first["errors"]).to eq(options[:errors]) if options[:errors]
-      end
+
+    def check_async_response_format(response, options = {})
+      expect(response.keys).to match_array(["document_receipts", "batch_link"])
+      expect(response["document_receipts"]).to be_a_kind_of(Array)
+      expect(response["document_receipts"].first.keys).to match_array(["id", "external_id", "link", "status", "errors"])
+      expect(response["document_receipts"].first["external_id"]).to eq(options[:external_id]) if options[:external_id]
+      expect(response["document_receipts"].first["status"]).to eq(options[:status]) if options[:status]
+      expect(response["document_receipts"].first["errors"]).to eq(options[:errors]) if options[:errors]
     end
 
     let(:document_type_slug) { 'videos' }
