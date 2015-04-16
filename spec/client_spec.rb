@@ -338,14 +338,6 @@ describe Swiftype::Client do
         end
       end
 
-      it 'returns hash with one receipt' do
-        VCR.use_cassette(:document_receipts_single) do
-          receipt_ids = get_receipt_ids
-          response = client.document_receipts(receipt_ids.first)
-          expect(response).to eq("id" => receipt_ids.first, "status" => "pending")
-        end
-      end
-
       it 'returns array of hashes one for each receipt' do
         VCR.use_cassette(:document_receipts_multiple) do
           receipt_ids = get_receipt_ids

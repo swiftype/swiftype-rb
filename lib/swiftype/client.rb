@@ -324,18 +324,29 @@ module Swiftype
         post("engines/#{engine_id}/document_types/#{document_type_id}/documents/async_bulk_create_or_update.json", :documents => documents)
       end
 
+      # Retrieve Document Receipts from the API by ID
+      #
+      # @param [Array<String>] receipt_ids an Array of Document Receipt IDs
+      #
+      # @return [Array<Hash>] an Array of Document Receipt hashes
       def document_receipts(receipt_ids)
-        case receipt_ids
-        when Array
-          post("document_receipts.json", :ids => receipt_ids)
-        else
-          get("document_receipts/#{receipt_ids}.json")
-        end
+        post("document_receipts.json", :ids => receipt_ids)
       end
 
-      # options - (Hash)
-      #           :async => true (When true, return is same as #async_create_or_update_documents)
-      #           :timeout => Fixnum <seconds> Default is 10 secs.
+      # Index a batch of documents using the {asynchronous API}[https://swiftype.com/documentation/asynchronous_indexing].
+      # This is a good choice if you have a large number of documents.
+      #
+      # @param [String] engine_id the Engine slug or ID
+      # @param [String] document_type_id the Document Type slug or ID
+      # @param [Array] documents an Array of Document Hashes
+      # @param [Hash] options additional options
+      # @option options [Boolean] :async (false) When true, output is document receipts created. When false, poll until all receipts are no longer pending or timeout is reached.
+      # @option options [Numeric] :timeout (10) Number of seconds to wait before raising an exception
+      #
+      # @return [Array<Hash>] an Array of newly-created Document Receipt hashes if used in :async => true mode
+      # @return [Array<Hash>] an Array of processed Document Receipt hashes if used in :async => false mode
+      #
+      # @raise [Timeout::Error] when used in :async => false mode and the timeout expires
       def index_documents(engine_id, document_type_id, documents = [], options = {})
         documents = Array(documents)
 
@@ -345,7 +356,7 @@ module Swiftype
           res
         else
           receipt_ids = res["document_receipts"].map { |a| a["id"] }
-              
+
           poll(options) do
             receipts = document_receipts(receipt_ids)
             flag = receipts.all? { |a| a["status"] != "pending" }

@@ -26,6 +26,17 @@ module Swiftype
       request(:delete, path, params)
     end
 
+    # Poll a block with backoff until a timeout is reached.
+    #
+    # @param [Hash] options optional arguments
+    # @option options [Numeric] :timeout (10) Number of seconds to wait before timing out
+    #
+    # @yieldreturn a truthy value to return from poll
+    # @yieldreturn [false] to continue polling.
+    #
+    # @return the truthy value returned from the block.
+    #
+    # @raise [Timeout::Error] when the timeout expires
     def poll(options={})
       timeout = options[:timeout] || 10
       delay = 0.05
