@@ -367,7 +367,8 @@ describe Swiftype::Client do
         VCR.use_cassette(:async_create_or_update_document_success) do
           VCR.use_cassette(:document_receipts_multiple_complete) do
             response = client.index_documents(engine_slug, document_type_slug, documents)
-            expect(response.map(&:keys)).to eq([["id", "status", "link"], ["id", "status", "link"]])
+            # Sort keys for Ruby 1.8.7 compatibility
+            expect(response.map(&:keys).map(&:sort)).to eq([["id", "link", "status"], ["id", "link", "status"]])
             expect(response.map { |a| a["status"] }).to eq(["complete", "complete"])
           end
         end
