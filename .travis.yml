@@ -1,5 +1,5 @@
 language: ruby
-script: rspec 
+script: rspec
 rvm:
   - 1.8.7
   - 1.9.3
@@ -10,3 +10,4 @@ rvm:
 before_install:
   - gem update --system
   - gem --version
+  - gem update bundler
