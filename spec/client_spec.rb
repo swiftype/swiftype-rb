@@ -83,7 +83,7 @@ describe Swiftype::Client do
           let(:options) { { :overall_timeout => 0.001 } }
           it 'respects the overall timeout option' do
             expect(options_client.overall_timeout).to eq(0.001)
-            expect_any_instance_of(Net::HTTP).to receive(:request) { sleep 3 }
+            allow_any_instance_of(Net::HTTP).to receive(:request) { sleep 3 }
             expect {
               options_client.search(engine_slug, 'cat')
             }.to raise_error(Timeout::Error)
