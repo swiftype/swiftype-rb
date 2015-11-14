@@ -71,9 +71,35 @@ describe Swiftype::Client do
     let(:options_client) { Swiftype::Client.new(options) }
 
     context '#request' do
-      let(:options) { { :open_timeout => 3 } }
-      it 'respects the Net::HTTP open_timeout option' do
-        expect(options_client.open_timeout).to eq(3)
+      context 'open_timeout' do
+        let(:options) { { :open_timeout => 3 } }
+        it 'respects the Net::HTTP open_timeout option' do
+          expect(options_client.open_timeout).to eq(3)
+        end
+      end
+
+      context 'overall_timeout' do
+        context 'with timeout specified' do
+          let(:options) { { :overall_timeout => 0.001 } }
+          it 'respects the overall timeout option' do
+            expect(options_client.overall_timeout).to eq(0.001)
+            allow_any_instance_of(Net::HTTP).to receive(:request) { sleep 3 }
+            expect {
+              options_client.search(engine_slug, 'cat')
+            }.to raise_error(Timeout::Error)
+          end
+        end
+
+        context 'without timeout specified' do
+          let(:options) { Hash.new }
+          it 'omits the option' do
+            expect(options_client.overall_timeout).to eq(0.0)
+            expect(Timeout).to receive(:timeout).with(0.0).and_call_original
+            VCR.use_cassette(:engine_search) do
+              options_client.search(engine_slug, 'cat')
+            end
+          end
+        end
       end
     end
   end
