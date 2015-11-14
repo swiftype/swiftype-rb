@@ -49,6 +49,9 @@ module Swiftype
       end
     end
 
+    # Construct and send a request to the API.
+    #
+    # @raise [Timeout::Error] when the timeout expires
     def request(method, path, params={})
       uri = URI.parse("#{Swiftype.endpoint}#{path}")
 
