@@ -1,5 +1,5 @@
 require 'net/https'
-if RUBY_VERSION < "1.9"
+if RUBY_VERSION < '1.9'
   require 'swiftype/ext/backport-uri'
 else
   require 'uri'
@@ -54,7 +54,7 @@ module Swiftype
 
       request = build_request(method, uri, params)
       http = Net::HTTP.new(uri.host, uri.port)
-      http.open_timeout = @options[:open_timeout]
+      http.open_timeout = open_timeout
 
       if uri.scheme == 'https'
         http.use_ssl = true
@@ -62,7 +62,10 @@ module Swiftype
         http.ca_file = File.join(File.dirname(__FILE__), '..', 'data', 'ca-bundle.crt')
       end
 
-      response = http.request(request)
+      response = nil
+      Timeout.timeout(overall_timeout) do
+        response = http.request(request)
+      end
 
       handle_errors(response)
 
