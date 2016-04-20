@@ -93,8 +93,8 @@ describe Swiftype::Client do
         context 'without timeout specified' do
           let(:options) { Hash.new }
           it 'omits the option' do
-            expect(options_client.overall_timeout).to eq(15.0)
-            expect(Timeout).to receive(:timeout).with(15.0).and_call_original
+            expect(options_client.overall_timeout).to eq(Swiftype::Client::DEFAULT_TIMEOUT.to_f)
+            expect(Timeout).to receive(:timeout).with(Swiftype::Client::DEFAULT_TIMEOUT.to_f).and_call_original
             VCR.use_cassette(:engine_search) do
               options_client.search(engine_slug, 'cat')
             end

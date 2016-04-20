@@ -5,6 +5,8 @@ require 'swiftype/request'
 module Swiftype
   # API client for the {Swiftype API}[https://swiftype.com/documentation/overview].
   class Client
+    DEFAULT_TIMEOUT = 15
+
     include Swiftype::Request
 
     def self.configure(&block)
@@ -34,11 +36,11 @@ module Swiftype
     end
 
     def open_timeout
-      @options[:open_timeout] || 15
+      @options[:open_timeout] || DEFAULT_TIMEOUT
     end
 
     def overall_timeout
-      (@options[:overall_timeout] || 15).to_f
+      (@options[:overall_timeout] || DEFAULT_TIMEOUT).to_f
     end
 
 
