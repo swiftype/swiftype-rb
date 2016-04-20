@@ -1,11 +1,13 @@
 language: ruby
 script: rspec
 rvm:
-  - 1.8.7
-  - 1.9.3
-  - 2.0.0
-  - 2.1.0
-  - jruby-19mode
+  - 1.9
+  - 2.0
+  - 2.1
+  - 2.2
+  - jruby
+jdk:
+  - oraclejdk8
 
 before_install:
   - gem update --system
