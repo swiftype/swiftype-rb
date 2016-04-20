@@ -17,8 +17,8 @@ module Swiftype
     # @param options [Hash] a hash of configuration options that will override what is set on the Swiftype class.
     # @option options [String] :api_key an API Key to use for this client
     # @option options [String] :platform_access_token a user's access token, will be used instead of API key for authenticating requests
-    # @option options [Numeric] :overall_timeout overall timeout for requests in seconds
-    # @option options [Numeric] :open_timeout the number of seconds Net::HTTP
+    # @option options [Numeric] :overall_timeout overall timeout for requests in seconds (default: 15s)
+    # @option options [Numeric] :open_timeout the number of seconds Net::HTTP (default: 15s)
     #   will wait while opening a connection before raising a Timeout::Error
 
     def initialize(options={})
@@ -34,11 +34,11 @@ module Swiftype
     end
 
     def open_timeout
-      @options[:open_timeout]
+      @options[:open_timeout] || 15
     end
 
     def overall_timeout
-      @options[:overall_timeout].to_f
+      (@options[:overall_timeout] || 15).to_f
     end
 
 

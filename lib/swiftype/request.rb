@@ -53,30 +53,28 @@ module Swiftype
     #
     # @raise [Timeout::Error] when the timeout expires
     def request(method, path, params={})
-      uri = URI.parse("#{Swiftype.endpoint}#{path}")
-
-      request = build_request(method, uri, params)
-      http = Net::HTTP.new(uri.host, uri.port)
-      http.open_timeout = open_timeout
-
-      if uri.scheme == 'https'
-        http.use_ssl = true
-        http.verify_mode = OpenSSL::SSL::VERIFY_PEER
-        http.ca_file = File.join(File.dirname(__FILE__), '..', 'data', 'ca-bundle.crt')
-      end
-
-      response = nil
       Timeout.timeout(overall_timeout) do
+        uri = URI.parse("#{Swiftype.endpoint}#{path}")
+
+        request = build_request(method, uri, params)
+        http = Net::HTTP.new(uri.host, uri.port)
+        http.open_timeout = open_timeout
+        http.read_timeout = overall_timeout
+
+        if uri.scheme == 'https'
+          http.use_ssl = true
+          http.verify_mode = OpenSSL::SSL::VERIFY_PEER
+          http.ca_file = File.join(File.dirname(__FILE__), '..', 'data', 'ca-bundle.crt')
+          http.ssl_timeout = open_timeout
+        end
+
         response = http.request(request)
+        handle_errors(response)
+        JSON.parse(response.body) if response.body && response.body.strip != ''
       end
-
-      handle_errors(response)
-
-      JSON.parse(response.body) if response.body && response.body.strip != ''
     end
 
     private
-
     def handle_errors(response)
       case response
       when Net::HTTPSuccess
