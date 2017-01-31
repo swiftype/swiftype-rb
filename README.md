@@ -10,7 +10,7 @@ Before beginning with the Swiftype gem, you should be familar with the concepts 
 
 An **Engine** is a search engine. It can contain one or more **DocumentTypes** which are collections of **Documents**. A **Document** is a collection of fields that can be queried using the Swiftype API. Documents have a special **external_id** field that ties a Document in Swiftype to a record in your system. The layout of fields of the Documents belonging to a DocumentType is called a **schema**. Fields may be strings, integers, geographic locations, and so forth.
 
-The Documents in your Engine can be searched two ways: **full-text** (`search`) or **autocomplete** (`suggest`). The difference is that autocomplete queries work on prefixes (for example, "gla" will match "glass"). This is less accurage in general, but is useful for implementing type-ahead search drop downs.
+The Documents in your Engine can be searched two ways: **full-text** (`search`) or **autocomplete** (`suggest`). The difference is that autocomplete queries work on prefixes (for example, "gla" will match "glass"). This is less accurate in general, but is useful for implementing type-ahead search drop downs.
 
 You can think of an Engine as a database, DocumentTypes as tables, and Documents as rows. Using the API, you can search an engine for all Documents containing a word. You can also search an individual DocumentType, or any subset of DocumentTypes.
 
