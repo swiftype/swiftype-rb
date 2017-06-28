@@ -327,7 +327,7 @@ To get the number of searches per day from an Engine in the last 14 days:
 
 You can also use a specific start and/or end date:
 
-    searches = client.analytics_searches('swiftype-api-example', '2013-01-01', '2013-01-07')
+    searches = client.analytics_searches('swiftype-api-example', {:start_date => '2013-01-01', :end_date => '2013-01-07'})
 
 To get the number of autoselects in the past 14 days:
 
@@ -335,7 +335,7 @@ To get the number of autoselects in the past 14 days:
 
 As with searches you can also limit by start and/or end date:
 
-    autoselects = client.analytics_autoselects('swiftype-api-example', '2013-01-01', '2013-01-07')
+    autoselects = client.analytics_autoselects('swiftype-api-example', {:start_date => '2013-01-01', :end_date => '2013-01-07'})
 
 If you are interested in the top queries for your Engine you can use:
 
