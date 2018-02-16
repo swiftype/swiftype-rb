@@ -4,7 +4,7 @@
 
 This is a simple client for the [Swiftype Site Search API](https://swiftype.com/documentation/site-search/overview) with no dependencies outside core Ruby (for 1.9 and 2.0; Ruby 1.8 requires the JSON gem).
 
-> **Note:** This client has been developed for [Swiftype's Site Search](https://www.swiftype.com/site-search) API endpoints only.
+> **Note:** This client has been developed for the [Swiftype Site Search](https://www.swiftype.com/site-search) API endpoints only.
 
 ## Getting Started
 
