@@ -1,8 +1,10 @@
-# Swiftype Ruby API Client
+# Swiftype Site Search Ruby API Client
 
 [![Build Status](https://travis-ci.org/swiftype/swiftype-rb.png)](https://travis-ci.org/swiftype/swiftype-rb)
 
-This is a simple client for the [Swiftype API](https://swiftype.com/documentation/overview) with no dependencies outside core Ruby (for 1.9 and 2.0; Ruby 1.8 requires the JSON gem).
+This is a simple client for the [Swiftype Site Search API](https://swiftype.com/documentation/site-search/overview) with no dependencies outside core Ruby (for 1.9 and 2.0; Ruby 1.8 requires the JSON gem).
+
+> **Note:** This client has been developed for [Swiftype's Site Search](https://www.swiftype.com/site-search) API endpoints only.
 
 ## Getting Started
 
