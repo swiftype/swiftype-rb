@@ -1,4 +1,4 @@
-# Ruby Client for Swiftype Site Search
+# Ruby Client for Swiftype Site Search API
 
 [![Build Status](https://travis-ci.org/swiftype/swiftype-rb.png)](https://travis-ci.org/swiftype/swiftype-rb)
 
