@@ -63,7 +63,10 @@ module Swiftype
 
         if uri.scheme == 'https'
           http.use_ssl = true
-          http.verify_mode = OpenSSL::SSL::VERIFY_PEER
+          # st_ssl_verify_none provides a means to disable SSL verification for debugging purposes. An example
+          # is Charles, which uses a self-signed certificate in order to inspect https traffic. This will
+          # not be part of this client's public API, this is more of a development enablement option
+          http.verify_mode = ENV['st_ssl_verify_none'] == 'true' ? OpenSSL::SSL::VERIFY_NONE : OpenSSL::SSL::VERIFY_PEER
           http.ca_file = File.join(File.dirname(__FILE__), '..', 'data', 'ca-bundle.crt')
           http.ssl_timeout = open_timeout
         end

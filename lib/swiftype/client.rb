@@ -43,6 +43,9 @@ module Swiftype
       (@options[:overall_timeout] || DEFAULT_TIMEOUT).to_f
     end
 
+    def wrap(element)
+      [element].flatten(1)
+    end
 
     # Methods wrapping the Swiftype private search and API endpoints. Using these methods, you can perform full-text
     # and prefix searches over the Documents in your Engine, in a specific DocumentType, or any subset of DocumentTypes.
@@ -356,7 +359,7 @@ module Swiftype
       #
       # @raise [Timeout::Error] when used in :async => false mode and the timeout expires
       def index_documents(engine_id, document_type_id, documents = [], options = {})
-        documents = Array(documents)
+        documents = wrap(documents)
 
         res = async_create_or_update_documents(engine_id, document_type_id, documents)
 
