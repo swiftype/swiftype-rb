@@ -21,6 +21,7 @@ module Swiftype
     # @option options [String] :platform_access_token a user's access token, will be used instead of API key for authenticating requests
     # @option options [Numeric] :overall_timeout overall timeout for requests in seconds (default: 15s)
     # @option options [Numeric] :open_timeout the number of seconds Net::HTTP (default: 15s)
+    # @option options [String] :proxy url of proxy to use, ex: "http://localhost:8888"
     #   will wait while opening a connection before raising a Timeout::Error
 
     def initialize(options={})
@@ -33,6 +34,10 @@ module Swiftype
 
     def platform_access_token
       @options[:platform_access_token]
+    end
+
+    def proxy
+      @options[:proxy]
     end
 
     def open_timeout

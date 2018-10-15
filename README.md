@@ -52,6 +52,12 @@ You can also provide the API key when creating the client instance:
 
 If the API key is provided as an option to constructor, it will override the globally configured Swiftype API key (if any).
 
+### Specifying an HTTP Proxy
+
+    client = Swiftype::Client.new(:api_key => 'api_key', :proxy => 'http://localhost:8888')
+
+This client will also support configuring a proxy via the environment variable `http_proxy`.
+
 ### Full-text search
 
 If you want to search for `cat` on your engine, you can use:
@@ -185,7 +191,7 @@ Update multiple Documents at once:
     ])
 
 All methods above will have a return in the following format:
-    
+
     [
       {
         "id": "5473d6142ed96065a9000001",
@@ -410,4 +416,3 @@ or simply `Swiftype.api_key = 'your_api_key'`.
 You can run tests with `rspec`. All HTTP interactions are stubbed out using VCR.
 
 To contribute code to this gem, please fork the repository and submit a pull request.
-
