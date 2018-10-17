@@ -57,7 +57,14 @@ module Swiftype
         uri = URI.parse("#{Swiftype.endpoint}#{path}")
 
         request = build_request(method, uri, params)
-        http = Net::HTTP.new(uri.host, uri.port)
+
+        if proxy
+          proxy_parts = URI.parse(proxy)
+          http = Net::HTTP.new(uri.host, uri.port, proxy_parts.host, proxy_parts.port)
+        else
+          http = Net::HTTP.new(uri.host, uri.port)
+        end
+
         http.open_timeout = open_timeout
         http.read_timeout = overall_timeout
 

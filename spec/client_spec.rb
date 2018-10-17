@@ -101,6 +101,23 @@ describe Swiftype::Client do
           end
         end
       end
+
+      context 'with proxy specified' do
+        let(:options) { { :proxy => 'http://localhost:8888' } }
+
+        it 'will set proxy' do
+          expect(options_client.proxy).to eq('http://localhost:8888')
+        end
+
+        # There doesn't seem to be an elgant way to test that a request actually uses a proxy, so the best
+        # we can do here is ensure that the behavior for methods operates normally
+        it 'will execute methods with proxy' do
+          VCR.use_cassette(:engine_search) do
+            results = options_client.search(engine_slug, 'cat')
+            expect(results.document_types.size).to eq(2)
+          end
+        end
+      end
     end
   end
 
