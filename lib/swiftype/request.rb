@@ -60,7 +60,7 @@ module Swiftype
 
         if proxy
           proxy_parts = URI.parse(proxy)
-          http = Net::HTTP.new(uri.host, uri.port, proxy_parts.host, proxy_parts.port)
+          http = Net::HTTP.new(uri.host, uri.port, proxy_parts.host, proxy_parts.port, proxy_parts.user, proxy_parts.password)
         else
           http = Net::HTTP.new(uri.host, uri.port)
         end

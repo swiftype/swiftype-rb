@@ -103,10 +103,10 @@ describe Swiftype::Client do
       end
 
       context 'with proxy specified' do
-        let(:options) { { :proxy => 'http://localhost:8888' } }
+        let(:options) { { :proxy => 'http://username:password@localhost:8888' } }
 
         it 'will set proxy' do
-          expect(options_client.proxy).to eq('http://localhost:8888')
+          expect(options_client.proxy).to eq('http://username:password@localhost:8888')
         end
 
         # There doesn't seem to be an elgant way to test that a request actually uses a proxy, so the best
