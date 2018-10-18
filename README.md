@@ -26,7 +26,7 @@ To install the gem, execute:
 
     gem install swiftype
 
-Or place `gem 'swiftype', '~> 1.2.0` in your `Gemfile` and run `bundle install`.
+Or place `gem 'swiftype', '~> 1.3.1` in your `Gemfile` and run `bundle install`.
 
 ## Usage
 
@@ -372,8 +372,8 @@ swiftype-rb 1.0 has been rewritten to be simpler and easier to use. However, it 
 
 To upgrade from the old version of swiftype-rb:
 
-* If you previously used the `Swiftype` client, migrate your API calls to the `Swiftype::Client` format.
-* If you previously used the `Swiftype::Easy` client, change `Swiftype::Easy` to `Swiftype::Client`. Almost all method calls should be the same (there are a few minor changes).
+- If you previously used the `Swiftype` client, migrate your API calls to the `Swiftype::Client` format.
+- If you previously used the `Swiftype::Easy` client, change `Swiftype::Easy` to `Swiftype::Client`. Almost all method calls should be the same (there are a few minor changes).
 
 Additionally, the result object returned by search methods (for example, the old Swiftype gem's `Engine#search` or `Swiftype::Easy#search` methods) returns results in a different way. Instead of being an array of `Swiftype::Document` objects, it will be an array of Hashes.
 
