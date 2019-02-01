@@ -1,32 +1,52 @@
-# Ruby Client for Swiftype Site Search API
 
-[![Build Status](https://travis-ci.org/swiftype/swiftype-rb.png)](https://travis-ci.org/swiftype/swiftype-rb)
+<p align="center"><img src="https://github.com/swiftype/swiftype-rb/blob/master/logo-app-search.png?raw=true" alt="Elastic Site Search Logo"></p>
 
-This is a simple client for the [Swiftype Site Search API](https://swiftype.com/documentation/site-search/overview) with no dependencies outside core Ruby (for 1.9 and 2.0; Ruby 1.8 requires the JSON gem).
+<p align="center"><a href="https://circleci.com/gh/swiftype/swiftype-rb"><img src="https://circleci.com/gh/swiftype/swiftype-rb.svg?style=svg" alt="CircleCI buidl"></a>
+<a href="https://github.com/swiftype/swiftype-rb/releases"><img src="https://img.shields.io/github/release/swiftype/swiftype-rb/all.svg?style=flat-square" alt="GitHub release" /></a></p>
 
-> **Note:** This client has been developed for the [Swiftype Site Search](https://www.swiftype.com/site-search) API endpoints only.
+> A first-party Ruby client for the [Swiftype Site Search API](https://swiftype.com/documentation/site-search/overview).
 
-## Getting Started
+## Contents
+
++ [Getting started](#getting-started-)
++ [Usage](#content)
++ [Migrating from pervious versions](#migrating-from-previous-versions)
++ [Development](#development)
++ [FAQ](#faq-)
++ [Contribute](#contribute-)
++ [License](#license-)
+
+***
+
+## Getting started 🐣
 
 Before beginning with the Swiftype gem, you should be familar with the concepts behind the Swiftype API: **Engines**, **DocumentTypes**, and **Documents**.
 
-An **Engine** is a search engine. It can contain one or more **DocumentTypes** which are collections of **Documents**. A **Document** is a collection of fields that can be queried using the Swiftype API. Documents have a special **external_id** field that ties a Document in Swiftype to a record in your system. The layout of fields of the Documents belonging to a DocumentType is called a **schema**. Fields may be strings, integers, geographic locations, and so forth.
+An **Engine** is a search engine.
+
+It can contain one or more **DocumentTypes** which are collections of **Documents**.
+
+A **Document** is a collection of fields that can be queried using the Swiftype API.
+
+Documents have a special **external_id** field that ties a Document in Swiftype to a record in your system. The layout of fields of the Documents belonging to a DocumentType is called a **schema**. Fields may be strings, integers, geographic locations, and so forth.
 
 The Documents in your Engine can be searched two ways: **full-text** (`search`) or **autocomplete** (`suggest`). The difference is that autocomplete queries work on prefixes (for example, "gla" will match "glass"). This is less accurate in general, but is useful for implementing type-ahead search drop downs.
 
-You can think of an Engine as a database, DocumentTypes as tables, and Documents as rows. Using the API, you can search an engine for all Documents containing a word. You can also search an individual DocumentType, or any subset of DocumentTypes.
+You can think of an Engine as a database, DocumentTypes as tables, and Documents as rows. Using the API, you can search an Engine for all Documents containing a word. You can also search an individual DocumentType, or any subset of DocumentTypes.
 
 The examples in this documentation use the schema defined in the [swiftype-api-example](https://github.com/swiftype/swiftype-api-example) project, which is based on YouTube. It has two DocumentTypes, **videos** and **channels**. Using the script found in the swiftype-api-example project, you can create your own search engine that matches the examples and try the queries for yourself.
 
 To learn more about the Swiftype API, read the [API overview](https://swiftype.com/documentation/overview) and our [schema design tutorial](https://swiftype.com/documentation/tutorials/schema_design).
 
-## Installation
+Depends on Ruby.
 
 To install the gem, execute:
 
     gem install swiftype
 
 Or place `gem 'swiftype', '~> 1.3.1` in your `Gemfile` and run `bundle install`.
+
+> **Note:** This client has been developed for the [Swiftype Site Search](https://www.swiftype.com/site-search) API endpoints only.
 
 ## Usage
 
@@ -413,6 +433,33 @@ or simply `Swiftype.api_key = 'your_api_key'`.
 
 ## Development
 
-You can run tests with `rspec`. All HTTP interactions are stubbed out using VCR.
+You can run tests with `rspec`.
 
-To contribute code to this gem, please fork the repository and submit a pull request.
+All HTTP interactions are stubbed out using VCR.
+
+## FAQ 🔮
+
+### Where do I report issues with the client?
+
+If something is not working as expected, please open an [issue](https://github.com/swiftype/swiftype-rb/issues/new).
+
+### Where can I learn more about App Search?
+
+Your best bet is to read the [documentation](https://swiftype.com/documentation/app-search).
+
+### Where else can I go to get help?
+
+You can checkout the [Elastic App Search community discuss forums](https://discuss.elastic.co/c/app-search).
+
+## Contribute 🚀
+
+We welcome contributors to the project. Before you begin, a couple notes...
+
++ Before opening a pull request, please create an issue to [discuss the scope of your proposal](https://github.com/swiftype/swiftype-rb/issues).
++ Please write simple code and concise documentation, when appropriate.
+
+## License 📗
+
+[MIT](https://github.com/swiftype/swiftype-rb/blob/master/LICENSE.txt) © [Elastic](https://github.com/elastic)
+
+Thank you to all the [contributors](https://github.com/swiftype/swiftype-rb/graphs/contributors)!
