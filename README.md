@@ -453,7 +453,7 @@ Your best bet is to read the [documentation](https://swiftype.com/documentation/
 
 ### Where else can I go to get help?
 
-You can checkout the [Elastic App Search community discuss forums](https://discuss.elastic.co/c/app-search).
+You can checkout the [Elastic Site Search community discuss forums](https://discuss.elastic.co/c/site-search).
 
 ## Contribute 🚀
 
