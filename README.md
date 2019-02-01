@@ -4,7 +4,7 @@
 <p align="center"><a href="https://travis-ci.org/swiftype/swiftype-rb"><img src="https://travis-ci.org/swiftype/swiftype-rb.png" alt="Travis build"></a>
 <a href="https://github.com/swiftype/swiftype-rb/releases"><img src="https://img.shields.io/github/release/swiftype/swiftype-rb/all.svg?style=flat-square" alt="GitHub release" /></a></p>
 
-> A first-party Ruby client for the [Swiftype Site Search API](https://swiftype.com/documentation/site-search/overview).
+> A first-party Ruby client for the [Elastic Site Search API](https://swiftype.com/documentation/site-search/overview).
 
 ## Contents
 
