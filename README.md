@@ -9,7 +9,7 @@
 ## Contents
 
 + [Getting started](#getting-started-)
-+ [Usage](#content)
++ [Usage](#usage)
 + [Migrating from pervious versions](#migrating-from-previous-versions)
 + [Development](#development)
 + [FAQ](#faq-)
