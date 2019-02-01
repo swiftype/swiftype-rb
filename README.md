@@ -20,7 +20,11 @@
 
 ## Getting started 🐣
 
-Before beginning with the Swiftype gem, you should be familar with the concepts behind the Swiftype API: **Engines**, **DocumentTypes**, and **Documents**.
+Before beginning with the Swiftype gem, you should be familar with the concepts behind the Swiftype API:
+
+1. **Engines**
+2. **DocumentTypes**
+3. **Documents**
 
 An **Engine** is a search engine.
 
