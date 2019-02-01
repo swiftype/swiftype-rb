@@ -1,7 +1,7 @@
 
 <p align="center"><img src="https://github.com/swiftype/swiftype-rb/blob/master/logo-app-search.png?raw=true" alt="Elastic Site Search Logo"></p>
 
-<p align="center"><a href="https://circleci.com/gh/swiftype/swiftype-rb"><img src="https://circleci.com/gh/swiftype/swiftype-rb.svg?style=svg" alt="CircleCI buidl"></a>
+<p align="center"><a href="https://travis-ci.org/swiftype/swiftype-rb"><img src="https://travis-ci.org/swiftype/swiftype-rb.png" alt="Travis build"></a>
 <a href="https://github.com/swiftype/swiftype-rb/releases"><img src="https://img.shields.io/github/release/swiftype/swiftype-rb/all.svg?style=flat-square" alt="GitHub release" /></a></p>
 
 > A first-party Ruby client for the [Swiftype Site Search API](https://swiftype.com/documentation/site-search/overview).
@@ -460,6 +460,6 @@ We welcome contributors to the project. Before you begin, a couple notes...
 
 ## License 📗
 
-[MIT](https://github.com/swiftype/swiftype-rb/blob/master/LICENSE.txt) © [Elastic](https://github.com/elastic)
+[MIT](https://github.com/swiftype/swiftype-rb/blob/master/LICENSE) © [Elastic](https://github.com/elastic)
 
 Thank you to all the [contributors](https://github.com/swiftype/swiftype-rb/graphs/contributors)!
