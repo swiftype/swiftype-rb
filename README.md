@@ -449,7 +449,7 @@ If something is not working as expected, please open an [issue](https://github.c
 
 ### Where can I learn more about App Search?
 
-Your best bet is to read the [documentation](https://swiftype.com/documentation/app-search).
+Your best bet is to read the [documentation](https://swiftype.com/documentation/site-search).
 
 ### Where else can I go to get help?
 
