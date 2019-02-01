@@ -447,7 +447,7 @@ All HTTP interactions are stubbed out using VCR.
 
 If something is not working as expected, please open an [issue](https://github.com/swiftype/swiftype-rb/issues/new).
 
-### Where can I learn more about App Search?
+### Where can I learn more about Site Search?
 
 Your best bet is to read the [documentation](https://swiftype.com/documentation/site-search).
 
