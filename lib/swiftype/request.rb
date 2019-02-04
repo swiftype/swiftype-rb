@@ -90,18 +90,27 @@ module Swiftype
       when Net::HTTPSuccess
         response
       when Net::HTTPUnauthorized
-        raise Swiftype::InvalidCredentials
+        raise Swiftype::InvalidCredentials, error_message_from_response(response)
       when Net::HTTPNotFound
-        raise Swiftype::NonExistentRecord
+        raise Swiftype::NonExistentRecord, error_message_from_response(response)
       when Net::HTTPConflict
-        raise Swiftype::RecordAlreadyExists
+        raise Swiftype::RecordAlreadyExists, error_message_from_response(response)
       when Net::HTTPBadRequest
-        raise Swiftype::BadRequest
+        raise Swiftype::BadRequest, error_message_from_response(response)
       when Net::HTTPForbidden
-        raise Swiftype::Forbidden
+        raise Swiftype::Forbidden, error_message_from_response(response)
       else
         raise Swiftype::UnexpectedHTTPException, "#{response.code} #{response.body}"
       end
+    end
+
+    def error_message_from_response(response)
+      body = response.body
+      json = JSON.parse(body) if body && body.strip != ''
+      return json['error'] if json && json.key?('error')
+      body
+    rescue JSON::ParserError
+      body
     end
 
     def build_request(method, uri, params)
