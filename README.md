@@ -48,7 +48,7 @@ To install the gem, execute:
 
     gem install swiftype
 
-Or place `gem 'swiftype', '~> 1.3.1` in your `Gemfile` and run `bundle install`.
+Or place `gem 'swiftype', '~> 1.4.0` in your `Gemfile` and run `bundle install`.
 
 > **Note:** This client has been developed for the [Swiftype Site Search](https://www.swiftype.com/site-search) API endpoints only.
 
