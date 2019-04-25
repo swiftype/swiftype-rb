@@ -89,20 +89,24 @@ module Swiftype
       case response
       when Net::HTTPSuccess
         response
-      when Net::HTTPUnauthorized
-        raise Swiftype::InvalidCredentials, error_message_from_response(response)
-      when Net::HTTPNotFound
-        raise Swiftype::NonExistentRecord, error_message_from_response(response)
-      when Net::HTTPConflict
-        raise Swiftype::RecordAlreadyExists, error_message_from_response(response)
-      when Net::HTTPBadRequest
-        raise Swiftype::BadRequest, error_message_from_response(response)
-      when Net::HTTPForbidden
-        raise Swiftype::Forbidden, error_message_from_response(response)
       else
+        EXCEPTION_MAP.each do |response_class, exception_class|
+          if response.is_a?(response_class)
+            raise exception_class, error_message_from_response(response)
+          end
+        end
+
         raise Swiftype::UnexpectedHTTPException, "#{response.code} #{response.body}"
       end
     end
+
+    EXCEPTION_MAP = {
+      Net::HTTPUnauthorized => Swiftype::InvalidCredentials,
+      Net::HTTPNotFound => Swiftype::NonExistentRecord,
+      Net::HTTPConflict => Swiftype::RecordAlreadyExists,
+      Net::HTTPBadRequest => Swiftype::BadRequest,
+      Net::HTTPForbidden => Swiftype::Forbidden
+    }.freeze
 
     def error_message_from_response(response)
       body = response.body
