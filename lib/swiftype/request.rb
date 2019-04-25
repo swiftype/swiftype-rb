@@ -105,7 +105,11 @@ module Swiftype
       Net::HTTPNotFound => Swiftype::NonExistentRecord,
       Net::HTTPConflict => Swiftype::RecordAlreadyExists,
       Net::HTTPBadRequest => Swiftype::BadRequest,
-      Net::HTTPForbidden => Swiftype::Forbidden
+      Net::HTTPForbidden => Swiftype::Forbidden,
+      Net::HTTPInternalServerError => Swiftype::InternalServerError,
+      Net::HTTPBadGateway => Swiftype::BadGateway,
+      Net::HTTPServiceUnavailable => Swiftype::ServiceUnavailable,
+      Net::HTTPGatewayTimeOut => Swiftype::GatewayTimeout
     }.freeze
 
     def error_message_from_response(response)
