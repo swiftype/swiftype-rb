@@ -6,7 +6,7 @@ rvm:
   - 2.2
   - jruby
 jdk:
-  - oraclejdk8
+  - openjdk8
 
 before_install:
   - gem --version
