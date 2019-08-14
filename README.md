@@ -1,4 +1,3 @@
-
 <p align="center"><img src="https://github.com/swiftype/swiftype-rb/blob/master/logo-site-search.png?raw=true" alt="Elastic Site Search Logo"></p>
 
 <p align="center"><a href="https://travis-ci.org/swiftype/swiftype-rb"><img src="https://travis-ci.org/swiftype/swiftype-rb.png" alt="Travis build"></a>
@@ -8,15 +7,15 @@
 
 ## Contents
 
-+ [Getting started](#getting-started-)
-+ [Usage](#usage)
-+ [Migrating from pervious versions](#migrating-from-previous-versions)
-+ [Development](#development)
-+ [FAQ](#faq-)
-+ [Contribute](#contribute-)
-+ [License](#license-)
+- [Getting started](#getting-started-)
+- [Usage](#usage)
+- [Migrating from pervious versions](#migrating-from-previous-versions)
+- [Development](#development)
+- [FAQ](#faq-)
+- [Contribute](#contribute-)
+- [License](#license-)
 
-***
+---
 
 ## Getting started 🐣
 
@@ -48,7 +47,7 @@ To install the gem, execute:
 
     gem install swiftype
 
-Or place `gem 'swiftype', '~> 1.4.0` in your `Gemfile` and run `bundle install`.
+Or place `gem 'swiftype', '~> 1.5.0` in your `Gemfile` and run `bundle install`.
 
 > **Note:** This client has been developed for the [Swiftype Site Search](https://www.swiftype.com/site-search) API endpoints only.
 
@@ -459,8 +458,8 @@ You can checkout the [Elastic Site Search community discuss forums](https://disc
 
 We welcome contributors to the project. Before you begin, a couple notes...
 
-+ Before opening a pull request, please create an issue to [discuss the scope of your proposal](https://github.com/swiftype/swiftype-rb/issues).
-+ Please write simple code and concise documentation, when appropriate.
+- Before opening a pull request, please create an issue to [discuss the scope of your proposal](https://github.com/swiftype/swiftype-rb/issues).
+- Please write simple code and concise documentation, when appropriate.
 
 ## License 📗
 
