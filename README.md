@@ -1,6 +1,12 @@
 <p align="center"><img src="https://github.com/swiftype/swiftype-rb/blob/master/logo-site-search.png?raw=true" alt="Elastic Site Search Logo"></p>
 
-<p align="center"><a href="https://travis-ci.org/swiftype/swiftype-rb"><img src="https://travis-ci.org/swiftype/swiftype-rb.png" alt="Travis build"></a>
+> **⚠️ This repository is deprecated ⚠️**
+>
+> **Please visit [https://github.com/elastic/site-search-ruby](https://github.com/elastic/site-search-ruby) for the up to date version. Thank you! - Elastic**
+
+ <p align="center">
+
+<p align="center">
 <a href="https://github.com/swiftype/swiftype-rb/releases"><img src="https://img.shields.io/github/release/swiftype/swiftype-rb/all.svg?style=flat-square" alt="GitHub release" /></a></p>
 
 > A first-party Ruby client for the [Elastic Site Search API](https://swiftype.com/documentation/site-search/overview).
@@ -47,7 +53,7 @@ To install the gem, execute:
 
     gem install swiftype
 
-Or place `gem 'swiftype', '~> 1.5.0` in your `Gemfile` and run `bundle install`.
+Or place `gem 'swiftype', '~> 1.5.1` in your `Gemfile` and run `bundle install`.
 
 > **Note:** This client has been developed for the [Swiftype Site Search](https://www.swiftype.com/site-search) API endpoints only.
 
