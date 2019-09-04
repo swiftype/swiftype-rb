@@ -4,8 +4,6 @@
 >
 > **Please visit [https://github.com/elastic/site-search-ruby](https://github.com/elastic/site-search-ruby) for the up to date version. Thank you! - Elastic**
 
- <p align="center">
-
 <p align="center">
 <a href="https://github.com/swiftype/swiftype-rb/releases"><img src="https://img.shields.io/github/release/swiftype/swiftype-rb/all.svg?style=flat-square" alt="GitHub release" /></a></p>
 
