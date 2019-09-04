@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.email       = ["team@swiftype.com"]
   s.homepage    = "https://swiftype.com"
   s.summary     = %q{Official gem for accessing the Swiftype Search API}
-  s.description = %q{API client for accessing the Swiftype Search API with no dependencies (on Ruby 1.9, JSON needed for Ruby 1.8).}
+  s.description = %q{Deprecated API client for accessing the Swiftype Site Search API. See new elastic-site-search gem.}
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
