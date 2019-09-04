@@ -8,12 +8,13 @@ Gem::Specification.new do |s|
   s.email       = ["team@swiftype.com"]
   s.homepage    = "https://swiftype.com"
   s.summary     = %q{Official gem for accessing the Swiftype Search API}
-  s.description = %q{API client for accessing the Swiftype Search API with no dependencies (on Ruby 1.9, JSON needed for Ruby 1.8).}
+  s.description = %q{Deprecated API client for accessing the Swiftype Site Search API. See new elastic-site-search gem.}
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
+  s.post_install_message = "DEPRECATION WARNING: The swiftype gem has been deprecated and replaced by elastic-site-search"
 
   s.add_development_dependency 'rspec', '~> 3.0.0'
   s.add_development_dependency 'awesome_print'
